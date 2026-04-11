@@ -1,0 +1,11 @@
+# IDE / tool metadata
+.agents/
+.claude/
+.cursor/
+
+# Temporary / misc
+Untitled
+pa11y-*.json
+
+# WhatsApp media
+WhatsApp*/

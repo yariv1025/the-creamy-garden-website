@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הצהרת נגישות — הגן המוקרם</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/accessibility/accessibility-tools.css">
+<style>
+  :root {
+    --cream: #F3EDD8;
+    --green: #1B3D21;
+    --green-dark: #122A16;
+    --gold-lt: #D4991A;
+    --brown: #7A4A28;
+    --white: #FFFDF6;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--cream);
+    color: var(--green);
+    font-family: "Raleway", sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    padding: 80px 20px 60px;
+  }
+  .container { max-width: 860px; margin: 0 auto; }
+  header { margin-bottom: 48px; }
+  h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--green);
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    color: var(--brown);
+    font-style: italic;
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+  }
+  .divider {
+    display: block; width: 52px; height: 2px;
+    background: var(--gold-lt);
+    margin: 16px 0 40px;
+  }
+  h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.35rem;
+    color: var(--green);
+    margin: 36px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(26,61,32,0.12);
+  }
+  p { margin-bottom: 14px; }
+  ul { padding-right: 24px; margin-bottom: 14px; }
+  ul li { margin-bottom: 6px; }
+  a { color: var(--gold-lt); }
+  a:focus-visible { outline: 3px solid var(--gold-lt); outline-offset: 3px; }
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    background: var(--green);
+    color: var(--gold-lt);
+    padding: 12px 28px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .back-link:hover { opacity: 0.85; }
+  footer {
+    margin-top: 64px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(26,61,32,0.12);
+    font-size: 0.78rem;
+    color: rgba(26,61,32,0.5);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <a href="creamy_garden_pro.html" class="back-link" aria-label="חזרה לדף הבית של הגן המוקרם">← חזרה לאתר</a>
+    <h1 style="margin-top:32px;">הצהרת נגישות</h1>
+    <p class="subtitle">בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג–2013</p>
+    <span class="divider" aria-hidden="true"></span>
+  </header>
+
+  <main id="main-content">
+
+    <h2>כללי</h2>
+    <p>
+      <strong>אנחנו בגן המוקרם</strong>  עושים כל שביכולתינו על מנת להנגיש את האתר לכלל המשתמשים, רואים עצמנו מחויבים לנגישות, שוויון, אי אפליה ושירות נגיש לאנשים עם מוגבלות, בהתאם לחוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח–1998, ולתקנות הנגישות שהותקנו מכוחו.
+    </p>
+    <p>
+      מטרתנו היא עמידה בדרישות תקן <strong>WCAG 2.1 ברמה AA</strong>, בהתאם לתקנה 35 לתקנות שוויון זכויות לאנשים עם מוגבלות.
+    </p>
+    <p>
+      כל מידע באתר ניתן לקבל גם דרך הטלפון עבור לקחות עם לקות המעדיפים זאת, במספר: <a href="tel:+972542411265">054-241-1265</a>
+    </p>
+
+    <h2>רמת הנגישות</h2>
+    <p>להלן התאמות נגישות שיושמו באתר ונבדקות באופן רציף:</p>
+    <ul>
+      <li>תמיכה בקוראי מסך (NVDA, JAWS, VoiceOver)</li>
+      <li>ניווט מלא באמצעות מקלדת</li>
+      <li>תמיכה בשינוי גודל טקסט עד 200% ללא אובדן תוכן</li>
+      <li>יחסי ניגודיות עומדים בדרישות התקן (4.5:1 לטקסט רגיל, 3:1 לטקסט גדול)</li>
+      <li>תמיות ומבנה סמנטי נכון עם כותרות מסודרות</li>
+      <li>תמיכה בכיוון RTL לעברית וערבית</li>
+      <li>טקסט חלופי לכל התמונות האינפורמטיביות</li>
+      <li>קישור לדילוג לתוכן בראש הדף</li>
+      <li>במסכים צרים מאוד: תפריט ניווט בכפתור עם לוח ניווט נגיש (מקלדת וקורא מסך)</li>
+    </ul>
+
+    <h2>מרכיב הנגישות באתר</h2>
+    <p>
+      האתר כולל סרגל נגישות המאפשר:
+    </p>
+    <ul>
+      <li>הגדלה והקטנה של גודל הגופן</li>
+      <li>מצב ניגודיות גבוהה</li>
+      <li>מצב גווני אפור</li>
+      <li>גישה מהירה להצהרת נגישות זו</li>
+    </ul>
+
+    <h2>אמצעי קשר לנושאי נגישות</h2>
+    <p>
+      נתקלתם בבעיית נגישות? אנו מזמינים אתכם לפנות אלינו בכל אחד מהערוצים הבאים:
+    </p>
+    <ul>
+      <li><strong>רכז נגישות:</strong> צוות Creamy Garden (ניהול האתר)</li>
+      <li><strong>טלפון / SMS:</strong> <a href="tel:+972542411265">054-241-1265</a></li>
+      <li><strong>וואטסאפ:</strong> <a href="https://wa.me/972542411265">הזמנה ופניות בוואטסאפ</a></li>
+      <li><strong>אינסטגרם:</strong> <a href="https://instagram.com/the_creamy_garden" target="_blank" rel="noopener noreferrer">@the_creamy_garden (נפתח בלשונית חדשה)</a></li>
+    </ul>
+
+    <h2>מועד הגשת הבקשה ומועד עדכון ההצהרה</h2>
+    <p>
+      <strong>הצהרה זו עודכנה לאחרונה:</strong> אפריל 2026
+    </p>
+    <p>
+      בוצעה בדיקת נגישות עצמית לפי קריטריוני WCAG 2.1 ברמה AA (כולל ניווט מקלדת, תמות, טקסט חלופי לתמונות אינפורמטיביות, יחסי ניגוד, והתאמות בממשק — דילוג לתוכן, סרגל נגישות, בחירת שפה). לא בוצעה בשלב זה בדיקה חיצונית עצמאית על ידי גורם מוסמך נפרד.
+    </p>
+    <p>
+      סטטוס התאימות מתעדכן לאחר כל סבב תיקונים ובדיקות (אוטומטיות + ידניות), בהתאם למטריצת הבדיקה המלאה של הקריטריונים החלים.
+    </p>
+
+    <h2>מדיה (וידאו וכתוביות)</h2>
+    <p>
+      באתר זה <strong>אין כרגע סרטוני וידאו משובצים</strong>. אם בעתיד יועלו סרטונים, יסופקו כתוביות (למשל בפורמט SRT) וייעשה מאמץ לספק תיאור שמע או תמליל לפי הצורך.
+    </p>
+
+    <h2>מגבלות נגישות ידועות</h2>
+    <p>
+      נכון לעדכון זה אין לנו מידע על מגבלות נגישות שלא טופלו באופן מהותי. יחד עם זאת, ייתכנו פערים נקודתיים שיתגלו במכשירים/טכנולוגיות מסייעות שונות, והם יתוקנו בהתאם לסדרי עדיפות נגישות.
+      גופנים נטענים משירות Google Fonts; אם חוסר חיבור לאינטרנט מונע טעינת הגופן, יוצג גופן גיבוי מהמערכת.
+    </p>
+
+    <h2>משוב ופנייה</h2>
+    <p>
+      אם מצאתם בעיית נגישות שלא מפורטת כאן, או שיש לכם הצעות לשיפור, אנא פנו אלינו. אנו נשתדל לחזור אליכם בהקדם האפשרי ולא יאוחר מ-5 ימי עסקים.
+    </p>
+
+  </main>
+
+  <footer>
+    <p>הגן המוקרם · כל הזכויות שמורות © 2026 · <a href="creamy_garden_pro.html">חזרה לאתר</a></p>
+  </footer>
+
+</div>
+<script src="assets/accessibility/accessibility-tools.js"></script>
+</body>
+</html>
