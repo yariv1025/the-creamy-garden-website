@@ -1,67 +1,124 @@
-.a11y-toolbar {
+/* ── ACCESSIBILITY WIDGET: FAB + PANEL ────────────────────────── */
+
+/* Floating action button */
+.a11y-fab {
   position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 0;
-  z-index: 9999;
+  bottom: 24px;
+  left: 24px;
+  z-index: 10000;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--green, #1B3D21);
+  color: var(--gold-lt, #D4991A);
+  border: 2px solid var(--gold, #B8820A);
+  font-size: 1.45rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.32);
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+[dir="rtl"] .a11y-fab {
+  left: auto;
+  right: 24px;
+}
+
+.a11y-fab:hover,
+.a11y-fab:focus-visible {
+  background: var(--gold-lt, #D4991A);
+  color: var(--green, #1B3D21);
+  transform: scale(1.08);
+  outline: 3px solid var(--gold-lt, #D4991A);
+  outline-offset: 3px;
+}
+
+/* Panel that opens above the FAB */
+.a11y-panel {
+  position: fixed;
+  bottom: 86px;
+  left: 16px;
+  z-index: 10000;
+  background: var(--green, #1B3D21);
+  border: 1px solid rgba(200,146,10,0.4);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.38);
+  padding: 8px 6px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
+  min-width: 190px;
+  transform-origin: bottom left;
+  transform: scale(0.9) translateY(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
-[dir="rtl"] .a11y-toolbar {
-  right: auto;
-  left: 0;
+[dir="rtl"] .a11y-panel {
+  left: auto;
+  right: 16px;
+  transform-origin: bottom right;
 }
 
+.a11y-panel.open {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+/* Buttons inside panel */
 .a11y-btn {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 7px;
-  min-width: 44px;
-  width: auto;
-  height: 44px;
-  padding: 0 12px 0 10px;
-  background: var(--green, #1B3D21);
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 14px;
+  background: transparent;
   color: var(--gold-lt, #D4991A);
   border: none;
-  border-radius: 4px 0 0 4px;
-  font-size: 1.1rem;
+  border-radius: 5px;
+  font-size: 1.05rem;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.15s, color 0.15s;
   font-family: "Raleway", sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
+  text-align: start;
 }
 
 .a11y-btn-label {
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0;
+  letter-spacing: 0.2px;
   line-height: 1;
-}
-
-[dir="rtl"] .a11y-btn {
-  border-radius: 0 4px 4px 0;
-  padding: 0 10px 0 12px;
 }
 
 .a11y-btn:hover,
 .a11y-btn:focus-visible {
-  background: var(--gold-lt, #D4991A);
-  color: var(--green, #1B3D21);
-  outline: 3px solid var(--gold-lt, #D4991A);
-  outline-offset: 2px;
+  background: rgba(212,153,26,0.15);
+  color: #fff;
+  outline: 2px solid var(--gold-lt, #D4991A);
+  outline-offset: -2px;
 }
 
 .a11y-btn[aria-pressed="true"] {
-  background: var(--gold, #996600);
+  background: rgba(200,146,10,0.25);
   color: #fff;
 }
 
-/* Shared accessibility modes for all pages that include this file */
+/* Divider before the statement link */
+.a11y-panel-divider {
+  height: 1px;
+  background: rgba(200,146,10,0.25);
+  margin: 4px 8px;
+}
+
+/* Shared accessibility modes */
 body.hc-mode {
   --cream: #ffffff;
   --parchment: #f0f0f0;
@@ -76,23 +133,3 @@ body.hc-mode {
 .gray-mode-on {
   filter: grayscale(100%);
 }
-
-@media (max-width: 600px) {
-  .a11y-toolbar {
-    top: auto;
-    bottom: 70px;
-    transform: none;
-  }
-
-  .a11y-btn {
-    height: 40px;
-    font-size: 1rem;
-    padding: 0 10px 0 8px;
-    gap: 5px;
-  }
-
-  .a11y-btn-label {
-    font-size: 0.63rem;
-  }
-}
-

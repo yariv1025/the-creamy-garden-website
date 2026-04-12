@@ -819,13 +819,17 @@
 
 <div id="a11yLiveRegion" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
 
-<!-- Accessibility Toolbar -->
-<div class="a11y-toolbar" id="a11yToolbar" role="toolbar" aria-label="סרגל נגישות">
-  <button type="button" class="a11y-btn" id="a11yFontInc" aria-label="הגדל גופן"><span aria-hidden="true">A+</span><span class="a11y-btn-label">הגדל גופן</span></button>
-  <button type="button" class="a11y-btn" id="a11yFontDec" aria-label="הקטן גופן"><span aria-hidden="true">A-</span><span class="a11y-btn-label">הקטן גופן</span></button>
-  <button type="button" class="a11y-btn" id="a11yContrast" aria-label="ניגודיות גבוהה" aria-pressed="false"><span aria-hidden="true">⬛</span><span class="a11y-btn-label">ניגודיות גבוהה</span></button>
-  <button type="button" class="a11y-btn" id="a11yGrayscale" aria-label="מצב גווני אפור" aria-pressed="false"><span aria-hidden="true">◐</span><span class="a11y-btn-label">מצב גווני אפור</span></button>
-  <a class="a11y-btn" id="a11yStmtBtn" href="accessibility-statement.html" aria-label="הצהרת נגישות" style="text-decoration:none;"><span aria-hidden="true">♿</span><span class="a11y-btn-label">נגישות</span></a>
+<!-- Accessibility FAB + Panel -->
+<button type="button" class="a11y-fab" id="a11yToggle" aria-label="פתח תפריט נגישות" aria-expanded="false" aria-controls="a11yPanel">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-1 5h2a1 1 0 0 1 1 1v4h2a1 1 0 1 1 0 2h-2v4a1 1 0 1 1-2 0v-4H9a1 1 0 1 1 0-2h1V8a1 1 0 0 1 1-1z"/></svg>
+</button>
+<div class="a11y-panel" id="a11yPanel" role="menu" aria-label="סרגל נגישות" aria-hidden="true">
+  <button type="button" class="a11y-btn" id="a11yFontInc" role="menuitem" aria-label="הגדל גופן"><span aria-hidden="true">A+</span><span class="a11y-btn-label">הגדל גופן</span></button>
+  <button type="button" class="a11y-btn" id="a11yFontDec" role="menuitem" aria-label="הקטן גופן"><span aria-hidden="true">A−</span><span class="a11y-btn-label">הקטן גופן</span></button>
+  <button type="button" class="a11y-btn" id="a11yContrast" role="menuitemcheckbox" aria-label="ניגודיות גבוהה" aria-checked="false"><span aria-hidden="true">⬛</span><span class="a11y-btn-label">ניגודיות גבוהה</span></button>
+  <button type="button" class="a11y-btn" id="a11yGrayscale" role="menuitemcheckbox" aria-label="מצב גווני אפור" aria-checked="false"><span aria-hidden="true">◐</span><span class="a11y-btn-label">גווני אפור</span></button>
+  <div class="a11y-panel-divider" role="separator"></div>
+  <a class="a11y-btn" id="a11yStmtBtn" role="menuitem" href="accessibility-statement.html" aria-label="הצהרת נגישות"><span aria-hidden="true">📄</span><span class="a11y-btn-label">הצהרת נגישות</span></a>
 </div>
 
 <!-- ── COOKIE BANNER ── -->
@@ -1003,6 +1007,7 @@ var T = {
     "a11yGrayscale": "Grayscale mode",
     "a11yStatement": "A11y",
     "a11yStatementAria": "Accessibility statement",
+    "a11yToggleLabel": "Open accessibility menu",
     "newWindowNotice": "(opens in new tab)",
     "langChangedLive": "Interface language updated",
     "langChoose": "Choose language",
@@ -1195,6 +1200,7 @@ var T = {
     "a11yGrayscale": "מצב גווני אפור",
     "a11yStatement": "נגישות",
     "a11yStatementAria": "הצהרת נגישות",
+    "a11yToggleLabel": "פתח תפריט נגישות",
     "newWindowNotice": "(נפתח בלשונית חדשה)",
     "langChangedLive": "שפת הממשק עודכנה",
     "langChoose": "בחירת שפה",
@@ -1387,6 +1393,7 @@ var T = {
     "a11yGrayscale": "Оттенки серого",
     "a11yStatement": "Доступность",
     "a11yStatementAria": "Заявление о доступности",
+    "a11yToggleLabel": "Открыть меню специальных возможностей",
     "newWindowNotice": "(открывается в новой вкладке)",
     "langChangedLive": "Язык интерфейса изменён",
     "langChoose": "Выбор языка",
@@ -1579,6 +1586,7 @@ var T = {
     "a11yGrayscale": "وضع تدرج الرمادي",
     "a11yStatement": "إمكانية الوصول",
     "a11yStatementAria": "بيان إمكانية الوصول",
+    "a11yToggleLabel": "افتح قائمة إمكانية الوصول",
     "newWindowNotice": "(يفتح في علامة تبويب جديدة)",
     "langChangedLive": "تم تحديث لغة الواجهة",
     "langChoose": "اختيار اللغة",
@@ -1806,8 +1814,10 @@ function applyLang(lang) {
   var siteNav = document.getElementById("siteNav");
   if (siteNav && data.navAriaLabel) siteNav.setAttribute("aria-label", data.navAriaLabel);
 
-  var a11yBar = document.getElementById("a11yToolbar");
+  var a11yBar = document.getElementById("a11yPanel");
   if (a11yBar && data.a11yToolbarLabel) a11yBar.setAttribute("aria-label", data.a11yToolbarLabel);
+  var a11yToggle = document.getElementById("a11yToggle");
+  if (a11yToggle && data.a11yToggleLabel) a11yToggle.setAttribute("aria-label", data.a11yToggleLabel);
 
   var fi = document.getElementById("a11yFontInc");
   var fd = document.getElementById("a11yFontDec");
@@ -2027,6 +2037,42 @@ function switchLang(lang, btn) {
       child.classList.add('reveal','reveal-d'+(Math.min(i+1,6)));
       obs.observe(child);
     });
+  });
+})();
+
+// ── Accessibility panel toggle ────────────────────────────────────
+(function(){
+  var fab   = document.getElementById('a11yToggle');
+  var panel = document.getElementById('a11yPanel');
+  if (!fab || !panel) return;
+
+  function isOpen() { return panel.classList.contains('open'); }
+
+  function openPanel() {
+    panel.classList.add('open');
+    panel.setAttribute('aria-hidden', 'false');
+    fab.setAttribute('aria-expanded', 'true');
+    var first = panel.querySelector('.a11y-btn');
+    if (first) setTimeout(function(){ first.focus(); }, 50);
+  }
+
+  function closePanel() {
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden', 'true');
+    fab.setAttribute('aria-expanded', 'false');
+  }
+
+  fab.addEventListener('click', function(e){
+    e.stopPropagation();
+    isOpen() ? closePanel() : openPanel();
+  });
+
+  document.addEventListener('click', function(e){
+    if (isOpen() && !panel.contains(e.target) && e.target !== fab) closePanel();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && isOpen()) { closePanel(); fab.focus(); }
   });
 })();
 
