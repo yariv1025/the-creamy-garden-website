@@ -588,15 +588,6 @@
     border-top:1px solid rgba(200,164,74,0.13);
   }
   footer span { color:var(--gold-lt); }
-  .site-footer__a11y {
-    color:var(--gold-lt);
-    text-decoration:underline;
-    text-underline-offset:3px;
-    font-size:0.72rem;
-    letter-spacing:1px;
-    font-weight:600;
-  }
-  .site-footer__a11y:focus-visible { outline:3px solid var(--gold-lt); outline-offset:4px; }
 
   /* ── SCROLL REVEALS ─────────────────────────────────────────── */
   .reveal {
@@ -1073,8 +1064,6 @@
   <span id="footerName"></span> &nbsp;&middot;&nbsp;
   <span id="footerTagline"></span> &nbsp;&middot;&nbsp;
   <span id="footerRights"></span>
-  <br><br>
-  <a href="accessibility-statement.html" class="site-footer__a11y" id="footerA11yLink" lang="he">הצהרת נגישות</a>
 </footer>
 
 <script>
@@ -1923,12 +1912,6 @@ function applyLang(lang) {
   if (stmt && data.a11yStatementAria) stmt.setAttribute("aria-label", data.a11yStatementAria);
   if (stmt && data.a11yStatement) { var sl = stmt.querySelector(".a11y-btn-label"); if (sl) sl.textContent = data.a11yStatement; }
 
-  var footA = document.getElementById("footerA11yLink");
-  if (footA && data.a11yStatementAria) {
-    footA.textContent = data.a11yStatementAria;
-    footA.setAttribute("aria-label", data.a11yStatementAria);
-  }
-  if (footA) footA.setAttribute("lang", lang);
 
   var langBtn = document.getElementById("langToggleBtn");
   if (langBtn && data.langChoose) langBtn.setAttribute("aria-label", data.langChoose);
