@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>הצהרת נגישות — הגן המוקרם</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/accessibility/accessibility-tools.css">
 <style>
   :root {
     --cream: #F3EDD8;
     --green: #1B3D21;
     --green-dark: #122A16;
+    --gold: #B8820A;
     --gold-lt: #D4991A;
     --brown: #7A4A28;
     --white: #FFFDF6;
@@ -25,6 +25,14 @@
     padding: 80px 20px 60px;
   }
   .container { max-width: 860px; margin: 0 auto; }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
   header { margin-bottom: 48px; }
   h1 {
     font-family: "Playfair Display", serif;
@@ -53,12 +61,12 @@
   }
   p { margin-bottom: 14px; }
   ul { padding-right: 24px; margin-bottom: 14px; }
+  [dir="ltr"] ul { padding-right: 0; padding-left: 24px; }
   ul li { margin-bottom: 6px; }
   a { color: var(--gold-lt); }
   a:focus-visible { outline: 3px solid var(--gold-lt); outline-offset: 3px; }
   .back-link {
     display: inline-block;
-    margin-top: 48px;
     background: var(--green);
     color: var(--gold-lt);
     padding: 12px 28px;
@@ -78,101 +86,395 @@
     color: rgba(26,61,32,0.5);
     letter-spacing: 1px;
   }
+
+  /* ── LANG SWITCHER ─────────────────────────────────────────────── */
+  .lang-dropdown { position: relative; }
+  .lang-toggle {
+    display: flex; align-items: center; gap: 6px;
+    background: transparent;
+    border: 1px solid rgba(26,61,32,0.35);
+    color: var(--green);
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-family: "Raleway", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .lang-toggle:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
+  .lang-toggle .chevron { transition: transform 0.25s; }
+  .lang-dropdown.open .lang-toggle { border-color: var(--gold-lt); color: var(--gold-lt); }
+  .lang-dropdown.open .lang-toggle .chevron { transform: rotate(180deg); }
+  .lang-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    background: var(--white);
+    border: 1px solid rgba(26,61,32,0.14);
+    border-radius: 4px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+    min-width: 150px;
+    z-index: 200;
+    padding: 4px 0;
+    list-style: none;
+  }
+  [dir="ltr"] .lang-menu { right: auto; left: 0; }
+  .lang-dropdown.open .lang-menu { display: block; }
+  .lang-menu [role="option"] {
+    padding: 9px 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--green);
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+  .lang-menu [role="option"]:hover { background: rgba(200,164,74,0.1); color: var(--gold-lt); }
+  .lang-menu [role="option"].active { color: var(--gold-lt); background: rgba(200,164,74,0.07); }
 </style>
 </head>
 <body>
 <div class="container">
 
+  <div class="top-bar">
+    <a href="index.html" class="back-link" id="backLink" aria-label="חזרה לדף הבית של הגן המוקרם">← חזרה לאתר</a>
+    <div class="lang-dropdown" id="langDropdown">
+      <button type="button" class="lang-toggle" id="langToggleBtn" onclick="toggleDropdown(event)"
+        aria-haspopup="listbox" aria-expanded="false" aria-controls="langMenu" aria-label="בחירת שפה">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span id="currentLangLabel" aria-hidden="true">HE</span>
+        <svg class="chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <ul class="lang-menu" id="langMenu" role="listbox" aria-label="שפות זמינות">
+        <li role="option" tabindex="0" onclick="switchLang('en',this)" data-label="EN" aria-selected="false">🇬🇧 English</li>
+        <li role="option" tabindex="0" onclick="switchLang('he',this)" data-label="HE" class="active" aria-selected="true">🇮🇱 עברית</li>
+        <li role="option" tabindex="0" onclick="switchLang('ru',this)" data-label="RU" aria-selected="false">🇷🇺 Русский</li>
+        <li role="option" tabindex="0" onclick="switchLang('ar',this)" data-label="AR" aria-selected="false">🇸🇦 العربية</li>
+      </ul>
+    </div>
+  </div>
+
   <header>
-    <a href="creamy_garden_pro.html" class="back-link" aria-label="חזרה לדף הבית של הגן המוקרם">← חזרה לאתר</a>
-    <h1 style="margin-top:32px;">הצהרת נגישות</h1>
-    <p class="subtitle">בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג–2013</p>
+    <h1 id="pageTitle">הצהרת נגישות</h1>
+    <p class="subtitle" id="pageSubtitle">בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג–2013</p>
     <span class="divider" aria-hidden="true"></span>
   </header>
 
-  <main id="main-content">
-
-    <h2>כללי</h2>
-    <p>
-      <strong>אנחנו בגן המוקרם</strong>  עושים כל שביכולתינו על מנת להנגיש את האתר לכלל המשתמשים, רואים עצמנו מחויבים לנגישות, שוויון, אי אפליה ושירות נגיש לאנשים עם מוגבלות, בהתאם לחוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח–1998, ולתקנות הנגישות שהותקנו מכוחו.
-    </p>
-    <p>
-      מטרתנו היא עמידה בדרישות תקן <strong>WCAG 2.1 ברמה AA</strong>, בהתאם לתקנה 35 לתקנות שוויון זכויות לאנשים עם מוגבלות.
-    </p>
-    <p>
-      כל מידע באתר ניתן לקבל גם דרך הטלפון עבור לקחות עם לקות המעדיפים זאת, במספר: <a href="tel:+972542411265">054-241-1265</a>
-    </p>
-
-    <h2>רמת הנגישות</h2>
-    <p>להלן התאמות נגישות שיושמו באתר ונבדקות באופן רציף:</p>
-    <ul>
-      <li>תמיכה בקוראי מסך (NVDA, JAWS, VoiceOver)</li>
-      <li>ניווט מלא באמצעות מקלדת</li>
-      <li>תמיכה בשינוי גודל טקסט עד 200% ללא אובדן תוכן</li>
-      <li>יחסי ניגודיות עומדים בדרישות התקן (4.5:1 לטקסט רגיל, 3:1 לטקסט גדול)</li>
-      <li>תמיות ומבנה סמנטי נכון עם כותרות מסודרות</li>
-      <li>תמיכה בכיוון RTL לעברית וערבית</li>
-      <li>טקסט חלופי לכל התמונות האינפורמטיביות</li>
-      <li>קישור לדילוג לתוכן בראש הדף</li>
-      <li>במסכים צרים מאוד: תפריט ניווט בכפתור עם לוח ניווט נגיש (מקלדת וקורא מסך)</li>
-    </ul>
-
-    <h2>מרכיב הנגישות באתר</h2>
-    <p>
-      האתר כולל סרגל נגישות המאפשר:
-    </p>
-    <ul>
-      <li>הגדלה והקטנה של גודל הגופן</li>
-      <li>מצב ניגודיות גבוהה</li>
-      <li>מצב גווני אפור</li>
-      <li>גישה מהירה להצהרת נגישות זו</li>
-    </ul>
-
-    <h2>אמצעי קשר לנושאי נגישות</h2>
-    <p>
-      נתקלתם בבעיית נגישות? אנו מזמינים אתכם לפנות אלינו בכל אחד מהערוצים הבאים:
-    </p>
-    <ul>
-      <li><strong>רכז נגישות:</strong> צוות Creamy Garden (ניהול האתר)</li>
-      <li><strong>טלפון / SMS:</strong> <a href="tel:+972542411265">054-241-1265</a></li>
-      <li><strong>וואטסאפ:</strong> <a href="https://wa.me/972542411265">הזמנה ופניות בוואטסאפ</a></li>
-      <li><strong>אינסטגרם:</strong> <a href="https://instagram.com/the_creamy_garden" target="_blank" rel="noopener noreferrer">@the_creamy_garden (נפתח בלשונית חדשה)</a></li>
-    </ul>
-
-    <h2>מועד הגשת הבקשה ומועד עדכון ההצהרה</h2>
-    <p>
-      <strong>הצהרה זו עודכנה לאחרונה:</strong> אפריל 2026
-    </p>
-    <p>
-      בוצעה בדיקת נגישות עצמית לפי קריטריוני WCAG 2.1 ברמה AA (כולל ניווט מקלדת, תמות, טקסט חלופי לתמונות אינפורמטיביות, יחסי ניגוד, והתאמות בממשק — דילוג לתוכן, סרגל נגישות, בחירת שפה). לא בוצעה בשלב זה בדיקה חיצונית עצמאית על ידי גורם מוסמך נפרד.
-    </p>
-    <p>
-      סטטוס התאימות מתעדכן לאחר כל סבב תיקונים ובדיקות (אוטומטיות + ידניות), בהתאם למטריצת הבדיקה המלאה של הקריטריונים החלים.
-    </p>
-
-    <h2>מדיה (וידאו וכתוביות)</h2>
-    <p>
-      באתר זה <strong>אין כרגע סרטוני וידאו משובצים</strong>. אם בעתיד יועלו סרטונים, יסופקו כתוביות (למשל בפורמט SRT) וייעשה מאמץ לספק תיאור שמע או תמליל לפי הצורך.
-    </p>
-
-    <h2>מגבלות נגישות ידועות</h2>
-    <p>
-      נכון לעדכון זה אין לנו מידע על מגבלות נגישות שלא טופלו באופן מהותי. יחד עם זאת, ייתכנו פערים נקודתיים שיתגלו במכשירים/טכנולוגיות מסייעות שונות, והם יתוקנו בהתאם לסדרי עדיפות נגישות.
-      גופנים נטענים משירות Google Fonts; אם חוסר חיבור לאינטרנט מונע טעינת הגופן, יוצג גופן גיבוי מהמערכת.
-    </p>
-
-    <h2>משוב ופנייה</h2>
-    <p>
-      אם מצאתם בעיית נגישות שלא מפורטת כאן, או שיש לכם הצעות לשיפור, אנא פנו אלינו. אנו נשתדל לחזור אליכם בהקדם האפשרי ולא יאוחר מ-5 ימי עסקים.
-    </p>
-
-  </main>
+  <main id="main-content"></main>
 
   <footer>
-    <p>הגן המוקרם · כל הזכויות שמורות © 2026 · <a href="creamy_garden_pro.html">חזרה לאתר</a></p>
+    <p id="footerTxt">הגן המוקרם · כל הזכויות שמורות © 2026 · <a href="index.html" id="footerHomeLink">חזרה לאתר</a></p>
   </footer>
 
 </div>
+<script>
+var T = {
+  "he": {
+    dir: "rtl", lang: "he",
+    pageTitle: "הצהרת נגישות",
+    pageSubtitle: 'בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג–2013',
+    backLink: "← חזרה לאתר",
+    backLinkAria: "חזרה לדף הבית של הגן המוקרם",
+    langChoose: "בחירת שפה",
+    langAvailable: "שפות זמינות",
+    footer: 'הגן המוקרם · כל הזכויות שמורות © 2026 · <a href="index.html" id="footerHomeLink">חזרה לאתר</a>',
+    content: `
+      <h2>כללי</h2>
+      <p><strong>אנחנו בגן המוקרם</strong> עושים כל שביכולתינו על מנת להנגיש את האתר לכלל המשתמשים, רואים עצמנו מחויבים לנגישות, שוויון, אי אפליה ושירות נגיש לאנשים עם מוגבלות, בהתאם לחוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח–1998, ולתקנות הנגישות שהותקנו מכוחו.</p>
+      <p>מטרתנו היא עמידה בדרישות תקן <strong>WCAG 2.1 ברמה AA</strong>, בהתאם לתקנה 35 לתקנות שוויון זכויות לאנשים עם מוגבלות.</p>
+      <p>כל מידע באתר ניתן לקבל גם דרך הטלפון עבור לקוחות עם לקות המעדיפים זאת, במספר: <a href="tel:+972542411265">054-241-1265</a></p>
+      <h2>רמת הנגישות</h2>
+      <p>להלן התאמות נגישות שיושמו באתר ונבדקות באופן רציף:</p>
+      <ul>
+        <li>תמיכה בקוראי מסך (NVDA, JAWS, VoiceOver)</li>
+        <li>ניווט מלא באמצעות מקלדת</li>
+        <li>תמיכה בשינוי גודל טקסט עד 200% ללא אובדן תוכן</li>
+        <li>יחסי ניגודיות עומדים בדרישות התקן (4.5:1 לטקסט רגיל, 3:1 לטקסט גדול)</li>
+        <li>מבנה סמנטי נכון עם כותרות מסודרות</li>
+        <li>תמיכה בכיוון RTL לעברית וערבית</li>
+        <li>טקסט חלופי לכל התמונות האינפורמטיביות</li>
+        <li>קישור לדילוג לתוכן בראש הדף</li>
+        <li>במסכים צרים: תפריט ניווט בכפתור עם לוח ניווט נגיש (מקלדת וקורא מסך)</li>
+      </ul>
+      <h2>מרכיב הנגישות באתר</h2>
+      <p>האתר כולל סרגל נגישות המאפשר:</p>
+      <ul>
+        <li>הגדלה והקטנה של גודל הגופן</li>
+        <li>מצב ניגודיות גבוהה</li>
+        <li>מצב גווני אפור</li>
+        <li>גישה מהירה להצהרת נגישות זו</li>
+      </ul>
+      <h2>אמצעי קשר לנושאי נגישות</h2>
+      <p>נתקלתם בבעיית נגישות? אנו מזמינים אתכם לפנות אלינו בכל אחד מהערוצים הבאים:</p>
+      <ul>
+        <li><strong>רכז נגישות:</strong> צוות Creamy Garden (ניהול האתר)</li>
+        <li><strong>טלפון / SMS:</strong> <a href="tel:+972542411265">054-241-1265</a></li>
+        <li><strong>וואטסאפ:</strong> <a href="https://wa.me/972542411265">הזמנה ופניות בוואטסאפ</a></li>
+        <li><strong>אינסטגרם:</strong> <a href="https://instagram.com/the_creamy_garden" target="_blank" rel="noopener noreferrer">@the_creamy_garden (נפתח בלשונית חדשה)</a></li>
+      </ul>
+      <h2>מועד עדכון ההצהרה</h2>
+      <p><strong>הצהרה זו עודכנה לאחרונה:</strong> אפריל 2026</p>
+      <p>בוצעה בדיקת נגישות עצמית לפי קריטריוני WCAG 2.1 ברמה AA (כולל ניווט מקלדת, תמות, טקסט חלופי לתמונות אינפורמטיביות, יחסי ניגוד, והתאמות בממשק). לא בוצעה בשלב זה בדיקה חיצונית עצמאית על ידי גורם מוסמך נפרד.</p>
+      <h2>מדיה (וידאו וכתוביות)</h2>
+      <p>באתר זה <strong>אין כרגע סרטוני וידאו משובצים</strong>. אם בעתיד יועלו סרטונים, יסופקו כתוביות וייעשה מאמץ לספק תיאור שמע או תמליל לפי הצורך.</p>
+      <h2>מגבלות נגישות ידועות</h2>
+      <p>נכון לעדכון זה אין לנו מידע על מגבלות נגישות שלא טופלו באופן מהותי. ייתכנו פערים נקודתיים שיתגלו במכשירים/טכנולוגיות מסייעות שונות, והם יתוקנו בהתאם לסדרי עדיפות נגישות.</p>
+      <h2>משוב ופנייה</h2>
+      <p>אם מצאתם בעיית נגישות שלא מפורטת כאן, או שיש לכם הצעות לשיפור, אנא פנו אלינו. אנו נשתדל לחזור אליכם בהקדם האפשרי ולא יאוחר מ-5 ימי עסקים.</p>
+    `
+  },
+  "en": {
+    dir: "ltr", lang: "en",
+    pageTitle: "Accessibility Statement",
+    pageSubtitle: "In accordance with the Equal Rights for Persons with Disabilities Regulations (Service Accessibility Adjustments), 2013",
+    backLink: "← Back to Site",
+    backLinkAria: "Back to The Creamy Garden homepage",
+    langChoose: "Choose language",
+    langAvailable: "Available languages",
+    footer: '© 2026 The Creamy Garden · All rights reserved · <a href="index.html" id="footerHomeLink">Back to Site</a>',
+    content: `
+      <h2>General</h2>
+      <p><strong>The Creamy Garden</strong> is committed to making our website accessible to all users, in accordance with the Equal Rights for Persons with Disabilities Law, 5758–1998, and the accessibility regulations enacted under it.</p>
+      <p>Our goal is to meet <strong>WCAG 2.1 Level AA</strong> requirements.</p>
+      <p>All information on the site is also available by phone for customers who prefer that option: <a href="tel:+972542411265">054-241-1265</a></p>
+      <h2>Accessibility Level</h2>
+      <p>The following accessibility adjustments have been implemented and are continuously reviewed:</p>
+      <ul>
+        <li>Screen reader support (NVDA, JAWS, VoiceOver)</li>
+        <li>Full keyboard navigation</li>
+        <li>Text resize support up to 200% without loss of content</li>
+        <li>Contrast ratios meet standard requirements (4.5:1 for normal text, 3:1 for large text)</li>
+        <li>Correct semantic structure with ordered headings</li>
+        <li>RTL support for Hebrew and Arabic</li>
+        <li>Alternative text for all informative images</li>
+        <li>Skip-to-content link at the top of the page</li>
+        <li>Mobile navigation menu with accessible keyboard and screen reader support</li>
+      </ul>
+      <h2>Accessibility Widget</h2>
+      <p>The site includes an accessibility toolbar that allows:</p>
+      <ul>
+        <li>Increase and decrease font size</li>
+        <li>High contrast mode</li>
+        <li>Grayscale mode</li>
+        <li>Quick access to this accessibility statement</li>
+      </ul>
+      <h2>Contact for Accessibility Issues</h2>
+      <p>Encountered an accessibility issue? Please contact us via any of the following:</p>
+      <ul>
+        <li><strong>Accessibility coordinator:</strong> Creamy Garden team (site management)</li>
+        <li><strong>Phone / SMS:</strong> <a href="tel:+972542411265">054-241-1265</a></li>
+        <li><strong>WhatsApp:</strong> <a href="https://wa.me/972542411265">Order or contact via WhatsApp</a></li>
+        <li><strong>Instagram:</strong> <a href="https://instagram.com/the_creamy_garden" target="_blank" rel="noopener noreferrer">@the_creamy_garden (opens in new tab)</a></li>
+      </ul>
+      <h2>Statement Last Updated</h2>
+      <p><strong>Last updated:</strong> April 2026</p>
+      <p>A self-audit was conducted according to WCAG 2.1 Level AA criteria. No independent third-party audit has been performed at this stage.</p>
+      <h2>Media (Video & Captions)</h2>
+      <p>This site currently <strong>has no embedded videos</strong>. If videos are added in the future, captions and audio descriptions or transcripts will be provided as needed.</p>
+      <h2>Known Accessibility Limitations</h2>
+      <p>As of this update, we are not aware of any significant unresolved accessibility limitations. Minor gaps may exist for specific assistive technologies and will be addressed according to accessibility priorities.</p>
+      <h2>Feedback</h2>
+      <p>If you find an accessibility issue not listed here, or have suggestions for improvement, please contact us. We will respond as soon as possible and no later than 5 business days.</p>
+    `
+  },
+  "ru": {
+    dir: "ltr", lang: "ru",
+    pageTitle: "Заявление о доступности",
+    pageSubtitle: "В соответствии с законодательством Израиля об обеспечении доступности веб-сайтов для людей с ограниченными возможностями",
+    backLink: "← Вернуться на сайт",
+    backLinkAria: "Вернуться на главную страницу The Creamy Garden",
+    langChoose: "Выбор языка",
+    langAvailable: "Доступные языки",
+    footer: '© 2026 The Creamy Garden · Все права защищены · <a href="index.html" id="footerHomeLink">Вернуться на сайт</a>',
+    content: `
+      <h2>Общая информация</h2>
+      <p><strong>The Creamy Garden</strong> стремится сделать наш сайт доступным для всех пользователей в соответствии с израильским законодательством о правах лиц с ограниченными возможностями и нормативами доступности.</p>
+      <p>Наша цель — соответствие требованиям <strong>WCAG 2.1 уровня AA</strong>.</p>
+      <p>Вся информация на сайте также доступна по телефону для клиентов, которые предпочитают этот способ: <a href="tel:+972542411265">054-241-1265</a></p>
+      <h2>Уровень доступности</h2>
+      <p>На сайте реализованы следующие меры доступности:</p>
+      <ul>
+        <li>Поддержка экранных дикторов (NVDA, JAWS, VoiceOver)</li>
+        <li>Полная навигация с клавиатуры</li>
+        <li>Поддержка увеличения текста до 200% без потери содержимого</li>
+        <li>Коэффициенты контрастности соответствуют стандартам (4.5:1 для обычного текста, 3:1 для крупного)</li>
+        <li>Правильная семантическая структура с упорядоченными заголовками</li>
+        <li>Поддержка RTL для иврита и арабского</li>
+        <li>Альтернативный текст для всех информативных изображений</li>
+        <li>Ссылка «перейти к содержимому» в верхней части страницы</li>
+        <li>Мобильное меню навигации с поддержкой клавиатуры и экранного диктора</li>
+      </ul>
+      <h2>Виджет доступности</h2>
+      <p>На сайте есть панель доступности, позволяющая:</p>
+      <ul>
+        <li>Увеличивать и уменьшать размер шрифта</li>
+        <li>Включать режим высокого контраста</li>
+        <li>Включать режим оттенков серого</li>
+        <li>Быстро перейти к данному заявлению</li>
+      </ul>
+      <h2>Контакты по вопросам доступности</h2>
+      <p>Обнаружили проблему с доступностью? Свяжитесь с нами:</p>
+      <ul>
+        <li><strong>Координатор доступности:</strong> команда Creamy Garden</li>
+        <li><strong>Телефон / SMS:</strong> <a href="tel:+972542411265">054-241-1265</a></li>
+        <li><strong>WhatsApp:</strong> <a href="https://wa.me/972542411265">Заказ и обращения через WhatsApp</a></li>
+        <li><strong>Instagram:</strong> <a href="https://instagram.com/the_creamy_garden" target="_blank" rel="noopener noreferrer">@the_creamy_garden (открывается в новой вкладке)</a></li>
+      </ul>
+      <h2>Дата обновления заявления</h2>
+      <p><strong>Последнее обновление:</strong> Апрель 2026</p>
+      <p>Проведён самостоятельный аудит по критериям WCAG 2.1 уровня AA. Независимый аудит третьей стороной на данном этапе не проводился.</p>
+      <h2>Медиа (видео и субтитры)</h2>
+      <p>На сайте <strong>в настоящее время нет встроенных видео</strong>. При добавлении видео будут предоставлены субтитры и при необходимости — аудиоописание или транскрипция.</p>
+      <h2>Известные ограничения доступности</h2>
+      <p>На дату обновления нам неизвестны существенные нерешённые проблемы с доступностью. Незначительные пробелы для отдельных вспомогательных технологий будут устраняться по мере выявления.</p>
+      <h2>Обратная связь</h2>
+      <p>Если вы обнаружили проблему с доступностью или у вас есть предложения по улучшению, пожалуйста, свяжитесь с нами. Мы ответим как можно скорее, не позднее 5 рабочих дней.</p>
+    `
+  },
+  "ar": {
+    dir: "rtl", lang: "ar",
+    pageTitle: "بيان إمكانية الوصول",
+    pageSubtitle: "وفقاً لتشريعات إسرائيل بشأن إمكانية الوصول للأشخاص ذوي الإعاقة",
+    backLink: "← العودة إلى الموقع",
+    backLinkAria: "العودة إلى الصفحة الرئيسية لـ The Creamy Garden",
+    langChoose: "اختيار اللغة",
+    langAvailable: "اللغات المتاحة",
+    footer: '© 2026 The Creamy Garden · جميع الحقوق محفوظة · <a href="index.html" id="footerHomeLink">العودة إلى الموقع</a>',
+    content: `
+      <h2>عام</h2>
+      <p><strong>The Creamy Garden</strong> ملتزم بجعل موقعنا الإلكتروني متاحاً لجميع المستخدمين، وفقاً لقانون المساواة في حقوق الأشخاص ذوي الإعاقة ولوائح إمكانية الوصول الصادرة بموجبه.</p>
+      <p>هدفنا هو الوفاء بمتطلبات معيار <strong>WCAG 2.1 المستوى AA</strong>.</p>
+      <p>جميع المعلومات الواردة في الموقع متاحة أيضاً عبر الهاتف للعملاء الذين يفضلون ذلك: <a href="tel:+972542411265">054-241-1265</a></p>
+      <h2>مستوى إمكانية الوصول</h2>
+      <p>تم تطبيق تعديلات إمكانية الوصول التالية على الموقع ويجري مراجعتها باستمرار:</p>
+      <ul>
+        <li>دعم قارئات الشاشة (NVDA وJAWS وVoiceOver)</li>
+        <li>التنقل الكامل عبر لوحة المفاتيح</li>
+        <li>دعم تغيير حجم النص حتى 200% دون فقدان المحتوى</li>
+        <li>نسب التباين تستوفي متطلبات المعيار (4.5:1 للنص العادي، 3:1 للنص الكبير)</li>
+        <li>بنية دلالية صحيحة مع عناوين منظمة</li>
+        <li>دعم اتجاه RTL للعبرية والعربية</li>
+        <li>نص بديل لجميع الصور المعلوماتية</li>
+        <li>رابط التخطي إلى المحتوى في أعلى الصفحة</li>
+        <li>قائمة تنقل للهاتف المحمول مع دعم لوحة المفاتيح وقارئ الشاشة</li>
+      </ul>
+      <h2>أداة إمكانية الوصول</h2>
+      <p>يتضمن الموقع شريط إمكانية الوصول الذي يتيح:</p>
+      <ul>
+        <li>تكبير وتصغير حجم الخط</li>
+        <li>وضع التباين العالي</li>
+        <li>وضع تدرج الرمادي</li>
+        <li>الوصول السريع إلى هذا البيان</li>
+      </ul>
+      <h2>التواصل بشأن مشكلات إمكانية الوصول</h2>
+      <p>هل واجهت مشكلة في إمكانية الوصول؟ يسعدنا تلقي استفساراتكم عبر أي من القنوات التالية:</p>
+      <ul>
+        <li><strong>منسق إمكانية الوصول:</strong> فريق Creamy Garden (إدارة الموقع)</li>
+        <li><strong>هاتف / رسالة نصية:</strong> <a href="tel:+972542411265">054-241-1265</a></li>
+        <li><strong>واتساب:</strong> <a href="https://wa.me/972542411265">الطلبات والاستفسارات عبر واتساب</a></li>
+        <li><strong>إنستغرام:</strong> <a href="https://instagram.com/the_creamy_garden" target="_blank" rel="noopener noreferrer">@the_creamy_garden (يفتح في تبويب جديد)</a></li>
+      </ul>
+      <h2>تاريخ تحديث البيان</h2>
+      <p><strong>آخر تحديث:</strong> أبريل 2026</p>
+      <p>تم إجراء تدقيق ذاتي وفق معايير WCAG 2.1 المستوى AA. لم يُجرَ حتى الآن تدقيق مستقل من طرف ثالث متخصص.</p>
+      <h2>الوسائط (الفيديو والترجمة)</h2>
+      <p>لا يحتوي الموقع حالياً على <strong>أي مقاطع فيديو مضمّنة</strong>. في حال إضافة مقاطع مستقبلاً، ستُوفَّر ترجمات نصية ووصف صوتي أو نصوص مكتوبة عند الحاجة.</p>
+      <h2>قيود إمكانية الوصول المعروفة</h2>
+      <p>حتى تاريخ هذا التحديث، لا علم لنا بأي قيود جوهرية لم تُعالَج. قد تظهر فجوات بسيطة مع بعض التقنيات المساعدة وسيتم معالجتها وفق أولويات إمكانية الوصول.</p>
+      <h2>التغذية الراجعة</h2>
+      <p>إذا وجدت مشكلة في إمكانية الوصول غير مذكورة هنا، أو لديك اقتراحات للتحسين، يرجى التواصل معنا. سنسعى للرد في أقرب وقت ممكن وليس بعد 5 أيام عمل.</p>
+    `
+  }
+};
+
+var currentLang = "he";
+
+function applyLang(lang) {
+  var d = T[lang];
+  if (!d) return;
+  currentLang = lang;
+
+  document.documentElement.setAttribute("lang", d.lang);
+  document.documentElement.setAttribute("dir", d.dir);
+
+  document.getElementById("pageTitle").textContent = d.pageTitle;
+  document.getElementById("pageSubtitle").textContent = d.pageSubtitle;
+
+  var back = document.getElementById("backLink");
+  back.textContent = d.backLink;
+  back.setAttribute("aria-label", d.backLinkAria);
+
+  document.getElementById("main-content").innerHTML = d.content;
+  document.getElementById("footerTxt").innerHTML = d.footer;
+
+  var lbl = document.getElementById("langToggleBtn");
+  lbl.setAttribute("aria-label", d.langChoose);
+  document.getElementById("langMenu").setAttribute("aria-label", d.langAvailable);
+  document.getElementById("currentLangLabel").textContent = lang.toUpperCase();
+
+  // mark active option
+  document.querySelectorAll("#langMenu [role='option']").forEach(function(el) {
+    var isActive = el.getAttribute("data-label") === lang.toUpperCase();
+    el.classList.toggle("active", isActive);
+    el.setAttribute("aria-selected", isActive ? "true" : "false");
+  });
+
+  try { localStorage.setItem("cg_lang", lang); } catch(e) {}
+}
+
+function switchLang(lang, btn) {
+  applyLang(lang);
+  closeDropdown();
+}
+
+function toggleDropdown(e) {
+  e.stopPropagation();
+  var dd = document.getElementById("langDropdown");
+  var isOpen = dd.classList.toggle("open");
+  document.getElementById("langToggleBtn").setAttribute("aria-expanded", isOpen ? "true" : "false");
+}
+
+function closeDropdown() {
+  var dd = document.getElementById("langDropdown");
+  dd.classList.remove("open");
+  document.getElementById("langToggleBtn").setAttribute("aria-expanded", "false");
+}
+
+document.addEventListener("click", function(e) {
+  var dd = document.getElementById("langDropdown");
+  if (dd && !dd.contains(e.target)) closeDropdown();
+});
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") closeDropdown();
+});
+
+// keyboard nav for lang options
+document.getElementById("langMenu").addEventListener("keydown", function(e) {
+  var opts = Array.from(this.querySelectorAll("[role='option']"));
+  var idx = opts.indexOf(document.activeElement);
+  if (e.key === "ArrowDown") { e.preventDefault(); opts[(idx+1) % opts.length].focus(); }
+  if (e.key === "ArrowUp")   { e.preventDefault(); opts[(idx-1+opts.length) % opts.length].focus(); }
+  if (e.key === "Enter" || e.key === " ") { e.preventDefault(); if (idx>=0) opts[idx].click(); }
+});
+
+// init
+(function() {
+  var saved;
+  try { saved = localStorage.getItem("cg_lang"); } catch(e) {}
+  applyLang(T[saved] ? saved : "he");
+})();
+</script>
 <script src="assets/accessibility/accessibility-tools.js"></script>
 </body>
 </html>
