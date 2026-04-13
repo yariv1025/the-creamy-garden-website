@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://creamy-garden.co.il/sitemap.xml
