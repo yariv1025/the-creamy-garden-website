@@ -1861,6 +1861,12 @@ function buildMenu(lang) {
     "assets/gallery/creamedMashroomPizza.png",
     "assets/gallery/BurrataNapolitanPizza.png"
   ];
+  var pastaImages = [
+    "assets/gallery/Fettuccine.png",
+    "assets/gallery/sweetPotatoRavioli.png",
+    "assets/gallery/cheeseRavioli.png",
+    "assets/gallery/truffleMushroomRavioli.png"
+  ];
   var potatoImage = "assets/gallery/creamedPotato.png";
 
   var soonBadgeTextByLang = { en: "Soon", he: "בקרוב", ru: "Скоро", ar: "قريبا" };
@@ -1868,6 +1874,12 @@ function buildMenu(lang) {
   var imageAltByLang = {
     en: {
       potato: "Creamy baked potato topped with sweet corn, chives and melted cheese",
+      pasta: [
+        "Fresh fettuccine pasta served with creamy sauce",
+        "Sweet potato ravioli served hot and plated",
+        "Cheese ravioli filled with creamy cheese",
+        "Truffle mushroom ravioli with rich earthy flavor"
+      ],
       pizza: [
         "Margherita pizza with tomato sauce, mozzarella and fresh basil",
         "Creamy mushroom pizza with rich white sauce and mushrooms",
@@ -1876,6 +1888,12 @@ function buildMenu(lang) {
     },
     he: {
       potato: "תפוח אדמה מוקרם אפוי עם תירס, בצל ירוק וגבינה נמסה",
+      pasta: [
+        "פטוצ'יני טרי עם רוטב קרמי עשיר",
+        "רביולי בטטה חם ומוגש בצלחת",
+        "רביולי גבינה במילוי גבינה קרמי",
+        "רביולי פטריות כמהין בטעם עמוק ועשיר"
+      ],
       pizza: [
         "פיצת מרגריטה עם רוטב עגבניות, מוצרלה ובזיליקום טרי",
         "פיצה עם שמנת פטריות ומרקם עשיר",
@@ -1884,6 +1902,12 @@ function buildMenu(lang) {
     },
     ru: {
       potato: "Запеченный сливочный картофель с кукурузой, зеленым луком и сыром",
+      pasta: [
+        "Свежая фетучини с нежным сливочным соусом",
+        "Равиоли с бататом, подаются горячими",
+        "Равиоли с сырной начинкой",
+        "Равиоли с грибами и трюфелем с насыщенным вкусом"
+      ],
       pizza: [
         "Пицца Маргарита с томатным соусом, моцареллой и свежим базиликом",
         "Пицца с грибами в сливочном соусе",
@@ -1892,6 +1916,12 @@ function buildMenu(lang) {
     },
     ar: {
       potato: "بطاطا مخبوزة كريمية مع الذرة والبصل الأخضر والجبن الذائب",
+      pasta: [
+        "فيتوتشيني طازجة مع صلصة كريمية غنية",
+        "رافيولي البطاطا الحلوة يقدم ساخنا",
+        "رافيولي الجبن بحشوة كريمية",
+        "رافيولي الفطر والكمأة بنكهة عميقة وغنية"
+      ],
       pizza: [
         "بيتزا مارغريتا مع صلصة الطماطم والموزاريلا والريحان الطازج",
         "بيتزا الفطر الكريمية بصلصة بيضاء غنية",
@@ -1933,6 +1963,23 @@ function buildMenu(lang) {
         + (potatoItem.price ? '<div class="ck-photo-card-price">' + potatoItem.price + '</div>' : '')
         + '</div>'
         + '</article>';
+      html += '</div>';
+    } else if (sec.id === "pasta" && sec.items) {
+      // Pasta card grid with per-item images
+      html += '<div class="ck-card-grid">';
+      for (var pa = 0; pa < sec.items.length; pa++) {
+        var pasta = sec.items[pa];
+        var pastaImg = pastaImages[pa] || "assets/gallery/hero-wide.webp";
+        var pastaAlt = (altSet.pasta && altSet.pasta[pa]) ? altSet.pasta[pa] : pasta.name;
+        html += '<article class="ck-photo-card">'
+          + '<div class="ck-photo-card-img"><img src="' + pastaImg + '" alt="' + pastaAlt + '" loading="lazy" width="360" height="270"></div>'
+          + '<div class="ck-photo-card-body">'
+          + '<div class="ck-photo-card-name">' + pasta.name + '</div>'
+          + (pasta.desc ? '<div class="ck-photo-card-desc">' + pasta.desc + '</div>' : '')
+          + (pasta.price ? '<div class="ck-photo-card-price">' + pasta.price + '</div>' : '')
+          + '</div>'
+          + '</article>';
+      }
       html += '</div>';
     } else if (sec.id === "pizza" && sec.items) {
       // 3-column photo card grid, one image per pizza
