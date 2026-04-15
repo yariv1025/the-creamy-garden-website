@@ -1164,12 +1164,16 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
+    align-items: stretch;
   }
   .ck-card-grid--1 { grid-template-columns: 1fr; max-width: 380px; }
   .ck-photo-card {
     border-radius: 10px; overflow: hidden; background: var(--white);
     box-shadow: 0 3px 14px rgba(26,61,32,0.09), 0 0 0 1px rgba(200,164,74,0.10);
     transition: transform 0.28s ease, box-shadow 0.28s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
   .ck-photo-card:hover {
     transform: translateY(-4px);
@@ -1184,7 +1188,13 @@
     transition: transform 7s ease;
   }
   .ck-photo-card:hover .ck-photo-card-img img { transform: scale(1.06); }
-  .ck-photo-card-body { padding: 12px 14px 14px; }
+  .ck-photo-card-body {
+    padding: 12px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
   .ck-photo-card-name {
     font-family: "Playfair Display", serif;
     font-size: 0.95rem; font-weight: 600; color: var(--green); line-height: 1.35;
@@ -1192,7 +1202,7 @@
   .ck-photo-card-desc { font-size: 0.74rem; color: var(--brown); margin-top: 4px; font-style: italic; line-height: 1.45; }
   .ck-photo-card-price {
     font-family: "Raleway", sans-serif; font-weight: 700; font-size: 1rem;
-    color: var(--gold); margin-top: 8px;
+    color: var(--gold); margin-top: auto; padding-top: 8px;
   }
 
   /* ── Drink pills ─── */
@@ -1314,22 +1324,22 @@
     <p class="section-subtitle" id="gallerySubtitle"></p>
     <div class="gallery-mosaic">
       <figure class="gallery-cell gallery-cell--feature">
-        <img id="heroFoodImg" src="assets/gallery/BurrataNapolitanPizza.png" width="800" height="600" loading="lazy" alt="פיצה בסגנון נאפולי עם בוראטה, רוקט ובלסמי">
+        <img id="heroFoodImg" src="assets/gallery/fromOurKitchen/pizza-burrata.jpeg" width="800" height="600" loading="lazy" alt="פיצה בסגנון נאפולי עם בוראטה, רוקט ובלסמי">
       </figure>
       <figure class="gallery-cell gallery-cell--g1">
-        <img id="galImg1" src="assets/gallery/margaritaPizza.png" width="900" height="1200" loading="lazy" alt="פיצה מרגריטה עם בזיליקום טרי מהתנור">
+        <img id="galImg1" src="assets/gallery/fromOurKitchen/pizza-margherita.jpeg" width="900" height="1200" loading="lazy" alt="פיצה מרגריטה עם בזיליקום טרי מהתנור">
       </figure>
       <figure class="gallery-cell gallery-cell--g2">
-        <img id="galImg2" src="assets/gallery/regularPizzaWithToppings.png" width="800" height="800" loading="lazy" alt="פיצה עם תוספות טריות מהתנור">
+        <img id="galImg2" src="assets/gallery/fromOurKitchen/cheese-boat-arugula.jpeg" width="800" height="800" loading="lazy" alt="פיצה עם תוספות טריות מהתנור">
       </figure>
       <figure class="gallery-cell gallery-cell--wide">
-        <img id="galImg3" src="assets/gallery/churrosDesert.png" width="800" height="600" loading="lazy" alt="צ'ורוס לקינוח">
+        <img id="galImg3" src="assets/gallery/fromOurKitchen/dessert-chocolate-fold.jpeg" width="800" height="600" loading="lazy" alt="צ'ורוס לקינוח">
       </figure>
       <figure class="gallery-cell gallery-cell--g4">
-        <img id="galImg4" src="assets/gallery/Fettuccine.png" width="900" height="1200" loading="lazy" alt="פטוצ'יני ברוטב קרמי">
+        <img id="galImg4" src="assets/gallery/fromOurKitchen/pasta.png" width="900" height="1200" loading="lazy" alt="פטוצ'יני ברוטב קרמי">
       </figure>
       <figure class="gallery-cell gallery-cell--g5">
-        <img id="galImg5" src="assets/gallery/creamedPotato.png" width="900" height="1200" loading="lazy" alt="תפוח אדמה אפוי עמוס ברוטב קרמי, תירס, בצל ירוק וגבינה">
+        <img id="galImg5" src="assets/gallery/fromOurKitchen/creamy-potato.png" width="900" height="1200" loading="lazy" alt="תפוח אדמה אפוי עמוס ברוטב קרמי, תירס, בצל ירוק וגבינה">
       </figure>
     </div>
     </article>
@@ -1868,9 +1878,10 @@ function buildMenu(lang) {
     "assets/gallery/truffleMushroomRavioli.png"
   ];
   var saladImage = "assets/gallery/customSalad.png";
+  var drinksImage = "assets/gallery/drinks.png";
   var dessertImages = [
     "assets/gallery/churrosDesert.png",
-    null
+    "assets/gallery/hotSahlab.png"
   ];
   var potatoImage = "assets/gallery/creamedPotato.png";
 
@@ -1890,6 +1901,7 @@ function buildMenu(lang) {
         "Churros served as a sweet dessert",
         "Hot sahlab topped and served warm"
       ],
+      drinks: "Cold and hot drinks served from The Creamy Garden menu",
       pizza: [
         "Margherita pizza with tomato sauce, mozzarella and fresh basil",
         "Creamy mushroom pizza with rich white sauce and mushrooms",
@@ -1909,6 +1921,7 @@ function buildMenu(lang) {
         "צ'ורוס מוגש כקינוח מתוק",
         "סחלב חם מוגש בכוס"
       ],
+      drinks: "משקאות קרים וחמים מתפריט הגן המוקרם",
       pizza: [
         "פיצת מרגריטה עם רוטב עגבניות, מוצרלה ובזיליקום טרי",
         "פיצה עם שמנת פטריות ומרקם עשיר",
@@ -1928,6 +1941,7 @@ function buildMenu(lang) {
         "Чуррос, подаются как сладкий десерт",
         "Горячий сахлаб, подается теплым"
       ],
+      drinks: "Холодные и горячие напитки из меню Creamy Garden",
       pizza: [
         "Пицца Маргарита с томатным соусом, моцареллой и свежим базиликом",
         "Пицца с грибами в сливочном соусе",
@@ -1947,6 +1961,7 @@ function buildMenu(lang) {
         "تشوروس يقدم كحلوى",
         "سحلب ساخن يقدم دافئا"
       ],
+      drinks: "مشروبات باردة وساخنة من قائمة الحديقة الكريمية",
       pizza: [
         "بيتزا مارغريتا مع صلصة الطماطم والموزاريلا والريحان الطازج",
         "بيتزا الفطر الكريمية بصلصة بيضاء غنية",
@@ -2059,6 +2074,14 @@ function buildMenu(lang) {
       }
       html += '</div>';
     } else if (sec.id === "drinks" && sec.items) {
+      html += '<div class="ck-card-grid ck-card-grid--1">';
+      html += '<article class="ck-photo-card">'
+        + '<div class="ck-photo-card-img"><img src="' + drinksImage + '" alt="' + (altSet.drinks || sec.title) + '" loading="lazy" width="720" height="540"></div>'
+        + '<div class="ck-photo-card-body">'
+        + '<div class="ck-photo-card-name">' + sec.title + '</div>'
+        + '</div>'
+        + '</article>';
+      html += '</div>';
       html += '<div class="ck-drinks-row">';
       for (var di = 0; di < sec.items.length; di++) {
         var drink = sec.items[di];
