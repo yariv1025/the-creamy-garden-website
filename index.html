@@ -1124,55 +1124,106 @@
   }
   @keyframes ing-rise {
     0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
-    6%   { opacity: var(--op,0.12); }
-    92%  { opacity: var(--op,0.12); }
+    6%   { opacity: var(--op,0.32); }
+    92%  { opacity: var(--op,0.32); }
     100% { transform: translateY(calc(-150vh - 200px)) translateX(var(--dx,20px)) rotate(var(--spin,200deg)); opacity: 0; }
   }
   @media (prefers-reduced-motion: reduce) { .menu-bg-canvas { display: none; } }
 
-  /* ── MENU PHOTO BANNER ───────────────────────────────────────── */
-  .menu-photo-banner {
+  /* ── MENU — OPEN PHOTO-RICH DESIGN ──────────────────────────── */
+
+  /* Reset old parchment box → open canvas */
+  .ck-menu {
+    max-width: 720px;
+    padding: 0 0 4px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     position: relative; z-index: 1;
-    display: grid; grid-template-columns: 2fr 1fr 1fr;
-    gap: 8px; max-width: 680px; margin: 0 auto 44px;
-    height: 190px; border-radius: 6px; overflow: hidden;
-    box-shadow: 0 8px 40px rgba(26,61,32,0.14);
-  }
-  .menu-photo-banner-cell { overflow: hidden; }
-  .menu-photo-banner-cell img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    transform: scale(1.05); transition: transform 8s ease-in-out;
-  }
-  .menu-photo-banner:hover .menu-photo-banner-cell img { transform: scale(1.0); }
-  .menu-photo-banner::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(to bottom, transparent 40%, rgba(18,42,22,0.32) 100%);
-    pointer-events: none; z-index: 1;
-  }
-  @media (max-width: 600px) {
-    .menu-photo-banner { grid-template-columns: 1fr 1fr; height: 140px; margin-bottom: 28px; }
-    .menu-photo-banner-cell:last-child { display: none; }
   }
 
-  /* ── ENHANCED MENU CARD ──────────────────────────────────────── */
-  .ck-menu {
-    position: relative; z-index: 1;
-    background: rgba(255,253,246,0.97);
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    box-shadow:
-      0 4px 10px rgba(26,61,32,0.05),
-      0 14px 52px rgba(26,61,32,0.11),
-      0 0 0 1px rgba(200,164,74,0.14),
-      inset 0 0 0 7px rgba(200,164,74,0.05);
+  /* Section spacing & elegant heading */
+  .ck-section { padding: 32px 0; margin-bottom: 0; }
+  .ck-section:last-child { padding-bottom: 0; }
+  .ck-section-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.25rem; font-weight: 700; font-style: italic;
+    letter-spacing: -0.01em; text-transform: none; color: var(--green); flex: 1;
   }
-  .ck-item-row {
-    transition: background 0.2s ease, padding-inline-start 0.22s ease;
-    border-radius: 3px; margin: 0 -4px; padding-inline: 4px;
+  .ck-section-icon { font-size: 1.2rem; line-height: 1; }
+  .ck-rule {
+    height: 1.5px; margin-bottom: 18px;
+    background: linear-gradient(to right, var(--gold-warm), transparent 75%);
   }
-  .ck-item-row:hover {
-    background: rgba(200,164,74,0.08);
-    padding-inline-start: 10px;
+  [dir="rtl"] .ck-rule { background: linear-gradient(to left, var(--gold-warm), transparent 75%); }
+
+  /* ── Hero card — one featured dish full-width ─── */
+  .ck-hero-card {
+    border-radius: 10px; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(26,61,32,0.12), 0 0 0 1px rgba(200,164,74,0.12);
+    background: var(--white); transition: box-shadow 0.35s ease;
   }
+  .ck-hero-card:hover { box-shadow: 0 8px 36px rgba(26,61,32,0.18), 0 0 0 1px rgba(200,164,74,0.2); }
+  .ck-hero-card-img { width: 100%; height: 260px; overflow: hidden; }
+  .ck-hero-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 7s ease; }
+  .ck-hero-card:hover .ck-hero-card-img img { transform: scale(1.04); }
+  .ck-hero-card-body { padding: 20px 24px 22px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .ck-hero-card-name { font-family: "Playfair Display", serif; font-size: 1.18rem; font-weight: 600; color: var(--green); line-height: 1.3; }
+  .ck-hero-card-desc { font-size: 0.82rem; color: var(--brown); font-style: italic; margin-top: 5px; line-height: 1.55; }
+  .ck-hero-card-price { font-family: "Playfair Display", serif; font-size: 1.45rem; font-weight: 700; color: var(--gold); white-space: nowrap; margin-top: 2px; flex-shrink: 0; }
+
+  /* ── Photo card grid — pizza / multi-dish ─── */
+  .ck-card-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .ck-photo-card {
+    border-radius: 9px; overflow: hidden; background: var(--white);
+    box-shadow: 0 3px 14px rgba(26,61,32,0.09), 0 0 0 1px rgba(200,164,74,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .ck-photo-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(26,61,32,0.15), 0 0 0 1px rgba(200,164,74,0.14); }
+  .ck-photo-card-img { width: 100%; height: 152px; overflow: hidden; }
+  .ck-photo-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 7s ease; }
+  .ck-photo-card:hover .ck-photo-card-img img { transform: scale(1.06); }
+  .ck-photo-card-body { padding: 12px 14px 16px; }
+  .ck-photo-card-name { font-family: "Playfair Display", serif; font-size: 0.95rem; font-weight: 500; color: var(--green); line-height: 1.35; }
+  .ck-photo-card-desc { font-size: 0.76rem; color: var(--brown); margin-top: 5px; font-style: italic; line-height: 1.45; }
+  .ck-photo-card-price { font-family: "Raleway", sans-serif; font-weight: 700; font-size: 1rem; color: var(--gold); margin-top: 8px; }
+
+  /* ── Aside layout — photo beside item list ─── */
+  .ck-aside { display: flex; gap: 20px; align-items: flex-start; }
+  .ck-aside-img { width: 190px; flex-shrink: 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 18px rgba(26,61,32,0.10); }
+  .ck-aside-img img { width: 100%; height: 190px; object-fit: cover; display: block; transition: transform 7s ease; }
+  .ck-aside:hover .ck-aside-img img { transform: scale(1.04); }
+  .ck-aside-items { flex: 1; }
+  .ck-aside--sm .ck-aside-img { width: 150px; }
+  .ck-aside--sm .ck-aside-img img { height: 150px; }
+
+  /* ── Salad photo accent strip ─── */
+  .ck-salad-header { width: 100%; height: 110px; border-radius: 7px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 3px 14px rgba(26,61,32,0.08); }
+  .ck-salad-header img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ── Drink pills ─── */
+  .ck-drinks-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .ck-drink-pill { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; background: var(--white); border: 1px solid rgba(200,164,74,0.22); border-radius: 40px; box-shadow: 0 2px 8px rgba(26,61,32,0.05); transition: box-shadow 0.2s, border-color 0.2s; }
+  .ck-drink-pill:hover { border-color: rgba(200,164,74,0.45); box-shadow: 0 4px 14px rgba(26,61,32,0.08); }
+  .ck-drink-name { font-family: "Playfair Display", serif; font-size: 0.88rem; color: var(--green); }
+  .ck-drink-price { font-size: 0.82rem; font-weight: 700; color: var(--gold); }
+
+  /* ── List-item rows (inside aside layout) ─── */
+  .ck-item-row { transition: background 0.2s ease, padding-inline-start 0.22s ease; border-radius: 3px; margin: 0 -4px; padding-inline: 4px; }
+  .ck-item-row:hover { background: rgba(200,164,74,0.08); padding-inline-start: 10px; }
+
+  /* ── Menu responsive ─── */
+  @media (max-width: 600px) {
+    .ck-card-grid { grid-template-columns: 1fr 1fr; }
+    .ck-aside { flex-direction: column; }
+    .ck-aside-img, .ck-aside--sm .ck-aside-img { width: 100%; }
+    .ck-aside-img img, .ck-aside--sm .ck-aside-img img { height: 180px; width: 100%; }
+    .ck-hero-card-img { height: 200px; }
+    .ck-hero-card-body { flex-direction: column; gap: 6px; }
+  }
+  @media (max-width: 380px) { .ck-card-grid { grid-template-columns: 1fr; } }
 
 </style>
 </head>
@@ -1290,37 +1341,25 @@
 <section id="menu">
   <!-- Floating ingredients — decorative background animation -->
   <div class="menu-bg-canvas" aria-hidden="true">
-    <div class="ing" style="left:7%;width:34px;height:34px;--dur:24s;--delay:-9s;--op:0.13;--dx:45px;--spin:200deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><circle cx="22" cy="26" r="11" fill="none" stroke="rgba(200,18,26,0.3)" stroke-width="1"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M16 9 C13 6 14 3 17 5" stroke="#2d6a4f" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M28 9 C31 6 30 3 27 5" stroke="#2d6a4f" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-    <div class="ing" style="left:17%;width:26px;height:40px;--dur:20s;--delay:-14s;--op:0.12;--dx:-30px;--spin:240deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 16 C12 17 7 20 6 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C12 25 8 28 7 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
-    <div class="ing" style="left:26%;width:20px;height:30px;--dur:27s;--delay:-3s;--op:0.11;--dx:25px;--spin:310deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><ellipse cx="9" cy="14" rx="3.5" ry="5" fill="rgba(255,255,255,0.1)" transform="rotate(-15 9 14)"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/><circle cx="12" cy="22" r="1.5" fill="rgba(255,220,150,0.5)"/></svg></div>
-    <div class="ing" style="left:36%;width:38px;height:42px;--dur:22s;--delay:-18s;--op:0.10;--dx:-55px;--spin:170deg"><svg viewBox="0 0 44 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 28 C5 14 10 6 22 6 C34 6 39 14 39 28Z" fill="#9c6b3c"/><path d="M9 24 C9 15 13 10 22 10 C31 10 35 15 35 24" stroke="rgba(255,235,210,0.18)" stroke-width="2" fill="none"/><circle cx="15" cy="17" r="2.5" fill="rgba(255,240,220,0.3)"/><circle cx="27" cy="15" r="2" fill="rgba(255,240,220,0.3)"/><circle cx="20" cy="22" r="1.5" fill="rgba(255,240,220,0.2)"/><rect x="16" y="28" width="12" height="16" rx="5" fill="#c8956c"/><ellipse cx="22" cy="29" rx="9" ry="2.5" fill="#8a5a2c" opacity="0.6"/></svg></div>
-    <div class="ing" style="left:49%;width:40px;height:30px;--dur:25s;--delay:-7s;--op:0.13;--dx:38px;--spin:210deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 13 16 18 Q23 23 30 18 Q37 13 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/><path d="M3 18 Q9 23 16 18 Q23 13 30 18 Q37 23 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.3"/><circle cx="23" cy="18" r="5.5" fill="#C8A44A" opacity="0.18"/></svg></div>
-    <div class="ing" style="left:60%;width:24px;height:32px;--dur:19s;--delay:-12s;--op:0.12;--dx:-28px;--spin:270deg"><svg viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 38 C6 38 2 30 2 23 C2 12 7 5 14 5 C21 5 26 12 26 23 C26 30 22 38 14 38Z" fill="#f5f0e8" stroke="#d4c5a9" stroke-width="1"/><path d="M14 8 L14 36" stroke="#d4c5a9" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/><path d="M8 16 C10 12 13 8 14 6" stroke="#d4c5a9" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/><path d="M20 16 C18 12 15 8 14 6" stroke="#d4c5a9" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/><rect x="11" y="2" width="6" height="6" rx="2" fill="#b8845a"/></svg></div>
-    <div class="ing" style="left:71%;width:26px;height:26px;--dur:30s;--delay:-22s;--op:0.11;--dx:52px;--spin:155deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><circle cx="22" cy="26" r="11" fill="none" stroke="rgba(200,18,26,0.3)" stroke-width="1"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-    <div class="ing" style="left:81%;width:20px;height:32px;--dur:21s;--delay:-5s;--op:0.12;--dx:-42px;--spin:230deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
-    <div class="ing" style="left:13%;width:16px;height:26px;--dur:26s;--delay:-16s;--op:0.10;--dx:28px;--spin:325deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><ellipse cx="9" cy="14" rx="3.5" ry="5" fill="rgba(255,255,255,0.1)" transform="rotate(-15 9 14)"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/></svg></div>
-    <div class="ing" style="left:44%;width:30px;height:34px;--dur:31s;--delay:-10s;--op:0.09;--dx:-38px;--spin:185deg"><svg viewBox="0 0 44 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 28 C5 14 10 6 22 6 C34 6 39 14 39 28Z" fill="#9c6b3c"/><circle cx="16" cy="17" r="2" fill="rgba(255,240,220,0.3)"/><circle cx="26" cy="15" r="1.5" fill="rgba(255,240,220,0.3)"/><rect x="16" y="28" width="12" height="16" rx="5" fill="#c8956c"/><ellipse cx="22" cy="29" rx="9" ry="2.5" fill="#8a5a2c" opacity="0.6"/></svg></div>
-    <div class="ing" style="left:87%;width:34px;height:26px;--dur:23s;--delay:-20s;--op:0.12;--dx:-48px;--spin:255deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 13 16 18 Q23 23 30 18 Q37 13 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/><circle cx="23" cy="18" r="5" fill="#C8A44A" opacity="0.18"/></svg></div>
-    <div class="ing" style="left:56%;width:20px;height:28px;--dur:28s;--delay:-4s;--op:0.11;--dx:22px;--spin:175deg"><svg viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 38 C6 38 2 30 2 23 C2 12 7 5 14 5 C21 5 26 12 26 23 C26 30 22 38 14 38Z" fill="#f5f0e8" stroke="#d4c5a9" stroke-width="1"/><path d="M14 8 L14 36" stroke="#d4c5a9" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/><rect x="11" y="2" width="6" height="6" rx="2" fill="#b8845a"/></svg></div>
-    <div class="ing" style="left:32%;width:28px;height:28px;--dur:18s;--delay:-13s;--op:0.13;--dx:-62px;--spin:390deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-    <div class="ing" style="left:75%;width:30px;height:46px;--dur:29s;--delay:-8s;--op:0.10;--dx:32px;--spin:215deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 16 C12 17 7 20 6 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C12 25 8 28 7 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
+    <div class="ing" style="left:7%;width:44px;height:44px;--dur:24s;--delay:-9s;--op:0.38;--dx:45px;--spin:200deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><circle cx="22" cy="26" r="11" fill="none" stroke="rgba(200,18,26,0.3)" stroke-width="1"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M16 9 C13 6 14 3 17 5" stroke="#2d6a4f" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M28 9 C31 6 30 3 27 5" stroke="#2d6a4f" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing" style="left:17%;width:34px;height:52px;--dur:20s;--delay:-14s;--op:0.35;--dx:-30px;--spin:240deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 16 C12 17 7 20 6 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C12 25 8 28 7 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
+    <div class="ing" style="left:26%;width:26px;height:38px;--dur:27s;--delay:-3s;--op:0.32;--dx:25px;--spin:310deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><ellipse cx="9" cy="14" rx="3.5" ry="5" fill="rgba(255,255,255,0.1)" transform="rotate(-15 9 14)"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/><circle cx="12" cy="22" r="1.5" fill="rgba(255,220,150,0.5)"/></svg></div>
+    <div class="ing" style="left:36%;width:48px;height:54px;--dur:22s;--delay:-18s;--op:0.30;--dx:-55px;--spin:170deg"><svg viewBox="0 0 44 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 28 C5 14 10 6 22 6 C34 6 39 14 39 28Z" fill="#9c6b3c"/><path d="M9 24 C9 15 13 10 22 10 C31 10 35 15 35 24" stroke="rgba(255,235,210,0.18)" stroke-width="2" fill="none"/><circle cx="15" cy="17" r="2.5" fill="rgba(255,240,220,0.3)"/><circle cx="27" cy="15" r="2" fill="rgba(255,240,220,0.3)"/><circle cx="20" cy="22" r="1.5" fill="rgba(255,240,220,0.2)"/><rect x="16" y="28" width="12" height="16" rx="5" fill="#c8956c"/><ellipse cx="22" cy="29" rx="9" ry="2.5" fill="#8a5a2c" opacity="0.6"/></svg></div>
+    <div class="ing" style="left:49%;width:52px;height:38px;--dur:25s;--delay:-7s;--op:0.38;--dx:38px;--spin:210deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 13 16 18 Q23 23 30 18 Q37 13 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/><path d="M3 18 Q9 23 16 18 Q23 13 30 18 Q37 23 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.3"/><circle cx="23" cy="18" r="5.5" fill="#C8A44A" opacity="0.18"/></svg></div>
+    <div class="ing" style="left:60%;width:30px;height:40px;--dur:19s;--delay:-12s;--op:0.35;--dx:-28px;--spin:270deg"><svg viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 38 C6 38 2 30 2 23 C2 12 7 5 14 5 C21 5 26 12 26 23 C26 30 22 38 14 38Z" fill="#f5f0e8" stroke="#d4c5a9" stroke-width="1"/><path d="M14 8 L14 36" stroke="#d4c5a9" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/><path d="M8 16 C10 12 13 8 14 6" stroke="#d4c5a9" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/><path d="M20 16 C18 12 15 8 14 6" stroke="#d4c5a9" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/><rect x="11" y="2" width="6" height="6" rx="2" fill="#b8845a"/></svg></div>
+    <div class="ing" style="left:71%;width:34px;height:34px;--dur:30s;--delay:-22s;--op:0.32;--dx:52px;--spin:155deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><circle cx="22" cy="26" r="11" fill="none" stroke="rgba(200,18,26,0.3)" stroke-width="1"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing" style="left:81%;width:26px;height:42px;--dur:21s;--delay:-5s;--op:0.35;--dx:-42px;--spin:230deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
+    <div class="ing" style="left:13%;width:20px;height:32px;--dur:26s;--delay:-16s;--op:0.30;--dx:28px;--spin:325deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><ellipse cx="9" cy="14" rx="3.5" ry="5" fill="rgba(255,255,255,0.1)" transform="rotate(-15 9 14)"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/></svg></div>
+    <div class="ing" style="left:44%;width:38px;height:44px;--dur:31s;--delay:-10s;--op:0.28;--dx:-38px;--spin:185deg"><svg viewBox="0 0 44 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 28 C5 14 10 6 22 6 C34 6 39 14 39 28Z" fill="#9c6b3c"/><circle cx="16" cy="17" r="2" fill="rgba(255,240,220,0.3)"/><circle cx="26" cy="15" r="1.5" fill="rgba(255,240,220,0.3)"/><rect x="16" y="28" width="12" height="16" rx="5" fill="#c8956c"/><ellipse cx="22" cy="29" rx="9" ry="2.5" fill="#8a5a2c" opacity="0.6"/></svg></div>
+    <div class="ing" style="left:87%;width:44px;height:32px;--dur:23s;--delay:-20s;--op:0.35;--dx:-48px;--spin:255deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 13 16 18 Q23 23 30 18 Q37 13 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/><circle cx="23" cy="18" r="5" fill="#C8A44A" opacity="0.18"/></svg></div>
+    <div class="ing" style="left:56%;width:26px;height:36px;--dur:28s;--delay:-4s;--op:0.32;--dx:22px;--spin:175deg"><svg viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 38 C6 38 2 30 2 23 C2 12 7 5 14 5 C21 5 26 12 26 23 C26 30 22 38 14 38Z" fill="#f5f0e8" stroke="#d4c5a9" stroke-width="1"/><path d="M14 8 L14 36" stroke="#d4c5a9" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/><rect x="11" y="2" width="6" height="6" rx="2" fill="#b8845a"/></svg></div>
+    <div class="ing" style="left:32%;width:36px;height:36px;--dur:18s;--delay:-13s;--op:0.38;--dx:-62px;--spin:390deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing" style="left:75%;width:38px;height:58px;--dur:29s;--delay:-8s;--op:0.30;--dx:32px;--spin:215deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 16 C12 17 7 20 6 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C12 25 8 28 7 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
   </div>
   <div class="container">
     <article aria-labelledby="menuTitle">
     <h2 class="section-title" id="menuTitle"><span class="divider" aria-hidden="true"></span></h2>
     <p class="section-subtitle" id="menuSubtitle"></p>
-    <!-- Cinematic photo banner — decorative, aria-hidden -->
-    <div class="menu-photo-banner" aria-hidden="true">
-      <div class="menu-photo-banner-cell">
-        <img src="assets/gallery/pizza-burrata.jpeg" alt="" loading="lazy" width="400" height="190">
-      </div>
-      <div class="menu-photo-banner-cell">
-        <img src="assets/gallery/pasta.webp" alt="" loading="lazy" width="200" height="190">
-      </div>
-      <div class="menu-photo-banner-cell">
-        <img src="assets/gallery/creamy-potato.webp" alt="" loading="lazy" width="200" height="190">
-      </div>
-    </div>
     <div class="menu-order-row">
       <a class="menu-order-btn" href="https://wa.me/972509829229" target="_blank" rel="noopener noreferrer" aria-label="הזמינו דרך וואטסאפ (נפתח בחלון חדש)">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.14 1.535 5.874L.057 23.215a.75.75 0 0 0 .916.938l5.498-1.442A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.944 0-3.77-.497-5.363-1.372l-.384-.214-3.983 1.044 1.065-3.872-.235-.389A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -1813,6 +1852,22 @@ var T = {
 function buildMenu(lang) {
   var m = T[lang].menu;
   var html = '<div class="ck-menu">';
+  var imageBySection = {
+    potato: "assets/gallery/creamy-potato.webp",
+    pasta: "assets/gallery/pasta.webp",
+    pizza: "assets/gallery/hero-wide.webp",
+    toppings: "assets/gallery/Gemini_Generated_Image_d29k4yd29k4yd29k.png",
+    salad: "assets/gallery/Gemini_Generated_Image_7un57x7un57x7un5.png",
+    desserts: "assets/gallery/Gemini_Generated_Image_f3n581f3n581f3n5.png",
+    drinks: "assets/gallery/Gemini_Generated_Image_g2g9kvg2g9kvg2g9.png"
+  };
+  var pizzaItemImages = [
+    "assets/gallery/hero-wide.webp",
+    "assets/gallery/Gemini_Generated_Image_d29k4yd29k4yd29k.png",
+    "assets/gallery/Gemini_Generated_Image_7un57x7un57x7un5.png"
+  ];
+  var soonBadgeTextByLang = { en: "Soon", he: "בקרוב", ru: "Скоро", ar: "قريبا" };
+  var soonBadgeText = soonBadgeTextByLang[lang] || "Soon";
 
   for (var si = 0; si < m.sections.length; si++) {
     var sec = m.sections[si];
@@ -1834,34 +1889,88 @@ function buildMenu(lang) {
       html += '<p class="ck-price-note">' + sec.priceNote + '</p>';
     }
 
-    // Item rows (with dot leaders + price)
-    if (sec.items) {
-      for (var ii = 0; ii < sec.items.length; ii++) {
-        var item = sec.items[ii];
-        var badge = item.soon ? '<span class="ck-soon-badge">Soon</span>' : '';
-        html += '<div class="ck-item-row">'
-          + '<div class="ck-item-left">'
-          + '<div class="ck-item-name">' + item.name + badge + '</div>';
-        if (item.desc) {
-          html += '<div class="ck-item-desc">' + item.desc + '</div>';
-        }
-        html += '</div>';
-        if (item.price) {
-          html += '<div class="ck-item-leader" aria-hidden="true"></div>'
-            + '<div class="ck-item-price">' + item.price + '</div>';
-        }
-        html += '</div>';
-      }
-    }
-
-    // Tag clouds (toppings / salad)
-    if (sec.tags) {
-      var tagCls = sec.id === 'salad' ? 'ck-tag ck-tag-salad' : 'ck-tag';
-      html += '<div class="ck-tags">';
-      for (var ti = 0; ti < sec.tags.length; ti++) {
-        html += '<span class="' + tagCls + '">' + sec.tags[ti] + '</span>';
+    if (sec.id === "potato" && sec.items && sec.items[0]) {
+      var hero = sec.items[0];
+      html += '<div class="ck-hero-card">'
+        + '<div class="ck-hero-card-img"><img src="' + imageBySection.potato + '" alt="' + hero.name + '" loading="lazy" width="720" height="420"></div>'
+        + '<div class="ck-hero-card-body">'
+        + '<div>'
+        + '<div class="ck-hero-card-name">' + hero.name + '</div>'
+        + (hero.desc ? '<div class="ck-hero-card-desc">' + hero.desc + '</div>' : '')
+        + '</div>'
+        + (hero.price ? '<div class="ck-hero-card-price">' + hero.price + '</div>' : '')
+        + '</div>'
+        + '</div>';
+    } else if (sec.id === "pizza" && sec.items) {
+      html += '<div class="ck-card-grid">';
+      for (var pi = 0; pi < sec.items.length; pi++) {
+        var pizza = sec.items[pi];
+        var pizzaImg = pizzaItemImages[pi] || imageBySection.pizza;
+        html += '<article class="ck-photo-card">'
+          + '<div class="ck-photo-card-img"><img src="' + pizzaImg + '" alt="' + pizza.name + '" loading="lazy" width="360" height="240"></div>'
+          + '<div class="ck-photo-card-body">'
+          + '<div class="ck-photo-card-name">' + pizza.name + '</div>'
+          + (pizza.desc ? '<div class="ck-photo-card-desc">' + pizza.desc + '</div>' : '')
+          + (pizza.price ? '<div class="ck-photo-card-price">' + pizza.price + '</div>' : '')
+          + '</div>'
+          + '</article>';
       }
       html += '</div>';
+    } else if (sec.id === "drinks" && sec.items) {
+      html += '<div class="ck-drinks-row">';
+      for (var di = 0; di < sec.items.length; di++) {
+        var drink = sec.items[di];
+        html += '<div class="ck-drink-pill">'
+          + '<span class="ck-drink-name">' + drink.name + '</span>'
+          + (drink.price ? '<span class="ck-drink-price">' + drink.price + '</span>' : '')
+          + '</div>';
+      }
+      html += '</div>';
+    } else {
+      if (sec.id === "salad") {
+        html += '<div class="ck-salad-header"><img src="' + imageBySection.salad + '" alt="' + sec.title + '" loading="lazy" width="720" height="220"></div>';
+      }
+      if (sec.id === "pasta" || sec.id === "toppings" || sec.id === "desserts") {
+        var asideCls = sec.id === "toppings" || sec.id === "desserts" ? "ck-aside ck-aside--sm" : "ck-aside";
+        var asideImg = imageBySection[sec.id] || imageBySection.pasta;
+        html += '<div class="' + asideCls + '">'
+          + '<div class="ck-aside-img"><img src="' + asideImg + '" alt="' + sec.title + '" loading="lazy" width="320" height="320"></div>'
+          + '<div class="ck-aside-items">';
+      }
+
+      // Item rows (with dot leaders + price)
+      if (sec.items) {
+        for (var ii = 0; ii < sec.items.length; ii++) {
+          var item = sec.items[ii];
+          var badge = item.soon ? '<span class="ck-soon-badge">' + soonBadgeText + '</span>' : '';
+          html += '<div class="ck-item-row">'
+            + '<div class="ck-item-left">'
+            + '<div class="ck-item-name">' + item.name + badge + '</div>';
+          if (item.desc) {
+            html += '<div class="ck-item-desc">' + item.desc + '</div>';
+          }
+          html += '</div>';
+          if (item.price) {
+            html += '<div class="ck-item-leader" aria-hidden="true"></div>'
+              + '<div class="ck-item-price">' + item.price + '</div>';
+          }
+          html += '</div>';
+        }
+      }
+
+      // Tag clouds (toppings / salad)
+      if (sec.tags) {
+        var tagCls = sec.id === "salad" ? "ck-tag ck-tag-salad" : "ck-tag";
+        html += '<div class="ck-tags">';
+        for (var ti = 0; ti < sec.tags.length; ti++) {
+          html += '<span class="' + tagCls + '">' + sec.tags[ti] + '</span>';
+        }
+        html += '</div>';
+      }
+
+      if (sec.id === "pasta" || sec.id === "toppings" || sec.id === "desserts") {
+        html += '</div></div>';
+      }
     }
 
     html += '</div>'; // .ck-section
