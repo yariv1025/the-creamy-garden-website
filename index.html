@@ -1101,6 +1101,79 @@
   .cookie-ok{background:var(--gold);color:var(--green);border:none;padding:8px 22px;border-radius:2px;font-family:"Raleway",sans-serif;font-weight:700;font-size:.78rem;letter-spacing:1.5px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
   .cookie-ok:hover{background:var(--gold-lt);}
 
+  /* ── MENU SECTION — CINEMATIC ATMOSPHERE ────────────────────── */
+  #menu {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(170deg, var(--parchment) 0%, var(--cream) 60%, var(--off-white) 100%);
+  }
+  #menu .container { position: relative; z-index: 1; }
+  #menu .section-title,
+  #menu .section-subtitle,
+  #menu .menu-order-row { position: relative; z-index: 1; }
+
+  /* ── FLOATING INGREDIENTS CANVAS ────────────────────────────── */
+  .menu-bg-canvas {
+    position: absolute; inset: 0;
+    pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .ing {
+    position: absolute; bottom: -80px;
+    opacity: 0; will-change: transform, opacity; display: block;
+    animation: ing-rise var(--dur,24s) var(--delay,0s) linear infinite;
+  }
+  @keyframes ing-rise {
+    0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    6%   { opacity: var(--op,0.12); }
+    92%  { opacity: var(--op,0.12); }
+    100% { transform: translateY(calc(-150vh - 200px)) translateX(var(--dx,20px)) rotate(var(--spin,200deg)); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .menu-bg-canvas { display: none; } }
+
+  /* ── MENU PHOTO BANNER ───────────────────────────────────────── */
+  .menu-photo-banner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 8px; max-width: 680px; margin: 0 auto 44px;
+    height: 190px; border-radius: 6px; overflow: hidden;
+    box-shadow: 0 8px 40px rgba(26,61,32,0.14);
+  }
+  .menu-photo-banner-cell { overflow: hidden; }
+  .menu-photo-banner-cell img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transform: scale(1.05); transition: transform 8s ease-in-out;
+  }
+  .menu-photo-banner:hover .menu-photo-banner-cell img { transform: scale(1.0); }
+  .menu-photo-banner::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(18,42,22,0.32) 100%);
+    pointer-events: none; z-index: 1;
+  }
+  @media (max-width: 600px) {
+    .menu-photo-banner { grid-template-columns: 1fr 1fr; height: 140px; margin-bottom: 28px; }
+    .menu-photo-banner-cell:last-child { display: none; }
+  }
+
+  /* ── ENHANCED MENU CARD ──────────────────────────────────────── */
+  .ck-menu {
+    position: relative; z-index: 1;
+    background: rgba(255,253,246,0.97);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+      0 4px 10px rgba(26,61,32,0.05),
+      0 14px 52px rgba(26,61,32,0.11),
+      0 0 0 1px rgba(200,164,74,0.14),
+      inset 0 0 0 7px rgba(200,164,74,0.05);
+  }
+  .ck-item-row {
+    transition: background 0.2s ease, padding-inline-start 0.22s ease;
+    border-radius: 3px; margin: 0 -4px; padding-inline: 4px;
+  }
+  .ck-item-row:hover {
+    background: rgba(200,164,74,0.08);
+    padding-inline-start: 10px;
+  }
+
 </style>
 </head>
 <body>
@@ -1215,10 +1288,39 @@
 </section>
 
 <section id="menu">
+  <!-- Floating ingredients — decorative background animation -->
+  <div class="menu-bg-canvas" aria-hidden="true">
+    <div class="ing" style="left:7%;width:34px;height:34px;--dur:24s;--delay:-9s;--op:0.13;--dx:45px;--spin:200deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><circle cx="22" cy="26" r="11" fill="none" stroke="rgba(200,18,26,0.3)" stroke-width="1"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M16 9 C13 6 14 3 17 5" stroke="#2d6a4f" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M28 9 C31 6 30 3 27 5" stroke="#2d6a4f" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing" style="left:17%;width:26px;height:40px;--dur:20s;--delay:-14s;--op:0.12;--dx:-30px;--spin:240deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 16 C12 17 7 20 6 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C12 25 8 28 7 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
+    <div class="ing" style="left:26%;width:20px;height:30px;--dur:27s;--delay:-3s;--op:0.11;--dx:25px;--spin:310deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><ellipse cx="9" cy="14" rx="3.5" ry="5" fill="rgba(255,255,255,0.1)" transform="rotate(-15 9 14)"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/><circle cx="12" cy="22" r="1.5" fill="rgba(255,220,150,0.5)"/></svg></div>
+    <div class="ing" style="left:36%;width:38px;height:42px;--dur:22s;--delay:-18s;--op:0.10;--dx:-55px;--spin:170deg"><svg viewBox="0 0 44 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 28 C5 14 10 6 22 6 C34 6 39 14 39 28Z" fill="#9c6b3c"/><path d="M9 24 C9 15 13 10 22 10 C31 10 35 15 35 24" stroke="rgba(255,235,210,0.18)" stroke-width="2" fill="none"/><circle cx="15" cy="17" r="2.5" fill="rgba(255,240,220,0.3)"/><circle cx="27" cy="15" r="2" fill="rgba(255,240,220,0.3)"/><circle cx="20" cy="22" r="1.5" fill="rgba(255,240,220,0.2)"/><rect x="16" y="28" width="12" height="16" rx="5" fill="#c8956c"/><ellipse cx="22" cy="29" rx="9" ry="2.5" fill="#8a5a2c" opacity="0.6"/></svg></div>
+    <div class="ing" style="left:49%;width:40px;height:30px;--dur:25s;--delay:-7s;--op:0.13;--dx:38px;--spin:210deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 13 16 18 Q23 23 30 18 Q37 13 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/><path d="M3 18 Q9 23 16 18 Q23 13 30 18 Q37 23 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.3"/><circle cx="23" cy="18" r="5.5" fill="#C8A44A" opacity="0.18"/></svg></div>
+    <div class="ing" style="left:60%;width:24px;height:32px;--dur:19s;--delay:-12s;--op:0.12;--dx:-28px;--spin:270deg"><svg viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 38 C6 38 2 30 2 23 C2 12 7 5 14 5 C21 5 26 12 26 23 C26 30 22 38 14 38Z" fill="#f5f0e8" stroke="#d4c5a9" stroke-width="1"/><path d="M14 8 L14 36" stroke="#d4c5a9" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/><path d="M8 16 C10 12 13 8 14 6" stroke="#d4c5a9" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/><path d="M20 16 C18 12 15 8 14 6" stroke="#d4c5a9" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/><rect x="11" y="2" width="6" height="6" rx="2" fill="#b8845a"/></svg></div>
+    <div class="ing" style="left:71%;width:26px;height:26px;--dur:30s;--delay:-22s;--op:0.11;--dx:52px;--spin:155deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><circle cx="22" cy="26" r="11" fill="none" stroke="rgba(200,18,26,0.3)" stroke-width="1"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing" style="left:81%;width:20px;height:32px;--dur:21s;--delay:-5s;--op:0.12;--dx:-42px;--spin:230deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
+    <div class="ing" style="left:13%;width:16px;height:26px;--dur:26s;--delay:-16s;--op:0.10;--dx:28px;--spin:325deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><ellipse cx="9" cy="14" rx="3.5" ry="5" fill="rgba(255,255,255,0.1)" transform="rotate(-15 9 14)"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/></svg></div>
+    <div class="ing" style="left:44%;width:30px;height:34px;--dur:31s;--delay:-10s;--op:0.09;--dx:-38px;--spin:185deg"><svg viewBox="0 0 44 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 28 C5 14 10 6 22 6 C34 6 39 14 39 28Z" fill="#9c6b3c"/><circle cx="16" cy="17" r="2" fill="rgba(255,240,220,0.3)"/><circle cx="26" cy="15" r="1.5" fill="rgba(255,240,220,0.3)"/><rect x="16" y="28" width="12" height="16" rx="5" fill="#c8956c"/><ellipse cx="22" cy="29" rx="9" ry="2.5" fill="#8a5a2c" opacity="0.6"/></svg></div>
+    <div class="ing" style="left:87%;width:34px;height:26px;--dur:23s;--delay:-20s;--op:0.12;--dx:-48px;--spin:255deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 13 16 18 Q23 23 30 18 Q37 13 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/><circle cx="23" cy="18" r="5" fill="#C8A44A" opacity="0.18"/></svg></div>
+    <div class="ing" style="left:56%;width:20px;height:28px;--dur:28s;--delay:-4s;--op:0.11;--dx:22px;--spin:175deg"><svg viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 38 C6 38 2 30 2 23 C2 12 7 5 14 5 C21 5 26 12 26 23 C26 30 22 38 14 38Z" fill="#f5f0e8" stroke="#d4c5a9" stroke-width="1"/><path d="M14 8 L14 36" stroke="#d4c5a9" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/><rect x="11" y="2" width="6" height="6" rx="2" fill="#b8845a"/></svg></div>
+    <div class="ing" style="left:32%;width:28px;height:28px;--dur:18s;--delay:-13s;--op:0.13;--dx:-62px;--spin:390deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing" style="left:75%;width:30px;height:46px;--dur:29s;--delay:-8s;--op:0.10;--dx:32px;--spin:215deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 16 C12 17 7 20 6 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C12 25 8 28 7 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
+  </div>
   <div class="container">
     <article aria-labelledby="menuTitle">
     <h2 class="section-title" id="menuTitle"><span class="divider" aria-hidden="true"></span></h2>
     <p class="section-subtitle" id="menuSubtitle"></p>
+    <!-- Cinematic photo banner — decorative, aria-hidden -->
+    <div class="menu-photo-banner" aria-hidden="true">
+      <div class="menu-photo-banner-cell">
+        <img src="assets/gallery/pizza-burrata.jpeg" alt="" loading="lazy" width="400" height="190">
+      </div>
+      <div class="menu-photo-banner-cell">
+        <img src="assets/gallery/pasta.webp" alt="" loading="lazy" width="200" height="190">
+      </div>
+      <div class="menu-photo-banner-cell">
+        <img src="assets/gallery/creamy-potato.webp" alt="" loading="lazy" width="200" height="190">
+      </div>
+    </div>
     <div class="menu-order-row">
       <a class="menu-order-btn" href="https://wa.me/972509829229" target="_blank" rel="noopener noreferrer" aria-label="הזמינו דרך וואטסאפ (נפתח בחלון חדש)">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.14 1.535 5.874L.057 23.215a.75.75 0 0 0 .916.938l5.498-1.442A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.944 0-3.77-.497-5.363-1.372l-.384-.214-3.983 1.044 1.065-3.872-.235-.389A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
