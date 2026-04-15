@@ -1867,6 +1867,11 @@ function buildMenu(lang) {
     "assets/gallery/cheeseRavioli.png",
     "assets/gallery/truffleMushroomRavioli.png"
   ];
+  var saladImage = "assets/gallery/customSalad.png";
+  var dessertImages = [
+    "assets/gallery/churrosDesert.png",
+    null
+  ];
   var potatoImage = "assets/gallery/creamedPotato.png";
 
   var soonBadgeTextByLang = { en: "Soon", he: "בקרוב", ru: "Скоро", ar: "قريبا" };
@@ -1879,6 +1884,11 @@ function buildMenu(lang) {
         "Sweet potato ravioli served hot and plated",
         "Cheese ravioli filled with creamy cheese",
         "Truffle mushroom ravioli with rich earthy flavor"
+      ],
+      salad: "Custom salad with fresh vegetables arranged in a serving bowl",
+      desserts: [
+        "Churros served as a sweet dessert",
+        "Hot sahlab topped and served warm"
       ],
       pizza: [
         "Margherita pizza with tomato sauce, mozzarella and fresh basil",
@@ -1894,6 +1904,11 @@ function buildMenu(lang) {
         "רביולי גבינה במילוי גבינה קרמי",
         "רביולי פטריות כמהין בטעם עמוק ועשיר"
       ],
+      salad: "סלט בהרכבה אישית עם ירקות טריים בקערת הגשה",
+      desserts: [
+        "צ'ורוס מוגש כקינוח מתוק",
+        "סחלב חם מוגש בכוס"
+      ],
       pizza: [
         "פיצת מרגריטה עם רוטב עגבניות, מוצרלה ובזיליקום טרי",
         "פיצה עם שמנת פטריות ומרקם עשיר",
@@ -1908,6 +1923,11 @@ function buildMenu(lang) {
         "Равиоли с сырной начинкой",
         "Равиоли с грибами и трюфелем с насыщенным вкусом"
       ],
+      salad: "Индивидуальный салат из свежих овощей в сервировочной миске",
+      desserts: [
+        "Чуррос, подаются как сладкий десерт",
+        "Горячий сахлаб, подается теплым"
+      ],
       pizza: [
         "Пицца Маргарита с томатным соусом, моцареллой и свежим базиликом",
         "Пицца с грибами в сливочном соусе",
@@ -1921,6 +1941,11 @@ function buildMenu(lang) {
         "رافيولي البطاطا الحلوة يقدم ساخنا",
         "رافيولي الجبن بحشوة كريمية",
         "رافيولي الفطر والكمأة بنكهة عميقة وغنية"
+      ],
+      salad: "سلطة بتشكيلة شخصية مع خضار طازجة في طبق تقديم",
+      desserts: [
+        "تشوروس يقدم كحلوى",
+        "سحلب ساخن يقدم دافئا"
       ],
       pizza: [
         "بيتزا مارغريتا مع صلصة الطماطم والموزاريلا والريحان الطازج",
@@ -1994,6 +2019,41 @@ function buildMenu(lang) {
           + '<div class="ck-photo-card-name">' + pizza.name + '</div>'
           + (pizza.desc ? '<div class="ck-photo-card-desc">' + pizza.desc + '</div>' : '')
           + (pizza.price ? '<div class="ck-photo-card-price">' + pizza.price + '</div>' : '')
+          + '</div>'
+          + '</article>';
+      }
+      html += '</div>';
+    } else if (sec.id === "salad") {
+      // Single salad photo card
+      html += '<div class="ck-card-grid ck-card-grid--1">';
+      html += '<article class="ck-photo-card">'
+        + '<div class="ck-photo-card-img"><img src="' + saladImage + '" alt="' + (altSet.salad || sec.title) + '" loading="lazy" width="720" height="540"></div>'
+        + '<div class="ck-photo-card-body">'
+        + '<div class="ck-photo-card-name">' + sec.title + '</div>'
+        + (sec.sectionPrice ? '<div class="ck-photo-card-price">' + sec.sectionPrice + '</div>' : '')
+        + '</div>'
+        + '</article>';
+      html += '</div>';
+      if (sec.tags) {
+        var saladTagCls = "ck-tag ck-tag-salad";
+        html += '<div class="ck-tags">';
+        for (var st = 0; st < sec.tags.length; st++) {
+          html += '<span class="' + saladTagCls + '">' + sec.tags[st] + '</span>';
+        }
+        html += '</div>';
+      }
+    } else if (sec.id === "desserts" && sec.items) {
+      // Dessert card grid (uses available images; falls back gracefully)
+      html += '<div class="ck-card-grid">';
+      for (var de = 0; de < sec.items.length; de++) {
+        var dessert = sec.items[de];
+        var dessertImg = dessertImages[de];
+        var dessertAlt = (altSet.desserts && altSet.desserts[de]) ? altSet.desserts[de] : dessert.name;
+        html += '<article class="ck-photo-card">'
+          + '<div class="ck-photo-card-img"><img src="' + (dessertImg || "assets/gallery/hero-wide.webp") + '" alt="' + dessertAlt + '" loading="lazy" width="360" height="270"></div>'
+          + '<div class="ck-photo-card-body">'
+          + '<div class="ck-photo-card-name">' + dessert.name + (dessert.soon ? '<span class="ck-soon-badge">' + soonBadgeText + '</span>' : '') + '</div>'
+          + (dessert.price ? '<div class="ck-photo-card-price">' + dessert.price + '</div>' : '')
           + '</div>'
           + '</article>';
       }
