@@ -665,144 +665,111 @@
     width:22px; height:22px; flex-shrink:0;
   }
 
-  /* ── MENU V2 ─────────────────────────────────────────────── */
+  /* ── RESTAURANT MENU ─────────────────────────────────────── */
   :root { --tan:#D4A574; --tan-dark:#B8845A; }
 
-  .mv2-wrapper {
-    max-width:1060px; margin:0 auto;
-    display:flex; flex-direction:column; gap:20px;
+  .ck-menu {
+    max-width:680px; margin:0 auto;
+    background:var(--cream);
+    border:1.5px solid var(--gold-warm);
+    border-radius:3px;
+    padding:52px 60px;
+    box-shadow:0 6px 40px rgba(0,0,0,0.09), inset 0 0 0 7px rgba(200,164,74,0.08);
   }
 
-  /* 3-tier golden card */
-  .mv2-tiers-card {
-    background:var(--tan); border-radius:36px;
-    padding:52px 40px;
-  }
-  .mv2-tiers-grid {
-    display:grid; grid-template-columns:repeat(3,1fr);
-  }
-  .mv2-tier {
-    text-align:center; padding:0 24px; position:relative;
-  }
-  .mv2-tier:not(:last-child) {
-    border-inline-end:1px solid rgba(255,255,255,0.38);
-  }
-  .mv2-tier-icon { font-size:1.8rem; display:block; margin-bottom:8px; }
-  .mv2-tier-title {
-    font-family:"Playfair Display",serif;
-    font-size:1.3rem; font-weight:700;
-    color:var(--green); margin:0 0 16px;
-  }
-  .mv2-tier-items {
-    list-style:none; padding:0; margin:0 0 20px;
-  }
-  .mv2-tier-items li {
-    font-size:1.05rem; color:var(--green);
-    line-height:1.8;
-  }
-  .mv2-tier-price {
-    font-family:"Playfair Display",serif;
-    font-size:1.9rem; font-weight:700;
-    color:var(--green);
-  }
+  .ck-section { margin-bottom:32px; }
+  .ck-section:last-child { margin-bottom:0; }
 
-  /* Toppings section — dark green */
-  .mv2-toppings-card {
-    background:var(--green); border-radius:36px;
-    padding:36px 32px; text-align:center;
+  .ck-section-head {
+    display:flex; align-items:center; gap:9px;
+    margin-bottom:7px;
   }
-  .mv2-toppings-title {
-    font-family:"Playfair Display",serif;
-    font-size:1.55rem; font-weight:700;
-    color:var(--cream); margin:0 0 6px;
-  }
-  .mv2-toppings-note {
-    font-size:0.82rem; color:rgba(243,237,216,0.7);
-    margin:0 0 22px; letter-spacing:0.4px;
-  }
-  .mv2-tags-flex {
-    display:flex; flex-wrap:wrap;
-    gap:10px; justify-content:center;
-  }
-  .mv2-tag {
-    background:var(--green-lt); color:var(--cream);
-    border-radius:18px; padding:10px 20px;
+  .ck-section-icon { font-size:1rem; line-height:1; }
+  .ck-section-title {
     font-family:"Raleway",sans-serif;
-    font-size:0.9rem; font-weight:600;
+    font-size:0.65rem; font-weight:800;
+    letter-spacing:2.8px; text-transform:uppercase;
+    color:var(--green); flex:1;
   }
-  .mv2-tag-salad {
-    background:var(--tan-dark); color:var(--green);
-  }
-
-  /* Bottom 2-col grid */
-  .mv2-bottom-grid {
-    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
-  }
-  .mv2-bottom-card {
-    background:var(--tan); border-radius:36px;
-    padding:28px 24px;
-  }
-  .mv2-bottom-header {
-    margin-bottom:18px;
-  }
-  .mv2-bottom-title {
+  .ck-section-price {
     font-family:"Playfair Display",serif;
     font-size:1.05rem; font-weight:700;
-    color:var(--green); margin:0 0 6px;
-  }
-  .mv2-bottom-price {
-    font-family:"Playfair Display",serif;
-    font-size:1.35rem; font-weight:700;
-    color:var(--green); display:block;
-    min-height:1.5em;
-  }
-  .mv2-dessert-item {
-    display:flex; align-items:center;
-    justify-content:space-between;
-    padding:6px 0;
-    border-bottom:1px solid rgba(255,255,255,0.3);
-    color:var(--green);
-    font-size:0.95rem;
-  }
-  .mv2-dessert-item:last-child { border-bottom:none; }
-  .mv2-dessert-item-name { display:flex; align-items:center; gap:8px; }
-  .mv2-soon-badge {
-    font-family:"Raleway",sans-serif;
-    font-size:0.62rem; font-weight:700;
-    letter-spacing:1.2px; text-transform:uppercase;
-    color:var(--tan-dark);
-    border:1px solid var(--tan-dark);
-    border-radius:20px; padding:2px 8px;
-    opacity:0.85;
-  }
-  .mv2-dessert-item-price {
-    font-family:"Playfair Display",serif;
-    font-weight:700; font-size:0.95rem;
-    white-space:nowrap; margin-inline-start:12px;
-  }
-  .mv2-hr { height:1px; background:rgba(255,255,255,0.38); margin:16px 0; }
-  .mv2-drink-grid {
-    display:grid; grid-template-columns:repeat(2,1fr); gap:8px;
-  }
-  .mv2-drink-tag {
-    background:var(--tan-dark); color:var(--green);
-    border-radius:12px; padding:8px 10px;
-    font-family:"Raleway",sans-serif;
-    font-size:0.82rem; font-weight:600;
-    text-align:center; display:block;
+    color:var(--gold-warm);
   }
 
-  @media(max-width:700px) {
-    .mv2-tiers-grid { grid-template-columns:1fr; }
-    .mv2-tier:not(:last-child) {
-      border-inline-end:none;
-      border-bottom:1px solid rgba(255,255,255,0.38);
-      padding-bottom:24px; margin-bottom:24px;
-    }
-    .mv2-tiers-card { padding:28px 20px; }
-    .mv2-bottom-grid { grid-template-columns:1fr; }
-    .mv2-drink-grid { grid-template-columns:repeat(2,1fr); }
-    .mv2-toppings-card { padding:28px 20px; }
+  .ck-rule {
+    height:1px; margin-bottom:16px;
+    background:linear-gradient(to right, var(--gold-warm), transparent 80%);
+  }
+  [dir="rtl"] .ck-rule {
+    background:linear-gradient(to left, var(--gold-warm), transparent 80%);
+  }
+
+  .ck-price-note {
+    font-size:0.77rem; color:var(--brown);
+    margin:-6px 0 14px; font-style:italic; line-height:1.5;
+  }
+
+  .ck-item-row {
+    display:flex; align-items:baseline; gap:8px;
+    padding:9px 0;
+    border-bottom:1px solid rgba(200,164,74,0.18);
+  }
+  .ck-item-row:last-child { border-bottom:none; }
+
+  .ck-item-left { min-width:0; }
+  .ck-item-name {
+    font-family:"Playfair Display",serif;
+    font-size:1.0rem; font-weight:400;
+    color:var(--green);
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  }
+  .ck-item-desc {
+    font-size:0.76rem; color:var(--brown);
+    margin-top:2px; font-style:italic; line-height:1.4;
+  }
+
+  .ck-item-leader {
+    flex:1; min-width:16px;
+    border-bottom:1.5px dotted rgba(180,140,90,0.35);
+    margin-bottom:4px;
+  }
+
+  .ck-item-price {
+    font-family:"Raleway",sans-serif;
+    font-size:0.9rem; font-weight:700;
+    color:var(--gold-warm); white-space:nowrap;
+  }
+
+  .ck-soon-badge {
+    font-family:"Raleway",sans-serif;
+    font-size:0.57rem; font-weight:700;
+    letter-spacing:1.4px; text-transform:uppercase;
+    color:var(--tan-dark); border:1px solid var(--tan-dark);
+    border-radius:20px; padding:2px 7px;
+    opacity:0.85; vertical-align:middle;
+  }
+
+  .ck-tags {
+    display:flex; flex-wrap:wrap; gap:7px; padding-top:4px;
+  }
+  .ck-tag {
+    background:var(--green); color:var(--cream);
+    border-radius:20px; padding:6px 13px;
+    font-family:"Raleway",sans-serif;
+    font-size:0.8rem; font-weight:600;
+  }
+  .ck-tag-salad {
+    background:var(--tan); color:var(--green);
+  }
+
+  .ck-divider {
+    height:1px; background:rgba(200,164,74,0.22); margin:24px 0;
+  }
+
+  @media(max-width:640px) {
+    .ck-menu { padding:30px 22px; }
+    .ck-section-title { letter-spacing:1.8px; }
   }
 
   /* ── ACTION BUTTONS (legacy — kept for focus ring only) ─────── */
@@ -1401,27 +1368,38 @@ var T = {
     "footerTagline": "Handcrafted with 🌿 & ❤️",
     "footerRights": "All Rights Reserved © 2026",
     "menu": {
-      "tiers": [
-        { "icon": "🥔", "title": "Mr. Potato", "items": ["Smoked creamy potato", "with a choice of", "indulgent toppings"], "price": "35₪" },
-        { "icon": "🍝", "title": "Handmade Pasta", "items": ["Fettuccine", "Sweet Potato Ravioli", "Cheese Ravioli", "Truffle Mushroom Ravioli"], "price": "45₪" },
-        { "icon": "🍕", "title": "Taboon Pizza", "items": ["Classic Margherita", "Creamy Mushroom", "Burrata · Balsamic & Arugula"], "price": "45₪ · 55₪ · 65₪" }
-      ],
-      "toppingsTitle": "Toppings",
-      "toppingsPriceNote": "5₪ flat — 1 topping or all of them · Bulgarian Cheese 10₪ (premium)",
-      "toppings": ["Cream", "Corn", "Black Olives", "Pesto", "Fresh Mushrooms", "Green Olives", "Green Onions", "Spicy", "Yellow Cheese"],
-      "saladTitle": "Custom-Made Salad",
-      "saladPrice": "35₪",
-      "salad": ["Cucumber", "Tomato", "Corn", "Bell Pepper", "Lettuce", "Mushrooms", "Green Olives", "Black Olives", "Bulgarian Cheese (+10₪)"],
-      "dessertTitle": "Sweet Treats",
-      "dessertItems": [
-        { "name": "Spanish Churros", "soon": true },
-        { "name": "Hot Sahlab", "price": "15₪" }
-      ],
-      "drinksTitle": "Drinks",
-      "drinks": [
-        { "name": "Water", "price": "8₪" },
-        { "name": "Soft Drink", "price": "10₪" },
-        { "name": "Tropicana", "price": "3₪" }
+      "sections": [
+        { "id":"potato", "icon":"🥔", "title":"Mr. Potato",
+          "items":[{ "name":"Smoked Creamy Potato", "desc":"Oven-baked, smoky & silky smooth — with your choice of toppings", "price":"35₪" }] },
+        { "id":"pasta", "icon":"🍝", "title":"Handmade Pasta",
+          "items":[
+            { "name":"Fettuccine", "price":"45₪" },
+            { "name":"Sweet Potato Ravioli", "price":"45₪" },
+            { "name":"Cheese Ravioli", "price":"45₪" },
+            { "name":"Truffle Mushroom Ravioli", "price":"45₪" }
+          ] },
+        { "id":"pizza", "icon":"🍕", "title":"Taboon Pizza",
+          "items":[
+            { "name":"Classic Margherita", "price":"45₪" },
+            { "name":"Creamy Mushroom", "price":"55₪" },
+            { "name":"Burrata, Balsamic & Arugula", "price":"65₪" }
+          ] },
+        { "id":"toppings", "icon":"🫙", "title":"Toppings",
+          "priceNote":"5₪ flat — 1 topping or all of them · Bulgarian Cheese 10₪ (premium)",
+          "tags":["Cream","Corn","Black Olives","Pesto","Fresh Mushrooms","Green Olives","Green Onions","Spicy","Yellow Cheese"] },
+        { "id":"salad", "icon":"🥗", "title":"Custom Salad", "sectionPrice":"35₪",
+          "tags":["Cucumber","Tomato","Corn","Bell Pepper","Lettuce","Mushrooms","Green Olives","Black Olives","Bulgarian Cheese (+10₪)"] },
+        { "id":"desserts", "icon":"🍩", "title":"Sweet Treats",
+          "items":[
+            { "name":"Spanish Churros", "soon":true },
+            { "name":"Hot Sahlab", "price":"15₪" }
+          ] },
+        { "id":"drinks", "icon":"🥤", "title":"Drinks",
+          "items":[
+            { "name":"Water", "price":"8₪" },
+            { "name":"Soft Drink", "price":"10₪" },
+            { "name":"Tropicana", "price":"3₪" }
+          ] }
       ]
     }
   },
@@ -1491,27 +1469,38 @@ var T = {
     "footerTagline": "מוכן באהבה עם 🌿 ו-❤️",
     "footerRights": "כל הזכויות שמורות © 2026",
     "menu": {
-      "tiers": [
-        { "icon": "🥔", "title": "מיסטר פוטטו", "items": ["תפוח אדמה מעושן מוקרם", "עם מגוון תוספות", "מפנקות לבחירה"], "price": "35₪" },
-        { "icon": "🍝", "title": "פסטה הנד מייד", "items": ["פטוצ'יני", "רביולי בטטה", "רביולי גבינה", "רביולי פטריות כמהין"], "price": "45₪" },
-        { "icon": "🍕", "title": "פיצה בטאבון", "items": ["מרגריטה קלאסית", "שמנת פטריות", "בוראטה · בלסמי ורוקט"], "price": "45₪ · 55₪ · 65₪" }
-      ],
-      "toppingsTitle": "תוספות",
-      "toppingsPriceNote": "5₪ — תוספת אחת או כולן, אותו מחיר · גבינה בולגרית 10₪ (פרימיום)",
-      "toppings": ["שמנת", "תירס", "זיתים שחורים", "פסטו", "פטריות טריות", "זיתים ירוקים", "בצל ירוק", "חריף", "גבינה צהובה"],
-      "saladTitle": "סלט בהרכבה אישית",
-      "saladPrice": "35₪",
-      "salad": ["מלפפון", "עגבניה", "תירס", "גמבה", "חסה", "פטריות", "זיתים ירוקים", "זיתים שחורים", "בולגרית (+10₪)"],
-      "dessertTitle": "משהו מתוק לקינוח",
-      "dessertItems": [
-        { "name": "צ'ורוס ספרדי", "soon": true },
-        { "name": "סחלב חם", "price": "15₪" }
-      ],
-      "drinksTitle": "שתיה",
-      "drinks": [
-        { "name": "מים", "price": "8₪" },
-        { "name": "שתיה קלה", "price": "10₪" },
-        { "name": "טרופית", "price": "3₪" }
+      "sections": [
+        { "id":"potato", "icon":"🥔", "title":"מיסטר פוטטו",
+          "items":[{ "name":"תפוח אדמה מעושן מוקרם", "desc":"אפוי בתנור, מעושן ועסיסי — עם תוספת לבחירתכם", "price":"35₪" }] },
+        { "id":"pasta", "icon":"🍝", "title":"פסטה הנד מייד",
+          "items":[
+            { "name":"פטוצ'יני", "price":"45₪" },
+            { "name":"רביולי בטטה", "price":"45₪" },
+            { "name":"רביולי גבינה", "price":"45₪" },
+            { "name":"רביולי פטריות כמהין", "price":"45₪" }
+          ] },
+        { "id":"pizza", "icon":"🍕", "title":"פיצה בטאבון",
+          "items":[
+            { "name":"מרגריטה קלאסית", "price":"45₪" },
+            { "name":"שמנת פטריות", "price":"55₪" },
+            { "name":"בוראטה, בלסמי ורוקט", "price":"65₪" }
+          ] },
+        { "id":"toppings", "icon":"🫙", "title":"תוספות",
+          "priceNote":"5₪ — תוספת אחת או כולן, אותו מחיר · גבינה בולגרית 10₪ (פרימיום)",
+          "tags":["שמנת","תירס","זיתים שחורים","פסטו","פטריות טריות","זיתים ירוקים","בצל ירוק","חריף","גבינה צהובה"] },
+        { "id":"salad", "icon":"🥗", "title":"סלט בהרכבה אישית", "sectionPrice":"35₪",
+          "tags":["מלפפון","עגבניה","תירס","גמבה","חסה","פטריות","זיתים ירוקים","זיתים שחורים","בולגרית (+10₪)"] },
+        { "id":"desserts", "icon":"🍩", "title":"משהו מתוק לקינוח",
+          "items":[
+            { "name":"צ'ורוס ספרדי", "soon":true },
+            { "name":"סחלב חם", "price":"15₪" }
+          ] },
+        { "id":"drinks", "icon":"🥤", "title":"שתיה",
+          "items":[
+            { "name":"מים", "price":"8₪" },
+            { "name":"שתיה קלה", "price":"10₪" },
+            { "name":"טרופית", "price":"3₪" }
+          ] }
       ]
     }
   },
@@ -1581,27 +1570,38 @@ var T = {
     "footerTagline": "Сделано с 🌿 и ❤️",
     "footerRights": "Все права защищены © 2026",
     "menu": {
-      "tiers": [
-        { "icon": "🥔", "title": "Мистер Картошка", "items": ["Копчёный картофель", "в сливочном соусе", "с выбором добавок"], "price": "35₪" },
-        { "icon": "🍝", "title": "Паста ручной работы", "items": ["Феттучини", "Равиоли с бататом", "Равиоли с сыром", "Равиоли с трюфелем и грибами"], "price": "45₪" },
-        { "icon": "🍕", "title": "Пицца из табуна", "items": ["Классическая Маргарита", "Сливочная с грибами", "Буррата · Бальзамик и рукола"], "price": "45₪ · 55₪ · 65₪" }
-      ],
-      "toppingsTitle": "Добавки",
-      "toppingsPriceNote": "5₪ — одна или все добавки, цена одинакова · Болгарский сыр 10₪ (премиум)",
-      "toppings": ["Сливки", "Кукуруза", "Чёрные оливки", "Песто", "Свежие грибы", "Зелёные оливки", "Зелёный лук", "Острое", "Жёлтый сыр"],
-      "saladTitle": "Индивидуальный салат",
-      "saladPrice": "35₪",
-      "salad": ["Огурец", "Помидор", "Кукуруза", "Болгарский перец", "Латук", "Грибы", "Зелёные оливки", "Чёрные оливки", "Болгарский сыр (+10₪)"],
-      "dessertTitle": "Что-нибудь сладкое",
-      "dessertItems": [
-        { "name": "Испанские чурросы", "soon": true },
-        { "name": "Горячий сахлеб", "price": "15₪" }
-      ],
-      "drinksTitle": "Напитки",
-      "drinks": [
-        { "name": "Вода", "price": "8₪" },
-        { "name": "Газировка", "price": "10₪" },
-        { "name": "Тропикана", "price": "3₪" }
+      "sections": [
+        { "id":"potato", "icon":"🥔", "title":"Мистер Картошка",
+          "items":[{ "name":"Копчёный картофель в сливочном соусе", "desc":"Печёный, дымный и нежный — с добавкой на ваш выбор", "price":"35₪" }] },
+        { "id":"pasta", "icon":"🍝", "title":"Паста ручной работы",
+          "items":[
+            { "name":"Феттучини", "price":"45₪" },
+            { "name":"Равиоли с бататом", "price":"45₪" },
+            { "name":"Равиоли с сыром", "price":"45₪" },
+            { "name":"Равиоли с трюфелем и грибами", "price":"45₪" }
+          ] },
+        { "id":"pizza", "icon":"🍕", "title":"Пицца из табуна",
+          "items":[
+            { "name":"Классическая Маргарита", "price":"45₪" },
+            { "name":"Сливочная с грибами", "price":"55₪" },
+            { "name":"Буррата, бальзамик и рукола", "price":"65₪" }
+          ] },
+        { "id":"toppings", "icon":"🫙", "title":"Добавки",
+          "priceNote":"5₪ — одна или все добавки, цена одинакова · Болгарский сыр 10₪ (премиум)",
+          "tags":["Сливки","Кукуруза","Чёрные оливки","Песто","Свежие грибы","Зелёные оливки","Зелёный лук","Острое","Жёлтый сыр"] },
+        { "id":"salad", "icon":"🥗", "title":"Индивидуальный салат", "sectionPrice":"35₪",
+          "tags":["Огурец","Помидор","Кукуруза","Болгарский перец","Латук","Грибы","Зелёные оливки","Чёрные оливки","Болгарский сыр (+10₪)"] },
+        { "id":"desserts", "icon":"🍩", "title":"Что-нибудь сладкое",
+          "items":[
+            { "name":"Испанские чурросы", "soon":true },
+            { "name":"Горячий сахлеб", "price":"15₪" }
+          ] },
+        { "id":"drinks", "icon":"🥤", "title":"Напитки",
+          "items":[
+            { "name":"Вода", "price":"8₪" },
+            { "name":"Газировка", "price":"10₪" },
+            { "name":"Тропикана", "price":"3₪" }
+          ] }
       ]
     }
   },
@@ -1671,27 +1671,38 @@ var T = {
     "footerTagline": "مُحضَّر بـ 🌿 و❤️",
     "footerRights": "جميع الحقوق محفوظة © 2026",
     "menu": {
-      "tiers": [
-        { "icon": "🥔", "title": "ميستر بطاطا", "items": ["بطاطا مدخّنة كريمية", "مع تشكيلة من", "الإضافات الفاخرة"], "price": "35₪" },
-        { "icon": "🍝", "title": "باستا يدوية الصنع", "items": ["فيتوتشيني", "رافيولي بطاطا حلوة", "رافيولي جبن", "رافيولي فطر الكمأة"], "price": "45₪" },
-        { "icon": "🍕", "title": "بيتزا التابون", "items": ["مرغريتا كلاسيكية", "كريمة فطر", "بوراتا · بلسمي وجرجير"], "price": "45₪ · 55₪ · 65₪" }
-      ],
-      "toppingsTitle": "الإضافات",
-      "toppingsPriceNote": "5₪ — إضافة واحدة أو كلها بنفس السعر · الجبن البلغاري 10₪ (بريميوم)",
-      "toppings": ["قشطة", "ذرة", "زيتون أسود", "بيستو", "فطر طازج", "زيتون أخضر", "بصل أخضر", "حار", "جبن أصفر"],
-      "saladTitle": "سلطة بتشكيلة شخصية",
-      "saladPrice": "35₪",
-      "salad": ["خيار", "طماطم", "ذرة", "فلفل", "خس", "فطر", "زيتون أخضر", "زيتون أسود", "جبن بلغاري (+10₪)"],
-      "dessertTitle": "شيء حلو",
-      "dessertItems": [
-        { "name": "تشوروس إسباني", "soon": true },
-        { "name": "سحلب ساخن", "price": "15₪" }
-      ],
-      "drinksTitle": "المشروبات",
-      "drinks": [
-        { "name": "ماء", "price": "8₪" },
-        { "name": "مشروب غازي", "price": "10₪" },
-        { "name": "عصير تروبيكانا", "price": "3₪" }
+      "sections": [
+        { "id":"potato", "icon":"🥔", "title":"ميستر بطاطا",
+          "items":[{ "name":"بطاطا مدخّنة كريمية", "desc":"مخبوزة بالفرن، مدخّنة وناعمة — مع إضافة من اختيارك", "price":"35₪" }] },
+        { "id":"pasta", "icon":"🍝", "title":"باستا يدوية الصنع",
+          "items":[
+            { "name":"فيتوتشيني", "price":"45₪" },
+            { "name":"رافيولي بطاطا حلوة", "price":"45₪" },
+            { "name":"رافيولي جبن", "price":"45₪" },
+            { "name":"رافيولي فطر الكمأة", "price":"45₪" }
+          ] },
+        { "id":"pizza", "icon":"🍕", "title":"بيتزا التابون",
+          "items":[
+            { "name":"مرغريتا كلاسيكية", "price":"45₪" },
+            { "name":"كريمة فطر", "price":"55₪" },
+            { "name":"بوراتا، بلسمي وجرجير", "price":"65₪" }
+          ] },
+        { "id":"toppings", "icon":"🫙", "title":"الإضافات",
+          "priceNote":"5₪ — إضافة واحدة أو كلها بنفس السعر · الجبن البلغاري 10₪ (بريميوم)",
+          "tags":["قشطة","ذرة","زيتون أسود","بيستو","فطر طازج","زيتون أخضر","بصل أخضر","حار","جبن أصفر"] },
+        { "id":"salad", "icon":"🥗", "title":"سلطة بتشكيلة شخصية", "sectionPrice":"35₪",
+          "tags":["خيار","طماطم","ذرة","فلفل","خس","فطر","زيتون أخضر","زيتون أسود","جبن بلغاري (+10₪)"] },
+        { "id":"desserts", "icon":"🍩", "title":"شيء حلو",
+          "items":[
+            { "name":"تشوروس إسباني", "soon":true },
+            { "name":"سحلب ساخن", "price":"15₪" }
+          ] },
+        { "id":"drinks", "icon":"🥤", "title":"المشروبات",
+          "items":[
+            { "name":"ماء", "price":"8₪" },
+            { "name":"مشروب غازي", "price":"10₪" },
+            { "name":"عصير تروبيكانا", "price":"3₪" }
+          ] }
       ]
     }
   }
@@ -1699,92 +1710,63 @@ var T = {
 
 function buildMenu(lang) {
   var m = T[lang].menu;
+  var html = '<div class="ck-menu">';
 
-  // ── Three tiers ──────────────────────────────────────────
-  var tiersHtml = '';
-  for (var i = 0; i < m.tiers.length; i++) {
-    var t = m.tiers[i];
-    var itemsHtml = '';
-    for (var j = 0; j < t.items.length; j++) {
-      itemsHtml += '<li>' + t.items[j] + '</li>';
+  for (var si = 0; si < m.sections.length; si++) {
+    var sec = m.sections[si];
+    if (si > 0) html += '<div class="ck-divider"></div>';
+
+    html += '<div class="ck-section">';
+
+    // Section header
+    html += '<div class="ck-section-head">'
+      + '<span class="ck-section-icon" aria-hidden="true">' + sec.icon + '</span>'
+      + '<span class="ck-section-title">' + sec.title + '</span>';
+    if (sec.sectionPrice) {
+      html += '<span class="ck-section-price">' + sec.sectionPrice + '</span>';
     }
-    tiersHtml += '<div class="mv2-tier">'
-      + '<span class="mv2-tier-icon" aria-hidden="true">' + t.icon + '</span>'
-      + '<h3 class="mv2-tier-title">' + t.title + '</h3>'
-      + '<ul class="mv2-tier-items">' + itemsHtml + '</ul>'
-      + '<div class="mv2-tier-price">' + t.price + '</div>'
-      + '</div>';
+    html += '</div>';
+    html += '<div class="ck-rule"></div>';
+
+    if (sec.priceNote) {
+      html += '<p class="ck-price-note">' + sec.priceNote + '</p>';
+    }
+
+    // Item rows (with dot leaders + price)
+    if (sec.items) {
+      for (var ii = 0; ii < sec.items.length; ii++) {
+        var item = sec.items[ii];
+        var badge = item.soon ? '<span class="ck-soon-badge">Soon</span>' : '';
+        html += '<div class="ck-item-row">'
+          + '<div class="ck-item-left">'
+          + '<div class="ck-item-name">' + item.name + badge + '</div>';
+        if (item.desc) {
+          html += '<div class="ck-item-desc">' + item.desc + '</div>';
+        }
+        html += '</div>';
+        if (item.price) {
+          html += '<div class="ck-item-leader" aria-hidden="true"></div>'
+            + '<div class="ck-item-price">' + item.price + '</div>';
+        }
+        html += '</div>';
+      }
+    }
+
+    // Tag clouds (toppings / salad)
+    if (sec.tags) {
+      var tagCls = sec.id === 'salad' ? 'ck-tag ck-tag-salad' : 'ck-tag';
+      html += '<div class="ck-tags">';
+      for (var ti = 0; ti < sec.tags.length; ti++) {
+        html += '<span class="' + tagCls + '">' + sec.tags[ti] + '</span>';
+      }
+      html += '</div>';
+    }
+
+    html += '</div>'; // .ck-section
   }
 
-  // ── Toppings ─────────────────────────────────────────────
-  var toppingTagsHtml = '';
-  for (var k = 0; k < m.toppings.length; k++) {
-    toppingTagsHtml += '<span class="mv2-tag">' + m.toppings[k] + '</span>';
-  }
-
-  // ── Salad tags ───────────────────────────────────────────
-  var saladTagsHtml = '';
-  for (var s = 0; s < m.salad.length; s++) {
-    saladTagsHtml += '<span class="mv2-tag mv2-tag-salad">' + m.salad[s] + '</span>';
-  }
-
-  // ── Drinks ───────────────────────────────────────────────
-  var drinksHtml = '';
-  for (var d = 0; d < m.drinks.length; d++) {
-    drinksHtml += '<span class="mv2-drink-tag">' + m.drinks[d].name + ' ' + m.drinks[d].price + '</span>';
-  }
-
-  // ── Dessert items ─────────────────────────────────────────
-  var dessertHtml = '';
-  for (var di = 0; di < m.dessertItems.length; di++) {
-    var ditem = m.dessertItems[di];
-    var soonBadge = ditem.soon ? '<span class="mv2-soon-badge">Soon</span>' : '';
-    var priceSpan = ditem.price ? '<span class="mv2-dessert-item-price">' + ditem.price + '</span>' : '';
-    dessertHtml += '<div class="mv2-dessert-item">'
-      + '<span class="mv2-dessert-item-name">' + ditem.name + soonBadge + '</span>'
-      + priceSpan
-      + '</div>';
-  }
-
-  return '<div class="mv2-wrapper">'
-
-    + '<div class="mv2-tiers-card">'
-    + '<div class="mv2-tiers-grid">' + tiersHtml + '</div>'
-    + '</div>'
-
-    + '<div class="mv2-toppings-card">'
-    + '<h2 class="mv2-toppings-title">' + m.toppingsTitle + '</h2>'
-    + '<p class="mv2-toppings-note">' + m.toppingsPriceNote + '</p>'
-    + '<div class="mv2-tags-flex">' + toppingTagsHtml + '</div>'
-    + '</div>'
-
-    + '<div class="mv2-bottom-grid">'
-
-    + '<div class="mv2-bottom-card">'
-    + '<div class="mv2-bottom-header">'
-    + '<h3 class="mv2-bottom-title">' + m.dessertTitle + '</h3>'
-    + '</div>'
-    + dessertHtml
-    + '</div>'
-
-    + '<div class="mv2-bottom-card">'
-    + '<div class="mv2-bottom-header">'
-    + '<h3 class="mv2-bottom-title">' + m.drinksTitle + '</h3>'
-    + '</div>'
-    + '<div class="mv2-drink-grid">' + drinksHtml + '</div>'
-    + '</div>'
-
-    + '<div class="mv2-bottom-card">'
-    + '<div class="mv2-bottom-header">'
-    + '<h3 class="mv2-bottom-title">' + m.saladTitle + '</h3>'
-    + '<span class="mv2-bottom-price">' + m.saladPrice + '</span>'
-    + '</div>'
-
-    + '<div class="mv2-tags-flex">' + saladTagsHtml + '</div>'
-    + '</div>'
-
-    + '</div>'
-    + '</div>';
+  html += '</div>'; // .ck-menu
+  return html;
 }
 
 function announceA11y(msg) {
@@ -2034,7 +2016,7 @@ function switchLang(lang, btn) {
   });
 
   // Staggered group reveals
-  ['.mv2-wrapper','.contact-actions','.feature-row','.gallery-mosaic'].forEach(function(sel){
+  ['.ck-menu','.contact-actions','.feature-row','.gallery-mosaic'].forEach(function(sel){
     var parent = document.querySelector(sel);
     if(!parent) return;
     Array.from(parent.children).forEach(function(child, i){
