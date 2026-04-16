@@ -26,7 +26,7 @@
 <meta property="og:type" content="restaurant">
 <meta property="og:url" content="https://creamy-garden.co.il/">
 <meta property="og:site_name" content="הגן המוקרם">
-<meta property="og:image" content="https://creamy-garden.co.il/assets/gallery/pizza-burrata.jpeg">
+<meta property="og:image" content="https://creamy-garden.co.il/assets/gallery/BurrataNapolitanPizza.png">
 <meta property="og:image:width" content="800">
 <meta property="og:image:height" content="600">
 <meta property="og:image:alt" content="פיצה נאפוליטנית של הגן המוקרם">
@@ -39,7 +39,7 @@
 <meta name="twitter:site" content="@the_creamy_garden">
 <meta name="twitter:title" id="twTitle" content="הגן המוקרם — פוד טראק">
 <meta name="twitter:description" id="twDesc" content="הגן המוקרם — פוד טראק ייחודי במושב ינון. פיצות נאפוליטניות, פסטות, רביולי ותפוחי אדמה מוקרמים.">
-<meta name="twitter:image" content="https://creamy-garden.co.il/assets/gallery/pizza-burrata.jpeg">
+<meta name="twitter:image" content="https://creamy-garden.co.il/assets/gallery/BurrataNapolitanPizza.png">
 
 <!-- Structured Data: FoodEstablishment -->
 <script type="application/ld+json">
@@ -49,7 +49,7 @@
   "name": "הגן המוקרם",
   "alternateName": "The Creamy Garden",
   "url": "https://creamy-garden.co.il",
-  "image": "https://creamy-garden.co.il/assets/gallery/pizza-burrata.jpeg",
+  "image": "https://creamy-garden.co.il/assets/gallery/BurrataNapolitanPizza.png",
   "telephone": "+972509829229",
   "servesCuisine": ["Italian", "Mediterranean", "Israeli"],
   "priceRange": "₪₪",
@@ -162,7 +162,7 @@
   .nav-links li { margin:0; padding:0; }
   .nav-links a {
     color: rgba(243,237,216,0.68);
-    font-size: 0.73rem;
+    font-size: 0.87rem;
     letter-spacing: 2.5px;
     text-transform: uppercase;
     text-decoration: none;
@@ -349,11 +349,12 @@
     font-style: italic;
     font-weight: 400;
     color: var(--cream);
-    font-size: clamp(0.95rem,2.4vw,1.22rem);
-    letter-spacing: 3px;
+    font-size: clamp(0.72rem,2.2vw,1.45rem);
+    letter-spacing: 2px;
     margin: 0 0 34px;
     text-shadow: 0 1px 6px rgba(0,0,0,0.55), 0 2px 18px rgba(0,0,0,0.4);
     line-height: 1.35;
+    white-space: nowrap;
   }
 
   /* Ghost CTA on dark background */
@@ -398,7 +399,7 @@
   .container { max-width:1120px; margin:0 auto; }
   .section-title {
     font-family: "Playfair Display", serif;
-    font-size: clamp(2rem,5vw,3rem);
+    font-size: clamp(2.3rem,5vw,3.5rem);
     color: var(--green); text-align:center;
     margin-bottom: 10px; line-height:1.12;
     letter-spacing: -0.02em;
@@ -406,7 +407,7 @@
   .section-subtitle {
     text-align:center; color:#5c3618;
     font-style:italic; letter-spacing:1.8px;
-    font-size:0.88rem; margin-bottom:54px;
+    font-size:1rem; margin-bottom:54px;
     font-weight:400;
   }
   .divider {
@@ -499,16 +500,26 @@
   }
   .card-body { padding:20px 24px; }
   .menu-item {
-    display:flex; align-items:flex-start; gap:10px;
-    padding:7px 0;
+    display:flex; align-items:center; gap:10px;
+    padding:8px 0;
     border-bottom:1px solid rgba(26,61,32,0.07);
-    font-size:0.9rem; line-height:1.55; color:var(--green);
+    font-size:0.95rem; line-height:1.55; color:var(--green);
   }
   .menu-item:last-child { border-bottom:none; }
+  .menu-item-name { flex:1; }
+  .menu-price {
+    flex-shrink:0;
+    font-family:"Raleway",sans-serif; font-weight:700;
+    font-size:0.88rem; color:var(--gold);
+    background:rgba(184,130,10,0.1);
+    border:1px solid rgba(184,130,10,0.25);
+    border-radius:20px; padding:2px 10px;
+    white-space:nowrap;
+  }
   .menu-dot {
     width:5px; height:5px;
     border-radius:50%; background:var(--gold);
-    flex-shrink:0; margin-top:8px;
+    flex-shrink:0;
   }
   .menu-heading {
     font-size:0.74rem; font-weight:700;
@@ -540,7 +551,7 @@
   .about-section .section-subtitle { color:rgba(243,237,216,0.82); position:relative; z-index:1; }
   .about-text {
     max-width:680px; margin:0 auto;
-    font-size:1.02rem; line-height:2;
+    font-size:1.15rem; line-height:2;
     color:rgba(243,237,216,0.8); font-weight:300;
     position:relative; z-index:1;
   }
@@ -559,36 +570,73 @@
   /* ── CONTACT ────────────────────────────────────────────────── */
   .contact-section {
     padding: clamp(72px,9vw,112px) 20px;
-    background:var(--parchment); text-align:center;
+    background: linear-gradient(180deg, var(--parchment) 0%, var(--cream) 100%);
+    text-align:center;
   }
-  .contact-grid {
-    display:flex; justify-content:center;
-    flex-wrap:wrap; gap:28px; margin-top:48px;
+
+  /* Elegant info plaque */
+  .contact-plaque {
+    display:grid; grid-template-columns:1fr 1fr;
+    background:var(--green);
+    border-radius:4px;
+    max-width:680px; margin:48px auto 52px;
+    position:relative; overflow:hidden;
   }
-  .contact-card {
-    background:var(--white);
-    border:1px solid rgba(26,61,32,0.09);
-    border-top:2px solid var(--gold-warm);
-    padding:28px 32px;
-    border-radius:0 0 4px 4px; min-width:180px;
-    box-shadow:0 2px 14px var(--shadow);
-    transition:transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  .contact-plaque::before {
+    content:"";
+    position:absolute; top:28px; bottom:28px; left:50%;
+    width:1px;
+    background:linear-gradient(to bottom,transparent,rgba(200,164,74,0.5),transparent);
+    transform:translateX(-50%);
   }
-  .contact-card:hover {
-    transform:translateY(-4px);
-    box-shadow:0 10px 32px var(--shadow-md);
+  .contact-plaque-item {
+    padding:40px 36px; text-align:center;
   }
-  .contact-icon { font-size:1.7rem; margin-bottom:10px; display:block; }
+  .contact-plaque-icon {
+    display:block; margin-bottom:14px;
+    opacity:0.7;
+  }
+  .contact-plaque-icon svg { width:22px; height:22px; fill:var(--gold-warm); }
   .contact-label {
-    font-size:0.67rem; letter-spacing:2px;
-    text-transform:uppercase; color:var(--brown);
-    font-weight:700; margin-bottom:6px; opacity:0.78;
+    display:block;
+    font-family:"Raleway",sans-serif;
+    font-size:0.68rem; letter-spacing:2.5px;
+    text-transform:uppercase; color:var(--gold-warm);
+    font-weight:600; margin-bottom:12px;
   }
   .contact-value {
     font-family:"Playfair Display",serif;
-    font-size:0.98rem; color:var(--green);
-    white-space: pre-line;
+    font-size:1.18rem; color:rgba(243,237,216,0.9);
+    line-height:1.9; white-space:pre-line;
   }
+
+  /* Action row */
+  .contact-actions {
+    display:flex; flex-wrap:wrap;
+    justify-content:center; gap:12px;
+    max-width:680px; margin:0 auto;
+  }
+  .contact-action {
+    display:inline-flex; align-items:center; justify-content:center; gap:9px;
+    min-height:52px; padding:13px 26px;
+    font-family:"Raleway",sans-serif; font-weight:700;
+    font-size:0.76rem; letter-spacing:1.8px; text-transform:uppercase;
+    text-decoration:none; border-radius:2px;
+    transition:background 0.28s var(--ease), color 0.28s var(--ease),
+               border-color 0.28s, transform 0.22s var(--ease), box-shadow 0.28s var(--ease);
+  }
+  .contact-action svg { width:18px; height:18px; flex-shrink:0; }
+  .contact-action:hover { transform:translateY(-2px); box-shadow:0 8px 24px var(--shadow-md); }
+  .ca-wa {
+    background:var(--green); color:var(--gold-lt);
+    border:1.5px solid transparent;
+  }
+  .ca-wa:hover { background:var(--green-lt); }
+  .ca-secondary {
+    background:transparent; color:var(--green);
+    border:1.5px solid rgba(26,61,32,0.38);
+  }
+  .ca-secondary:hover { background:var(--green); color:var(--cream); border-color:var(--green); }
 
   /* ── MENU — ORDER CTA ───────────────────────────────────────── */
   .menu-order-row {
@@ -597,10 +645,10 @@
   }
   .menu-order-btn {
     display:inline-flex; align-items:center; justify-content:center; gap:10px;
-    min-height:52px; padding:14px 32px;
+    min-height:64px; padding:18px 48px;
     background:var(--green); color:var(--gold-lt);
     font-family:"Raleway",sans-serif; font-weight:700;
-    font-size:0.8rem; letter-spacing:2px; text-transform:uppercase;
+    font-size:0.92rem; letter-spacing:2px; text-transform:uppercase;
     text-decoration:none; border-radius:2px;
     border:1px solid transparent;
     box-shadow:0 4px 20px var(--shadow);
@@ -617,20 +665,143 @@
     width:22px; height:22px; flex-shrink:0;
   }
 
-  /* ── ACTION BUTTONS (uniform grid + size) ─────────────────── */
-  .action-buttons {
-    display:grid;
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-    gap:12px; margin-top:40px;
-    max-width:520px; margin-left:auto; margin-right:auto;
+  /* ── RESTAURANT MENU ─────────────────────────────────────── */
+  :root { --tan:#D4A574; --tan-dark:#B8845A; }
+
+  /* Menu wrapper */
+  .ms-menu { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+  /* Section */
+  .ms-section { margin-bottom: 6px; }
+  .ms-section:last-of-type { margin-bottom: 0; }
+
+  /* Section head: number + italic title + fading rule */
+  .ms-section-head {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 13px;
   }
-  @media(min-width:640px){
-    .action-buttons {
-      grid-template-columns:repeat(4, minmax(0, 1fr));
-      max-width:none;
-      width:100%;
-    }
+  .ms-num {
+    font-family: "Raleway", sans-serif; font-size: 0.65rem; font-weight: 700;
+    color: var(--gold-warm); letter-spacing: 3px; opacity: 0.75;
+    flex-shrink: 0; padding-top: 4px;
   }
+  .ms-title {
+    font-family: "Playfair Display", serif; font-size: 1.5rem;
+    font-weight: 700; font-style: italic; color: var(--green);
+    line-height: 1.1; letter-spacing: -0.01em;
+  }
+  .ms-rule {
+    flex: 1; height: 1px; border: none;
+    background: linear-gradient(to left, var(--gold-pale), transparent);
+    margin-bottom: 3px;
+  }
+  [dir="rtl"] .ms-rule { background: linear-gradient(to right, var(--gold-pale), transparent); }
+
+  /* Full-width photo banner */
+  .ms-photo {
+    width: 100%; height: 210px; border-radius: 4px; overflow: hidden;
+    margin-bottom: 13px; position: relative;
+    box-shadow: 0 4px 24px var(--shadow-md);
+  }
+  .ms-photo img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 7s ease;
+  }
+  .ms-photo:hover img { transform: scale(1.04); }
+  .ms-photo::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to bottom, transparent 45%, rgba(18,42,22,0.35) 100%);
+  }
+
+  /* Item rows */
+  .ms-item-list { list-style: none; }
+  .ms-item-row {
+    display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto;
+    column-gap: 20px; padding: 8px 0;
+    border-bottom: 1px solid rgba(200,164,74,0.14); align-items: baseline;
+  }
+  .ms-item-row:last-child { border-bottom: none; }
+  .ms-item-name {
+    font-family: "Playfair Display", serif; font-size: 1.02rem; font-weight: 600;
+    color: var(--green); line-height: 1.3; grid-column: 1; grid-row: 1;
+  }
+  .ms-item-desc {
+    font-size: 0.8rem; color: var(--brown-lt); font-style: italic;
+    margin-top: 3px; line-height: 1.5; grid-column: 1; grid-row: 2;
+  }
+  .ms-item-price {
+    font-family: "Raleway", sans-serif; font-size: 0.92rem; font-weight: 700;
+    color: var(--gold); grid-column: 2; grid-row: 1 / 3;
+    align-self: center; white-space: nowrap;
+  }
+  .ms-badge {
+    display: inline-block; font-family: "Raleway", sans-serif;
+    font-size: 0.56rem; font-weight: 700; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--gold-warm);
+    border: 1px solid var(--gold-warm); border-radius: 2px;
+    padding: 1px 6px; margin-inline-start: 8px; vertical-align: middle; opacity: 0.85;
+  }
+
+  /* Price note callout */
+  .ms-note {
+    font-size: 0.78rem; color: var(--brown); font-style: italic;
+    margin-bottom: 16px; padding: 10px 14px;
+    background: rgba(200,164,74,0.09);
+    border-inline-start: 2px solid var(--gold-warm);
+    border-radius: 0 3px 3px 0; line-height: 1.6;
+  }
+  [dir="rtl"] .ms-note {
+    border-inline-start: none; border-inline-end: 2px solid var(--gold-warm);
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* Tags */
+  .ms-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ms-tag {
+    font-size: 0.75rem; font-weight: 500; color: var(--green);
+    background: var(--white); border: 1px solid rgba(200,164,74,0.22);
+    border-radius: 40px; padding: 5px 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .ms-tag:hover { border-color: rgba(200,164,74,0.45); box-shadow: 0 2px 8px var(--shadow); }
+  .ms-tag-premium { color: var(--gold); border-color: rgba(200,164,74,0.42); font-weight: 600; }
+
+  /* Ornament divider */
+  .ms-ornament {
+    display: flex; align-items: center; gap: 18px;
+    margin: 4px 0; color: var(--gold-warm);
+    font-size: 0.4rem; letter-spacing: 6px; opacity: 0.55; line-height: 1;
+  }
+  .ms-ornament::before, .ms-ornament::after {
+    content: ""; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,164,74,0.35), transparent);
+  }
+
+  /* Drink pills */
+  .ck-drinks-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .ck-drink-pill {
+    display: inline-flex; align-items: center; gap: 18px; padding: 9px 20px;
+    background: var(--white); border: 1px solid rgba(200,164,74,0.22);
+    border-radius: 40px; box-shadow: 0 2px 8px var(--shadow);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .ck-drink-pill:hover { border-color: rgba(200,164,74,0.45); box-shadow: 0 4px 14px var(--shadow-md); }
+  .ck-drink-name { font-family: "Playfair Display", serif; font-size: 0.88rem; color: var(--green); }
+  .ck-drink-price { font-size: 0.82rem; font-weight: 700; color: var(--gold); }
+
+  /* Disclaimer */
+  .ms-disclaimer {
+    margin-top: 28px; padding-top: 16px;
+    border-top: 1px solid rgba(200,164,74,0.2);
+    font-size: 0.72rem; color: rgba(90,70,40,0.82);
+    font-style: italic; text-align: center; letter-spacing: 0.2px;
+  }
+
+  @media (max-width: 640px) {
+    .ms-photo { height: 170px; }
+    .ms-title { font-size: 1.3rem; }
+  }
+
+  /* ── ACTION BUTTONS (legacy — kept for focus ring only) ─────── */
   .action-btn {
     display:flex; align-items:center; justify-content:center; gap:8px;
     box-sizing:border-box;
@@ -704,19 +875,19 @@
     nav { padding:0 16px; height:56px; }
     .nav-logo { font-size:1.2rem; }
     .nav-links { gap:14px; }
-    .nav-links a { font-size:0.72rem; letter-spacing:1px; }
+    .nav-links a { font-size:0.82rem; letter-spacing:1px; }
     .lang-toggle { padding:5px 9px; font-size:0.7rem; }
 
     .hero-content { padding:80px 20px 64px; }
     .hero-logo { width:min(240px,72vw); }
-    .hero-tagline { font-size:0.88rem; letter-spacing:1.5px; margin-bottom:26px; }
+    .hero-tagline { font-size:1.02rem; letter-spacing:1.5px; margin-bottom:26px; }
     .hero-cta { padding:12px 30px; font-size:0.75rem; }
     .scroll-hint { margin-top:36px; font-size:0.7rem; }
 
     section { padding:56px 16px; }
     .gallery-section { padding:52px 16px 64px; }
-    .section-title { font-size:1.85rem; }
-    .section-subtitle { font-size:0.82rem; margin-bottom:36px; }
+    .section-title { font-size:2.1rem; }
+    .section-subtitle { font-size:0.96rem; margin-bottom:36px; }
 
     .gallery-mosaic {
       grid-template-columns:1fr;
@@ -740,17 +911,20 @@
     .menu-heading { font-size:0.75rem; }
 
     .about-section { padding:56px 16px; }
-    .about-text { font-size:0.93rem; }
+    .about-text { font-size:1.05rem; }
     .feature-row { gap:20px; margin-top:40px; }
     .feature-icon { font-size:1.6rem; }
 
     .contact-section { padding:56px 16px; }
-    .contact-grid { flex-direction:column; align-items:center; gap:14px; }
-    .contact-card { width:100%; max-width:340px; padding:22px 24px; }
-
-    .action-buttons { gap:10px; margin-top:32px; max-width:none; }
-    .action-btn { min-height:46px; padding:11px 10px; font-size:0.68rem; letter-spacing:0.9px; }
-    .menu-order-btn { min-height:48px; padding:12px 24px; font-size:0.74rem; letter-spacing:1.5px; }
+    .contact-plaque { grid-template-columns:1fr; margin:36px auto 40px; }
+    .contact-plaque::before { top:50%; bottom:auto; left:28px; right:28px; width:auto; height:1px;
+      background:linear-gradient(to right,transparent,rgba(200,164,74,0.5),transparent);
+      transform:translateY(-50%);
+    }
+    .contact-plaque-item { padding:28px 24px; }
+    .contact-actions { gap:10px; }
+    .contact-action { min-height:46px; padding:11px 20px; font-size:0.7rem; letter-spacing:1.2px; }
+    .menu-order-btn { min-height:56px; padding:14px 32px; font-size:0.82rem; letter-spacing:1.5px; }
     .menu-order-row { margin-bottom:32px; }
 
     .lang-menu { right:0; left:auto; min-width:140px; }
@@ -762,7 +936,7 @@
     .nav-links { display:none; }
     .nav-mobile-toggle { display:flex; }
     .hero-logo { width:min(200px,80vw); }
-    .section-title { font-size:1.55rem; }
+    .section-title { font-size:1.75rem; }
   }
 
   /* ── ACCESSIBILITY — SKIP LINK ──────────────────────────────── */
@@ -802,13 +976,15 @@
   .hero-cta:focus-visible,
   .menu-order-btn:focus-visible,
   .action-btn:focus-visible,
+  .contact-action:focus-visible,
+  .cookie-ok:focus-visible,
   footer a:focus-visible {
     outline: 3px solid var(--gold-lt);
     outline-offset: 3px;
   }
 
-  /* Fix low-contrast nav links */
-  .nav-links a { color: rgba(243,237,216,0.88); }
+  /* Fix low-contrast nav links — full opacity gives ~12:1 on dark green nav bg */
+  .nav-links a { color: var(--cream); }
 
   /* ── HIGH-CONTRAST MODE ─────────────────────────────────────── */
   body.hc-mode {
@@ -955,6 +1131,22 @@
   .cookie-ok{background:var(--gold);color:var(--green);border:none;padding:8px 22px;border-radius:2px;font-family:"Raleway",sans-serif;font-weight:700;font-size:.78rem;letter-spacing:1.5px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
   .cookie-ok:hover{background:var(--gold-lt);}
 
+  /* ── MENU SECTION — CINEMATIC ATMOSPHERE ────────────────────── */
+  #menu {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(170deg, var(--parchment) 0%, var(--cream) 60%, var(--off-white) 100%);
+  }
+  #menu .container { position: relative; z-index: 1; }
+  #menu .container > article { position: relative; z-index: 1; }
+  #menu .section-title,
+  #menu .section-subtitle,
+  #menu .menu-order-row,
+  #menu-content { position: relative; z-index: 1; }
+
+
+
+
 </style>
 </head>
 <body>
@@ -986,7 +1178,7 @@
 <!-- ── COOKIE BANNER ── -->
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="הודעת פרטיות">
   <span id="cookieTxt">אתר זה אינו משתמש בעוגיות מעקב. קישורי WhatsApp, Instagram ו-Waze כפופים למדיניות הפרטיות שלהם.</span>
-  <button class="cookie-ok" onclick="dismissCookie()" id="cookieOkBtn">הבנתי ✓</button>
+  <button class="cookie-ok" onclick="dismissCookie()" id="cookieOkBtn" aria-label="הבנתי, סגור הודעת עוגיות">הבנתי ✓</button>
 </div>
 
 <header role="banner">
@@ -1046,22 +1238,22 @@
     <p class="section-subtitle" id="gallerySubtitle"></p>
     <div class="gallery-mosaic">
       <figure class="gallery-cell gallery-cell--feature">
-        <img id="heroFoodImg" src="assets/gallery/pizza-burrata.jpeg" width="800" height="600" loading="lazy" alt="פיצה בסגנון נאפולי עם בוראטה, רוקט ובלסמי">
+        <img id="heroFoodImg" src="assets/gallery/fromOurKitchen/pizza-burrata.jpeg" width="800" height="600" loading="lazy" alt="פיצה בסגנון נאפולי עם בוראטה, רוקט ובלסמי">
       </figure>
       <figure class="gallery-cell gallery-cell--g1">
-        <img id="galImg1" src="assets/gallery/pizza-margherita.jpeg" width="900" height="1200" loading="lazy" alt="פיצה מרגריטה עם בזיליקום טרי מהתנור">
+        <img id="galImg1" src="assets/gallery/fromOurKitchen/pizza-margherita.jpeg" width="900" height="1200" loading="lazy" alt="פיצה מרגריטה עם בזיליקום טרי מהתנור">
       </figure>
       <figure class="gallery-cell gallery-cell--g2">
-        <img id="galImg2" src="assets/gallery/cheese-boat-arugula.jpeg" width="800" height="800" loading="lazy" alt="לחם גבינה מהתנור עם ירוקים טריים">
+        <img id="galImg2" src="assets/gallery/fromOurKitchen/cheese-boat-arugula.jpeg" width="800" height="800" loading="lazy" alt="פיצה עם תוספות טריות מהתנור">
       </figure>
       <figure class="gallery-cell gallery-cell--wide">
-        <img id="galImg3" src="assets/gallery/dessert-chocolate-fold.jpeg" width="800" height="600" loading="lazy" alt="לחם ממולא שוקולד בעבודת יד">
+        <img id="galImg3" src="assets/gallery/fromOurKitchen/dessert-chocolate-fold.jpeg" width="800" height="600" loading="lazy" alt="צ'ורוס לקינוח">
       </figure>
       <figure class="gallery-cell gallery-cell--g4">
-        <img id="galImg4" src="assets/gallery/pasta.webp" width="900" height="1200" loading="lazy" alt="פסטה קרמית עם בזיליקום בקערה, משאית המזון של הגן המוקרם ברקע">
+        <img id="galImg4" src="assets/gallery/fromOurKitchen/pasta.png" width="900" height="1200" loading="lazy" alt="פטוצ'יני ברוטב קרמי">
       </figure>
       <figure class="gallery-cell gallery-cell--g5">
-        <img id="galImg5" src="assets/gallery/creamy-potato.webp" width="900" height="1200" loading="lazy" alt="תפוח אדמה אפוי עמוס ברוטב קרמי, תירס, בצל ירוק וגבינה">
+        <img id="galImg5" src="assets/gallery/fromOurKitchen/creamy-potato.png" width="900" height="1200" loading="lazy" alt="תפוח אדמה אפוי עמוס ברוטב קרמי, תירס, בצל ירוק וגבינה">
       </figure>
     </div>
     </article>
@@ -1069,6 +1261,37 @@
 </section>
 
 <section id="menu">
+  <!-- Removed: floating ingredient SVGs replaced by pizza float below -->
+  <div class="menu-bg-canvas" style="display:none" aria-hidden="true">
+    <div class="ing" style="left:7%;width:44px;height:44px;--dur:24s;--delay:-9s;--op:0.38;--dx:45px;--spin:200deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><circle cx="22" cy="26" r="11" fill="none" stroke="rgba(200,18,26,0.3)" stroke-width="1"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M16 9 C13 6 14 3 17 5" stroke="#2d6a4f" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M28 9 C31 6 30 3 27 5" stroke="#2d6a4f" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing" style="left:17%;width:34px;height:52px;--dur:20s;--delay:-14s;--op:0.35;--dx:-30px;--spin:240deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 16 C12 17 7 20 6 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C12 25 8 28 7 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
+    <div class="ing" style="left:26%;width:26px;height:38px;--dur:27s;--delay:-3s;--op:0.32;--dx:25px;--spin:310deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><ellipse cx="9" cy="14" rx="3.5" ry="5" fill="rgba(255,255,255,0.1)" transform="rotate(-15 9 14)"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/><circle cx="12" cy="22" r="1.5" fill="rgba(255,220,150,0.5)"/></svg></div>
+    <div class="ing" style="left:36%;width:48px;height:54px;--dur:22s;--delay:-18s;--op:0.30;--dx:-55px;--spin:170deg"><svg viewBox="0 0 44 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 28 C5 14 10 6 22 6 C34 6 39 14 39 28Z" fill="#9c6b3c"/><path d="M9 24 C9 15 13 10 22 10 C31 10 35 15 35 24" stroke="rgba(255,235,210,0.18)" stroke-width="2" fill="none"/><circle cx="15" cy="17" r="2.5" fill="rgba(255,240,220,0.3)"/><circle cx="27" cy="15" r="2" fill="rgba(255,240,220,0.3)"/><circle cx="20" cy="22" r="1.5" fill="rgba(255,240,220,0.2)"/><rect x="16" y="28" width="12" height="16" rx="5" fill="#c8956c"/><ellipse cx="22" cy="29" rx="9" ry="2.5" fill="#8a5a2c" opacity="0.6"/></svg></div>
+    <div class="ing" style="left:49%;width:52px;height:38px;--dur:25s;--delay:-7s;--op:0.38;--dx:38px;--spin:210deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 13 16 18 Q23 23 30 18 Q37 13 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/><path d="M3 18 Q9 23 16 18 Q23 13 30 18 Q37 23 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.3"/><circle cx="23" cy="18" r="5.5" fill="#C8A44A" opacity="0.18"/></svg></div>
+    <div class="ing" style="left:60%;width:30px;height:40px;--dur:19s;--delay:-12s;--op:0.35;--dx:-28px;--spin:270deg"><svg viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 38 C6 38 2 30 2 23 C2 12 7 5 14 5 C21 5 26 12 26 23 C26 30 22 38 14 38Z" fill="#f5f0e8" stroke="#d4c5a9" stroke-width="1"/><path d="M14 8 L14 36" stroke="#d4c5a9" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/><path d="M8 16 C10 12 13 8 14 6" stroke="#d4c5a9" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/><path d="M20 16 C18 12 15 8 14 6" stroke="#d4c5a9" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/><rect x="11" y="2" width="6" height="6" rx="2" fill="#b8845a"/></svg></div>
+    <div class="ing" style="left:71%;width:34px;height:34px;--dur:30s;--delay:-22s;--op:0.32;--dx:52px;--spin:155deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><circle cx="22" cy="26" r="11" fill="none" stroke="rgba(200,18,26,0.3)" stroke-width="1"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing" style="left:81%;width:26px;height:42px;--dur:21s;--delay:-5s;--op:0.35;--dx:-42px;--spin:230deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
+    <div class="ing" style="left:13%;width:20px;height:32px;--dur:26s;--delay:-16s;--op:0.30;--dx:28px;--spin:325deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><ellipse cx="9" cy="14" rx="3.5" ry="5" fill="rgba(255,255,255,0.1)" transform="rotate(-15 9 14)"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/></svg></div>
+    <div class="ing" style="left:44%;width:38px;height:44px;--dur:31s;--delay:-10s;--op:0.28;--dx:-38px;--spin:185deg"><svg viewBox="0 0 44 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 28 C5 14 10 6 22 6 C34 6 39 14 39 28Z" fill="#9c6b3c"/><circle cx="16" cy="17" r="2" fill="rgba(255,240,220,0.3)"/><circle cx="26" cy="15" r="1.5" fill="rgba(255,240,220,0.3)"/><rect x="16" y="28" width="12" height="16" rx="5" fill="#c8956c"/><ellipse cx="22" cy="29" rx="9" ry="2.5" fill="#8a5a2c" opacity="0.6"/></svg></div>
+    <div class="ing" style="left:87%;width:44px;height:32px;--dur:23s;--delay:-20s;--op:0.35;--dx:-48px;--spin:255deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 13 16 18 Q23 23 30 18 Q37 13 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/><circle cx="23" cy="18" r="5" fill="#C8A44A" opacity="0.18"/></svg></div>
+    <div class="ing" style="left:56%;width:26px;height:36px;--dur:28s;--delay:-4s;--op:0.32;--dx:22px;--spin:175deg"><svg viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 38 C6 38 2 30 2 23 C2 12 7 5 14 5 C21 5 26 12 26 23 C26 30 22 38 14 38Z" fill="#f5f0e8" stroke="#d4c5a9" stroke-width="1"/><path d="M14 8 L14 36" stroke="#d4c5a9" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/><rect x="11" y="2" width="6" height="6" rx="2" fill="#b8845a"/></svg></div>
+    <div class="ing" style="left:32%;width:36px;height:36px;--dur:18s;--delay:-13s;--op:0.38;--dx:-62px;--spin:390deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing" style="left:75%;width:38px;height:58px;--dur:29s;--delay:-8s;--op:0.30;--dx:32px;--spin:215deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 16 C12 17 7 20 6 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C12 25 8 28 7 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
+
+    <!-- Mid-section scattered ingredients (bottom: 25%–75% of the section) -->
+    <div class="ing ing-mid" style="left:9%;bottom:28%;width:32px;height:32px;--dur:16s;--delay:-6s;--op:0.28;--dx:38px;--spin:190deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing ing-mid" style="left:22%;bottom:52%;width:28px;height:44px;--dur:14s;--delay:-10s;--op:0.26;--dx:-22px;--spin:260deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/></svg></div>
+    <div class="ing ing-mid" style="left:38%;bottom:35%;width:40px;height:30px;--dur:17s;--delay:-4s;--op:0.30;--dx:44px;--spin:145deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 13 16 18 Q23 23 30 18 Q37 13 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/><circle cx="23" cy="18" r="5" fill="#C8A44A" opacity="0.18"/></svg></div>
+    <div class="ing ing-mid" style="left:54%;bottom:62%;width:22px;height:34px;--dur:13s;--delay:-7s;--op:0.25;--dx:-30px;--spin:300deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><ellipse cx="9" cy="14" rx="3.5" ry="5" fill="rgba(255,255,255,0.1)" transform="rotate(-15 9 14)"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/></svg></div>
+    <div class="ing ing-mid" style="left:68%;bottom:42%;width:36px;height:36px;--dur:15s;--delay:-11s;--op:0.29;--dx:26px;--spin:220deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing ing-mid" style="left:83%;bottom:56%;width:30px;height:46px;--dur:18s;--delay:-3s;--op:0.27;--dx:-36px;--spin:280deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
+    <div class="ing ing-mid" style="left:46%;bottom:75%;width:38px;height:28px;--dur:12s;--delay:-9s;--op:0.24;--dx:50px;--spin:165deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 23 16 18 Q23 13 30 18 Q37 23 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.3"/><circle cx="23" cy="18" r="5.5" fill="#C8A44A" opacity="0.15"/></svg></div>
+    <div class="ing ing-mid" style="left:15%;bottom:70%;width:24px;height:32px;--dur:11s;--delay:-5s;--op:0.26;--dx:-40px;--spin:335deg"><svg viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 38 C6 38 2 30 2 23 C2 12 7 5 14 5 C21 5 26 12 26 23 C26 30 22 38 14 38Z" fill="#f5f0e8" stroke="#d4c5a9" stroke-width="1"/><path d="M14 8 L14 36" stroke="#d4c5a9" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/><rect x="11" y="2" width="6" height="6" rx="2" fill="#b8845a"/></svg></div>
+    <div class="ing ing-mid" style="left:91%;bottom:33%;width:28px;height:44px;--dur:19s;--delay:-14s;--op:0.28;--dx:18px;--spin:200deg"><svg viewBox="0 0 44 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 28 C5 14 10 6 22 6 C34 6 39 14 39 28Z" fill="#9c6b3c"/><circle cx="15" cy="17" r="2" fill="rgba(255,240,220,0.3)"/><rect x="16" y="28" width="12" height="16" rx="5" fill="#c8956c"/><ellipse cx="22" cy="29" rx="9" ry="2.5" fill="#8a5a2c" opacity="0.6"/></svg></div>
+    <div class="ing ing-mid" style="left:30%;bottom:83%;width:20px;height:30px;--dur:10s;--delay:-2s;--op:0.22;--dx:28px;--spin:250deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/></svg></div>
+    <div class="ing ing-mid" style="left:63%;bottom:78%;width:34px;height:26px;--dur:13s;--delay:-8s;--op:0.25;--dx:-44px;--spin:175deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 13 16 18 Q23 23 30 18 Q37 13 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/></svg></div>
+  </div>
+
   <div class="container">
     <article aria-labelledby="menuTitle">
     <h2 class="section-title" id="menuTitle"><span class="divider" aria-hidden="true"></span></h2>
@@ -1079,7 +1302,7 @@
         <span id="menuOrderCta"></span>
       </a>
     </div>
-    <div id="menu-content" class="menu-grid" role="region" aria-labelledby="menuTitle"><article class="menu-card" aria-labelledby="menu-card-title-0"><div class="card-header"><h3 id="menu-card-title-0"><span aria-hidden="true">🥔</span> עיקריות</h3></div><div class="card-body"><div class="menu-item"><span class="menu-dot"></span><span>תפו"א מעושן מוקרם — 35₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>רביולי בטטה — 45₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>רביולי גבינה — 45₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>רביולי פטריות כמהין — 45₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>פטוצ'יני — 45₪</span></div></div></article><article class="menu-card" aria-labelledby="menu-card-title-1"><div class="card-header"><h3 id="menu-card-title-1"><span aria-hidden="true">🍕</span> פיצות נאפוליטניות</h3></div><div class="card-body"><div class="menu-item"><span class="menu-dot"></span><span>מרגריטה — 45₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>בוראטה — 65₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>שמנת פטריות — 55₪</span></div></div></article><article class="menu-card" aria-labelledby="menu-card-title-2"><div class="card-header"><h3 id="menu-card-title-2"><span aria-hidden="true">🥗</span> סלטים בהרכבה אישית</h3></div><div class="card-body"><div class="menu-heading">בחרו את הירקות שלכם — 35₪</div><div class="menu-item"><span class="menu-dot"></span><span>מלפפון</span></div><div class="menu-item"><span class="menu-dot"></span><span>עגבניה</span></div><div class="menu-item"><span class="menu-dot"></span><span>גמבה</span></div><div class="menu-item"><span class="menu-dot"></span><span>חסה</span></div><div class="menu-item"><span class="menu-dot"></span><span>תירס</span></div><div class="menu-item"><span class="menu-dot"></span><span>פטריות</span></div><div class="menu-item"><span class="menu-dot"></span><span>זיתים ירוקים</span></div><div class="menu-item"><span class="menu-dot"></span><span>זיתים שחורים</span></div></div></article><article class="menu-card" aria-labelledby="menu-card-title-3"><div class="card-header"><h3 id="menu-card-title-3"><span aria-hidden="true">🫙</span> רטבים ותוספות</h3></div><div class="card-body"><div class="menu-heading">רטבים</div><div class="menu-item"><span class="menu-dot"></span><span>שמנת פטריות</span></div><div class="menu-item"><span class="menu-dot"></span><span>שמנת פסטו</span></div><div class="menu-heading">תוספות לפיצה ותפוח אדמה
+    <div id="menu-content" role="region" aria-labelledby="menuTitle" aria-describedby="menuDisclaimer" aria-live="polite"><article class="menu-card" aria-labelledby="menu-card-title-0"><div class="card-header"><h3 id="menu-card-title-0"><span aria-hidden="true">🥔</span> עיקריות</h3></div><div class="card-body"><div class="menu-item"><span class="menu-dot"></span><span>תפו"א מעושן מוקרם — 35₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>רביולי בטטה — 45₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>רביולי גבינה — 45₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>רביולי פטריות כמהין — 45₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>פטוצ'יני — 45₪</span></div></div></article><article class="menu-card" aria-labelledby="menu-card-title-1"><div class="card-header"><h3 id="menu-card-title-1"><span aria-hidden="true">🍕</span> פיצות נאפוליטניות</h3></div><div class="card-body"><div class="menu-item"><span class="menu-dot"></span><span>מרגריטה — 45₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>בוראטה — 65₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>שמנת פטריות — 55₪</span></div></div></article><article class="menu-card" aria-labelledby="menu-card-title-2"><div class="card-header"><h3 id="menu-card-title-2"><span aria-hidden="true">🥗</span> סלטים בהרכבה אישית</h3></div><div class="card-body"><div class="menu-heading">בחרו את הירקות שלכם — 35₪</div><div class="menu-item"><span class="menu-dot"></span><span>מלפפון</span></div><div class="menu-item"><span class="menu-dot"></span><span>עגבניה</span></div><div class="menu-item"><span class="menu-dot"></span><span>גמבה</span></div><div class="menu-item"><span class="menu-dot"></span><span>חסה</span></div><div class="menu-item"><span class="menu-dot"></span><span>תירס</span></div><div class="menu-item"><span class="menu-dot"></span><span>פטריות</span></div><div class="menu-item"><span class="menu-dot"></span><span>זיתים ירוקים</span></div><div class="menu-item"><span class="menu-dot"></span><span>זיתים שחורים</span></div></div></article><article class="menu-card" aria-labelledby="menu-card-title-3"><div class="card-header"><h3 id="menu-card-title-3"><span aria-hidden="true">🫙</span> רטבים ותוספות</h3></div><div class="card-body"><div class="menu-heading">רטבים</div><div class="menu-item"><span class="menu-dot"></span><span>שמנת פטריות</span></div><div class="menu-item"><span class="menu-dot"></span><span>שמנת פסטו</span></div><div class="menu-heading">תוספות לפיצה ותפוח אדמה
 גבינה בולגרית — 10₪ (פרימיום) | 5₪ לכל שאר הבחירות</div><div class="menu-item"><span class="menu-dot"></span><span>פסטו</span></div><div class="menu-item"><span class="menu-dot"></span><span>תירס</span></div><div class="menu-item"><span class="menu-dot"></span><span>פטריות טריות</span></div><div class="menu-item"><span class="menu-dot"></span><span>חריף</span></div><div class="menu-item"><span class="menu-dot"></span><span>גבינה צהובה</span></div><div class="menu-item"><span class="menu-dot"></span><span>גבינה בולגרית</span></div><div class="menu-item"><span class="menu-dot"></span><span>זיתים ירוקים</span></div><div class="menu-item"><span class="menu-dot"></span><span>זיתים שחורים</span></div><div class="menu-item"><span class="menu-dot"></span><span>בצל ירוק</span></div><div class="menu-item"><span class="menu-dot"></span><span>שמנת</span></div></div></article><article class="menu-card" aria-labelledby="menu-card-title-4"><div class="card-header"><h3 id="menu-card-title-4"><span aria-hidden="true">🥤</span> שתיה</h3></div><div class="card-body"><div class="menu-item"><span class="menu-dot"></span><span>טרופית — 3₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>מים — 8₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>שתיה קלה — 10₪</span></div><div class="menu-item"><span class="menu-dot"></span><span>סחלב חם — 15₪</span></div></div></article><article class="menu-card" aria-labelledby="menu-card-title-5"><div class="card-header"><h3 id="menu-card-title-5"><span aria-hidden="true">🍩</span> קינוחים</h3></div><div class="card-body"><div class="menu-item"><span class="menu-dot"></span><span>צ'ורוס</span></div></div></article></div>
     </article>
   </div>
@@ -1104,28 +1327,40 @@
     <h2 class="section-title" id="contactTitle"><span class="divider" aria-hidden="true"></span></h2>
     <p class="section-subtitle" id="contactSubtitle"></p>
 
-    <!-- Info cards -->
-    <div class="contact-grid">
-      <div class="contact-card"><div class="contact-icon" aria-hidden="true">&#128205;</div><div class="contact-label" id="c1label"></div><div class="contact-value" id="c1value"></div></div>
-      <div class="contact-card"><div class="contact-icon" aria-hidden="true">&#128336;</div><div class="contact-label" id="c4label"></div><div class="contact-value" id="c4value"></div></div>
+    <!-- Info plaque -->
+    <div class="contact-plaque">
+      <div class="contact-plaque-item">
+        <span class="contact-plaque-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </span>
+        <span class="contact-label" id="c1label"></span>
+        <span class="contact-value" id="c1value"></span>
+      </div>
+      <div class="contact-plaque-item">
+        <span class="contact-plaque-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+        </span>
+        <span class="contact-label" id="c4label"></span>
+        <span class="contact-value" id="c4value"></span>
+      </div>
     </div>
 
-    <!-- Action buttons row -->
-    <div class="action-buttons">
-      <a class="action-btn btn-wa" href="https://wa.me/972509829229" target="_blank" rel="noopener noreferrer" aria-label="הזמנה בוואטסאפ (נפתח בחלון חדש)">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.14 1.535 5.874L.057 23.215a.75.75 0 0 0 .916.938l5.498-1.442A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.944 0-3.77-.497-5.363-1.372l-.384-.214-3.983 1.044 1.065-3.872-.235-.389A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    <!-- Action links -->
+    <div class="contact-actions">
+      <a class="contact-action ca-wa" href="https://wa.me/972509829229" target="_blank" rel="noopener noreferrer" aria-label="הזמנה בוואטסאפ (נפתח בחלון חדש)">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.14 1.535 5.874L.057 23.215a.75.75 0 0 0 .916.938l5.498-1.442A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.944 0-3.77-.497-5.363-1.372l-.384-.214-3.983 1.044 1.065-3.872-.235-.389A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
         <span id="btnWa"></span>
       </a>
-      <a class="action-btn btn-ig" href="https://instagram.com/the_creamy_garden" target="_blank" rel="noopener noreferrer" aria-label="אינסטגרם (נפתח בחלון חדש)">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      <a class="contact-action ca-secondary" href="https://instagram.com/the_creamy_garden" target="_blank" rel="noopener noreferrer" aria-label="אינסטגרם (נפתח בחלון חדש)">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
         <span id="btnIg"></span>
       </a>
-      <a class="action-btn btn-waze" href="https://waze.com/ul?ll=31.742401,34.787769&navigate=yes&zoom=17" target="_blank" rel="noopener noreferrer" aria-label="ניווט ב-Waze (נפתח בחלון חדש)">
-        <svg width="20" height="20" viewBox="0 0 56 56" fill="currentColor" aria-hidden="true"><path d="M28 2C13.64 2 2 13.088 2 26.784c0 7.392 3.36 14.08 8.736 18.72L9.52 52.48a1.12 1.12 0 0 0 1.52 1.296l8.208-3.52C21.52 51.36 24.688 52 28 52c14.36 0 26-11.088 26-24.784C54 13.088 42.36 2 28 2z"/></svg>
+      <a class="contact-action ca-secondary" href="https://waze.com/ul?ll=31.742401,34.787769&navigate=yes&zoom=17" target="_blank" rel="noopener noreferrer" aria-label="ניווט ב-Waze (נפתח בחלון חדש)">
+        <svg viewBox="0 0 56 56" fill="currentColor" aria-hidden="true"><path d="M28 2C13.64 2 2 13.088 2 26.784c0 7.392 3.36 14.08 8.736 18.72L9.52 52.48a1.12 1.12 0 0 0 1.52 1.296l8.208-3.52C21.52 51.36 24.688 52 28 52c14.36 0 26-11.088 26-24.784C54 13.088 42.36 2 28 2z"/></svg>
         <span id="btnWaze"></span>
       </a>
-      <a class="action-btn btn-gmap" href="https://www.google.com/maps/dir/?api=1&destination=31.742401,34.787769" target="_blank" rel="noopener noreferrer" aria-label="ניווט בגוגל מפות (נפתח בחלון חדש)">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      <a class="contact-action ca-secondary" href="https://www.google.com/maps/dir/?api=1&destination=31.742401,34.787769" target="_blank" rel="noopener noreferrer" aria-label="ניווט בגוגל מפות (נפתח בחלון חדש)">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
         <span id="btnGmap"></span>
       </a>
     </div>
@@ -1172,18 +1407,18 @@ var T = {
     "heroFoodAlt": "Neapolitan-style pizza with burrata, arugula, and balsamic glaze",
     "heroBannerAlt": "The Creamy Garden — fresh ingredients and craft food",
     "galAlt1": "Margherita pizza with fresh basil from the oven",
-    "galAlt2": "Oven-baked cheese bread with arugula",
-    "galAlt3": "Handmade chocolate-filled folded flatbread",
-    "galAlt4": "Creamy ribbon pasta with basil in a bowl, Creamy Garden food truck in the background",
+    "galAlt2": "Freshly baked pizza with assorted toppings",
+    "galAlt3": "Churros dessert served warm",
+    "galAlt4": "Creamy fettuccine pasta served in a bowl",
     "galAlt5": "Loaded baked potato with creamy sauce, corn, chives, and cheese",
-    "heroTagline": "Fresh · Handcrafted · Garden-to-Plate",
+    "heroTagline": "Creamed potatoes · Pizzas in a tray · Handmade pastas",
     "heroCta": "Order on WhatsApp",
     "heroScroll": "↓   scroll to discover",
     "menuTitle": "Our Menu",
     "menuSubtitle": "Crafted with love · Locally inspired · Globally flavoured",
     "aboutTitle": "Our Story",
     "aboutSubtitle": "Where garden freshness meets street-food soul",
-    "aboutText": "From a simple love, The Creamy Garden was born — a love for honest ingredients and food that feels like home. Ravioli and pastas, Neapolitan pizza touched by the taboon's flame, and smoked creamy potatoes — each plate is drawn straight from the fire and arrives to you, just as good food always should.",
+    "aboutText": "From a simple love, The Creamy Garden was born: a love for honest ingredients and food that feels like home. Ravioli and pastas, Neapolitan pizza touched by the taboon's flame, and smoked creamy potatoes. Each plate is drawn straight from the fire and arrives to you, just as good food always should.",
     "feat1": "Fresh Ingredients",
     "feat2": "Made to Order",
     "feat3": "Crafted with Love",
@@ -1204,141 +1439,47 @@ var T = {
     "ogTitle": "The Creamy Garden — Food Truck",
     "ogLocale": "en_US",
     "menuOrderCta": "Order on WhatsApp",
+    "menuDisclaimer": "Images are for illustration purposes only.",
     "cookieTxt": "This site does not use tracking cookies. WhatsApp, Instagram and Waze links are subject to their own privacy policies.",
     "cookieOkBtn": "Got it ✓",
     "footerName": "The Creamy Garden Food Truck",
     "footerTagline": "Handcrafted with 🌿 & ❤️",
     "footerRights": "All Rights Reserved © 2026",
-    "menu": [
-      {
-        "icon": "🥔",
-        "title": "Mains",
-        "items": [
-          {
-            "type": "item",
-            "text": "Creamy Smoked Potatoes — 35₪"
-          },
-          {
-            "type": "item",
-            "text": "Sweet Potato Ravioli — 45₪"
-          },
-          {
-            "type": "item",
-            "text": "Cheese Ravioli — 45₪"
-          },
-          {
-            "type": "item",
-            "text": "Truffle Mushroom Ravioli — 45₪"
-          },
-          {
-            "type": "item",
-            "text": "Fettuccine — 45₪"
-          }
-        ]
-      },
-      {
-        "icon": "🍕",
-        "title": "Neapolitan Pizzas",
-        "items": [
-          {
-            "type": "pizza",
-            "text": "Margherita — 45₪"
-          },
-          {
-            "type": "pizza",
-            "text": "Burrata — 65₪"
-          },
-          {
-            "type": "pizza",
-            "text": "Creamy Mushroom — 55₪"
-          }
-        ]
-      },
-      {
-        "icon": "🥗",
-        "title": "Custom-Made Salads",
-        "items": [
-          {
-            "type": "label",
-            "text": "Choose your ingredients — 35₪"
-          },
-          {
-            "type": "tags",
-            "tags": [
-              "Cucumber",
-              "Tomato",
-              "Bell Pepper",
-              "Lettuce",
-              "Corn",
-              "Mushrooms",
-              "Green Olives",
-              "Black Olives"
-            ]
-          }
-        ]
-      },
-      {
-        "icon": "🫙",
-        "title": "Sauces & Toppings",
-        "items": [
-          {
-            "type": "label",
-            "text": "Sauces"
-          },
-          {
-            "type": "tags",
-            "tags": [
-              "Mushroom Cream",
-              "Pesto Cream"
-            ]
-          },
-          {
-            "type": "label",
-            "text": "Toppings (Pizza & Potato) — 5₪ for all | Bulgarian Cheese — 10₪ (premium)"
-          },
-          {
-            "type": "tags",
-            "tags": [
-              "Pesto",
-              "Corn",
-              "Mushrooms & Onions",
-              "Spicy",
-              "Yellow Cheese",
-              "Bulgarian Cheese",
-              "Green Olives",
-              "Black Olives",
-              "Green Onions",
-              "Cream"
-            ]
-          }
-        ]
-      },
-      {
-        "icon": "🥤",
-        "title": "Drinks",
-        "items": [
-          {
-            "type": "tags",
-            "tags": [
-              "Tropical — 3₪",
-              "Water — 8₪",
-              "Coca-Cola / Coke Zero / Sprite — 10₪",
-              "Hot Sahlab — 15₪"
-            ]
-          }
-        ]
-      },
-      {
-        "icon": "🍩",
-        "title": "Desserts",
-        "items": [
-          {
-            "type": "item",
-            "text": "Churros"
-          }
-        ]
-      }
-    ]
+    "menu": {
+      "sections": [
+        { "id":"potato", "icon":"🥔", "title":"Mr. Potato",
+          "items":[{ "name":"Smoked Creamy Potato", "desc":"Oven-baked, smoky & silky smooth — with your choice of toppings", "price":"35₪" }] },
+        { "id":"pasta", "icon":"🍝", "title":"Handmade Pasta",
+          "items":[
+            { "name":"Fettuccine", "price":"45₪" },
+            { "name":"Sweet Potato Ravioli", "price":"45₪" },
+            { "name":"Cheese Ravioli", "price":"45₪" },
+            { "name":"Truffle Mushroom Ravioli", "price":"45₪" }
+          ] },
+        { "id":"pizza", "icon":"🍕", "title":"Taboon Pizza",
+          "items":[
+            { "name":"Classic Margherita", "price":"45₪" },
+            { "name":"Creamy Mushroom", "price":"55₪" },
+            { "name":"Burrata, Balsamic & Arugula", "price":"65₪" }
+          ] },
+        { "id":"toppings", "icon":"🫙", "title":"Toppings",
+          "priceNote":"1 topping or all of them, same price", "sectionPrice":"5₪",
+          "tags":["Cream","Corn","Black Olives","Pesto","Fresh Mushrooms","Green Olives","Green Onions","Spicy","Yellow Cheese","Bulgarian Cheese +10₪"] },
+        { "id":"salad", "icon":"🥗", "title":"Custom Salad",
+          "tags":["Cucumber","Tomato","Corn","Bell Pepper","Lettuce","Mushrooms","Green Olives","Black Olives","Bulgarian Cheese (+10₪)"] },
+        { "id":"desserts", "icon":"🍩", "title":"Sweet Treats",
+          "items":[
+            { "name":"Spanish Churros", "soon":true },
+            { "name":"Hot Sahlab", "price":"15₪" }
+          ] },
+        { "id":"drinks", "icon":"🥤", "title":"Drinks",
+          "items":[
+            { "name":"Water", "price":"8₪" },
+            { "name":"Soft Drink", "price":"10₪" },
+            { "name":"Tropicana", "price":"3₪" }
+          ] }
+      ]
+    }
   },
   "he": {
     "dir": "rtl",
@@ -1368,18 +1509,18 @@ var T = {
     "heroFoodAlt": "פיצה בסגנון נאפולי עם בוראטה, רוקט ובלסמי",
     "heroBannerAlt": "הגן המוקרם — מרכיבים טריים ואוכל נבחר",
     "galAlt1": "פיצה מרגריטה עם בזיליקום טרי מהתנור",
-    "galAlt2": "לחם גבינה מהתנור עם ירוקים טריים",
-    "galAlt3": "לחם ממולא שוקולד בעבודת יד",
-    "galAlt4": "פסטה קרמית עם בזיליקום בקערה, משאית המזון של הגן המוקרם ברקע",
+    "galAlt2": "פיצה עם תוספות טריות מהתנור",
+    "galAlt3": "צ'ורוס לקינוח מוגש חם",
+    "galAlt4": "פטוצ'יני ברוטב קרמי מוגש בקערה",
     "galAlt5": "תפוח אדמה אפוי עמוס ברוטב קרמי, תירס, בצל ירוק וגבינה",
-    "heroTagline": "טרי · בעבודת יד",
+    "heroTagline": "תפוחי אדמה מוקרמים · פיצות בטאבון · פסטות בעבודת יד",
     "heroCta": "הזמינו עכשיו בוואטסאפ",
     "heroScroll": "↓   גללו לגלות",
     "menuTitle": "התפריט שלנו",
     "menuSubtitle": "מוכן באהבה · השראה מקומית · טעמים עולמיים",
     "aboutTitle": "הסיפור שלנו",
     "aboutSubtitle": "פגישה בין טריות הגינה לרוח אוכל הרחוב",
-    "aboutText": "מאהבה פשוטה נולד הגן המוקרם — אהבה למרכיבים אמיתיים ולאוכל שמרגיש כמו בית. רביולי ופסטות, פיצה נאפוליטנית שלהבת הטאבון נגעה בה, ותפוחי אדמה מעושנים ומוקרמים — כל צלחת נשלפת ישר מהאש ומגיעה אליך, כמו שאוכל טוב תמיד צריך להגיע.",
+    "aboutText": "מאהבה פשוטה נולד הגן המוקרם: אהבה למרכיבים אמיתיים ולאוכל שמרגיש כמו בית. רביולי ופסטות, פיצה נאפוליטנית שלהבת הטאבון נגעה בה, ותפוחי אדמה מעושנים ומוקרמים. כל צלחת נשלפת ישר מהאש ומגיעה אליך, כמו שאוכל טוב תמיד צריך להגיע.",
     "feat1": "מרכיבים טריים",
     "feat2": "מוכן להזמנה",
     "feat3": "מוכן באהבה",
@@ -1400,141 +1541,47 @@ var T = {
     "ogTitle": "הגן המוקרם — פוד טראק",
     "ogLocale": "he_IL",
     "menuOrderCta": "הזמינו בוואטסאפ",
+    "menuDisclaimer": "התמונות להמחשה בלבד.",
     "cookieTxt": "אתר זה אינו משתמש בעוגיות מעקב. קישורי WhatsApp, Instagram ו-Waze כפופים למדיניות הפרטיות שלהם.",
     "cookieOkBtn": "הבנתי ✓",
     "footerName": "הגן המוקרם — Food Truck",
     "footerTagline": "מוכן באהבה עם 🌿 ו-❤️",
     "footerRights": "כל הזכויות שמורות © 2026",
-    "menu": [
-      {
-        "icon": "🥔",
-        "title": "עיקריות",
-        "items": [
-          {
-            "type": "item",
-            "text": "תפו\"א מעושן מוקרם — 35₪"
-          },
-          {
-            "type": "item",
-            "text": "רביולי בטטה — 45₪"
-          },
-          {
-            "type": "item",
-            "text": "רביולי גבינה — 45₪"
-          },
-          {
-            "type": "item",
-            "text": "רביולי פטריות כמהין — 45₪"
-          },
-          {
-            "type": "item",
-            "text": "פטוצ'יני — 45₪"
-          }
-        ]
-      },
-      {
-        "icon": "🍕",
-        "title": "פיצות נאפוליטניות",
-        "items": [
-          {
-            "type": "pizza",
-            "text": "מרגריטה — 45₪"
-          },
-          {
-            "type": "pizza",
-            "text": "בוראטה — 65₪"
-          },
-          {
-            "type": "pizza",
-            "text": "שמנת פטריות — 55₪"
-          }
-        ]
-      },
-      {
-        "icon": "🥗",
-        "title": "סלטים בהרכבה אישית",
-        "items": [
-          {
-            "type": "label",
-            "text": "בחרו את הירקות שלכם — 35₪"
-          },
-          {
-            "type": "tags",
-            "tags": [
-              "מלפפון",
-              "עגבניה",
-              "גמבה",
-              "חסה",
-              "תירס",
-              "פטריות",
-              "זיתים ירוקים",
-              "זיתים שחורים"
-            ]
-          }
-        ]
-      },
-      {
-        "icon": "🫙",
-        "title": "רטבים ותוספות",
-        "items": [
-          {
-            "type": "label",
-            "text": "רטבים"
-          },
-          {
-            "type": "tags",
-            "tags": [
-              "שמנת פטריות",
-              "שמנת פסטו"
-            ]
-          },
-          {
-            "type": "label",
-            "text": "תוספות לפיצה ותפוח אדמה\nגבינה בולגרית — 10₪ (פרימיום) | 5₪ לכל שאר הבחירות"
-          },
-          {
-            "type": "tags",
-            "tags": [
-              "פסטו",
-              "תירס",
-              "פטריות טריות",
-              "חריף",
-              "גבינה צהובה",
-              "גבינה בולגרית",
-              "זיתים ירוקים",
-              "זיתים שחורים",
-              "בצל ירוק",
-              "שמנת"
-            ]
-          }
-        ]
-      },
-      {
-        "icon": "🥤",
-        "title": "שתיה",
-        "items": [
-          {
-            "type": "tags",
-            "tags": [
-              "טרופית — 3₪",
-              "מים — 8₪",
-              "שתיה קלה — 10₪",
-              "סחלב חם — 15₪"
-            ]
-          }
-        ]
-      },
-      {
-        "icon": "🍩",
-        "title": "קינוחים",
-        "items": [
-          {
-            "type": "item",
-            "text": "צ'ורוס"
-          }
-        ]
-      }
-    ]
+    "menu": {
+      "sections": [
+        { "id":"potato", "icon":"🥔", "title":"מיסטר פוטטו",
+          "items":[{ "name":"תפוח אדמה מעושן מוקרם", "desc":"אפוי בתנור, מעושן ועסיסי — עם תוספת לבחירתכם", "price":"35₪" }] },
+        { "id":"pasta", "icon":"🍝", "title":"פסטה הנד מייד",
+          "items":[
+            { "name":"פטוצ'יני", "price":"45₪" },
+            { "name":"רביולי בטטה", "price":"45₪" },
+            { "name":"רביולי גבינה", "price":"45₪" },
+            { "name":"רביולי פטריות כמהין", "price":"45₪" }
+          ] },
+        { "id":"pizza", "icon":"🍕", "title":"פיצה בטאבון",
+          "items":[
+            { "name":"מרגריטה קלאסית", "price":"45₪" },
+            { "name":"שמנת פטריות", "price":"55₪" },
+            { "name":"בוראטה, בלסמי ורוקט", "price":"65₪" }
+          ] },
+        { "id":"toppings", "icon":"🫙", "title":"תוספות",
+          "priceNote":"תוספת אחת או כולן, אותו מחיר", "sectionPrice":"5₪",
+          "tags":["שמנת","תירס","זיתים שחורים","פסטו","פטריות טריות","זיתים ירוקים","בצל ירוק","חריף","גבינה צהובה","גבינה בולגרית +10₪"] },
+        { "id":"salad", "icon":"🥗", "title":"סלט בהרכבה אישית",
+          "tags":["מלפפון","עגבניה","תירס","גמבה","חסה","פטריות","זיתים ירוקים","זיתים שחורים","בולגרית (+10₪)"] },
+        { "id":"desserts", "icon":"🍩", "title":"משהו מתוק לקינוח",
+          "items":[
+            { "name":"צ'ורוס ספרדי", "soon":true },
+            { "name":"סחלב חם", "price":"15₪" }
+          ] },
+        { "id":"drinks", "icon":"🥤", "title":"שתיה",
+          "items":[
+            { "name":"מים", "price":"8₪" },
+            { "name":"שתיה קלה", "price":"10₪" },
+            { "name":"טרופית", "price":"3₪" }
+          ] }
+      ]
+    }
   },
   "ru": {
     "dir": "ltr",
@@ -1564,18 +1611,18 @@ var T = {
     "heroFoodAlt": "Пицца в неаполитанском стиле с бурратой, рукколой и бальзамиком",
     "heroBannerAlt": "Creamy Garden — свежие продукты и еда ручной работы",
     "galAlt1": "Пицца Маргарита со свежим базиликом из печи",
-    "galAlt2": "Запечённый сырный хлеб с рукколой",
-    "galAlt3": "Ручная лепёшка с шоколадной начинкой",
-    "galAlt4": "Кремовая ленточная паста с базиликом в миске, на фоне фудтрака Creamy Garden",
+    "galAlt2": "Свежая пицца с разнообразными топпингами из печи",
+    "galAlt3": "Десерт чуррос, подается теплым",
+    "galAlt4": "Кремовая паста фетучини, подается в миске",
     "galAlt5": "Запечённый картофель с кремовым соусом, кукурузой, зелёным луком и сыром",
-    "heroTagline": "Свежо · Ручная работа · Прямо из сада",
+    "heroTagline": "Кремовый картофель · Пицца на подносе · Паста ручной работы",
     "heroCta": "Заказать в WhatsApp",
     "heroScroll": "↓   листайте вниз",
     "menuTitle": "Наше Меню",
     "menuSubtitle": "Приготовлено с любовью · Местные продукты · Мировые вкусы",
     "aboutTitle": "Наша История",
     "aboutSubtitle": "Там, где свежесть сада встречает дух уличной еды",
-    "aboutText": "Из простой любви родился Creamy Garden — любви к настоящим продуктам и к еде, которая ощущается как дом. Равиоли и паста, неаполитанская пицца, тронутая пламенем табуна, и копчёный картофель в нежном сливочном соусе — каждое блюдо сходит прямо с огня и оказывается у вас, именно так, как и должна приходить настоящая еда.",
+    "aboutText": "Из простой любви родился Creamy Garden: любви к настоящим продуктам и к еде, которая ощущается как дом. Равиоли и паста, неаполитанская пицца, тронутая пламенем табуна, и копчёный картофель в нежном сливочном соусе. Каждое блюдо сходит прямо с огня и оказывается у вас, именно так, как и должна приходить настоящая еда.",
     "feat1": "Свежие ингредиенты",
     "feat2": "Готовим на заказ",
     "feat3": "Приготовлено с любовью",
@@ -1596,141 +1643,47 @@ var T = {
     "ogTitle": "Creamy Garden — Фудтрак",
     "ogLocale": "ru_RU",
     "menuOrderCta": "Заказать в WhatsApp",
+    "menuDisclaimer": "Фотографии носят иллюстративный характер.",
     "cookieTxt": "Сайт не использует отслеживающие файлы cookie. Ссылки на WhatsApp, Instagram и Waze регулируются их политиками конфиденциальности.",
     "cookieOkBtn": "Понятно ✓",
     "footerName": "Фудтрак Creamy Garden",
     "footerTagline": "Сделано с 🌿 и ❤️",
     "footerRights": "Все права защищены © 2026",
-    "menu": [
-      {
-        "icon": "🥔",
-        "title": "Основные блюда",
-        "items": [
-          {
-            "type": "item",
-            "text": "Копчёный картофель в сливочном соусе — 35₪"
-          },
-          {
-            "type": "item",
-            "text": "Равиоли из батата — 45₪"
-          },
-          {
-            "type": "item",
-            "text": "Равиоли с сыром — 45₪"
-          },
-          {
-            "type": "item",
-            "text": "Равиоли с трюфелем и грибами — 45₪"
-          },
-          {
-            "type": "item",
-            "text": "Феттучини — 45₪"
-          }
-        ]
-      },
-      {
-        "icon": "🍕",
-        "title": "Неаполитанские пиццы",
-        "items": [
-          {
-            "type": "pizza",
-            "text": "Маргарита — 45₪"
-          },
-          {
-            "type": "pizza",
-            "text": "Буррата — 65₪"
-          },
-          {
-            "type": "pizza",
-            "text": "Сливочная с грибами — 55₪"
-          }
-        ]
-      },
-      {
-        "icon": "🥗",
-        "title": "Индивидуальные салаты",
-        "items": [
-          {
-            "type": "label",
-            "text": "Выберите ингредиенты — 35₪"
-          },
-          {
-            "type": "tags",
-            "tags": [
-              "Огурец",
-              "Помидор",
-              "Болгарский перец",
-              "Салат-латук",
-              "Кукуруза",
-              "Грибы",
-              "Зелёные оливки",
-              "Чёрные оливки"
-            ]
-          }
-        ]
-      },
-      {
-        "icon": "🫙",
-        "title": "Соусы и добавки",
-        "items": [
-          {
-            "type": "label",
-            "text": "Соусы"
-          },
-          {
-            "type": "tags",
-            "tags": [
-              "Грибной крем",
-              "Крем-песто"
-            ]
-          },
-          {
-            "type": "label",
-            "text": "Топпинги — 5₪ за все | Болгарский сыр — 10₪ (премиум)"
-          },
-          {
-            "type": "tags",
-            "tags": [
-              "Песто",
-              "Кукуруза",
-              "Грибы с луком",
-              "Острое",
-              "Жёлтый сыр",
-              "Болгарский сыр",
-              "Зелёные оливки",
-              "Чёрные оливки",
-              "Зелёный лук",
-              "Сливки"
-            ]
-          }
-        ]
-      },
-      {
-        "icon": "🥤",
-        "title": "Напитки",
-        "items": [
-          {
-            "type": "tags",
-            "tags": [
-              "Тропик — 3₪",
-              "Вода — 8₪",
-              "Газировка — 10₪",
-              "Горячий Сахлаб — 15₪"
-            ]
-          }
-        ]
-      },
-      {
-        "icon": "🍩",
-        "title": "Десерты",
-        "items": [
-          {
-            "type": "item",
-            "text": "Чуррос"
-          }
-        ]
-      }
-    ]
+    "menu": {
+      "sections": [
+        { "id":"potato", "icon":"🥔", "title":"Мистер Картошка",
+          "items":[{ "name":"Копчёный картофель в сливочном соусе", "desc":"Печёный, дымный и нежный — с добавкой на ваш выбор", "price":"35₪" }] },
+        { "id":"pasta", "icon":"🍝", "title":"Паста ручной работы",
+          "items":[
+            { "name":"Феттучини", "price":"45₪" },
+            { "name":"Равиоли с бататом", "price":"45₪" },
+            { "name":"Равиоли с сыром", "price":"45₪" },
+            { "name":"Равиоли с трюфелем и грибами", "price":"45₪" }
+          ] },
+        { "id":"pizza", "icon":"🍕", "title":"Пицца из табуна",
+          "items":[
+            { "name":"Классическая Маргарита", "price":"45₪" },
+            { "name":"Сливочная с грибами", "price":"55₪" },
+            { "name":"Буррата, бальзамик и рукола", "price":"65₪" }
+          ] },
+        { "id":"toppings", "icon":"🫙", "title":"Добавки",
+          "priceNote":"одна или все добавки, цена одинакова", "sectionPrice":"5₪",
+          "tags":["Сливки","Кукуруза","Чёрные оливки","Песто","Свежие грибы","Зелёные оливки","Зелёный лук","Острое","Жёлтый сыр","Болгарский сыр +10₪"] },
+        { "id":"salad", "icon":"🥗", "title":"Индивидуальный салат",
+          "tags":["Огурец","Помидор","Кукуруза","Болгарский перец","Латук","Грибы","Зелёные оливки","Чёрные оливки","Болгарский сыр (+10₪)"] },
+        { "id":"desserts", "icon":"🍩", "title":"Что-нибудь сладкое",
+          "items":[
+            { "name":"Испанские чурросы", "soon":true },
+            { "name":"Горячий сахлеб", "price":"15₪" }
+          ] },
+        { "id":"drinks", "icon":"🥤", "title":"Напитки",
+          "items":[
+            { "name":"Вода", "price":"8₪" },
+            { "name":"Газировка", "price":"10₪" },
+            { "name":"Тропикана", "price":"3₪" }
+          ] }
+      ]
+    }
   },
   "ar": {
     "dir": "rtl",
@@ -1760,18 +1713,18 @@ var T = {
     "heroFoodAlt": "بيتزا على الطريقة النابولية مع بوراتا وجرجير وخل بلسمي",
     "heroBannerAlt": "الحديقة الكريمية — مكوّنات طازجة وطعام مصنوع بإتقان",
     "galAlt1": "بيتزا مارغريتا مع ريحان طازج من الفرن",
-    "galAlt2": "خبز بالجبن من الفرن مع خضار ورقيّة",
-    "galAlt3": "خبز مسطّح محشو بالشوكولاتة يدوي الصنع",
-    "galAlt4": "معكرونة كريمية مع ريحان في وعاء، وشاحنة الطعام الحديقة الكريمية في الخلفية",
+    "galAlt2": "بيتزا طازجة مع تشكيلة إضافات من الفرن",
+    "galAlt3": "حلوى تشوروس تقدم دافئة",
+    "galAlt4": "فيتوتشيني كريمي يقدم في وعاء",
     "galAlt5": "بطاطا مخبوزة محمّلة بصلصة كريمية وذرة وبصل أخضر وجبن",
-    "heroTagline": "طازج · يدوي الصنع · من الحديقة إلى طبقك",
+    "heroTagline": "بطاطا كريمية · بيتزا في الصينية · معكرونة يدوية الصنع",
     "heroCta": "اطلب الآن على واتساب",
     "heroScroll": "↓   مرر لاكتشاف المزيد",
     "menuTitle": "قائمتنا",
     "menuSubtitle": "مُحضَّر بحب · مستوحى محلياً · بنكهات عالمية",
     "aboutTitle": "قصتنا",
     "aboutSubtitle": "حيث تلتقي طازجية الحديقة بروح أكل الشوارع",
-    "aboutText": "من حبٍّ بسيط، وُلدت الحديقة الكريمية — حبٌّ للمكوّنات الأصيلة والطعام الذي يشعرك بالبيت. رافيولي ومعكرونة، وبيتزا نابولية لامسها لهيب التابون، وبطاطا مدخّنة كريمية — كلّ طبق يُسحب من النار مباشرةً ليصل إليك، كما يجب أن يصل الطعام الحقيقي دائماً.",
+    "aboutText": "من حبٍّ بسيط، وُلدت الحديقة الكريمية: حبٌّ للمكوّنات الأصيلة والطعام الذي يشعرك بالبيت. رافيولي ومعكرونة، وبيتزا نابولية لامسها لهيب التابون، وبطاطا مدخّنة كريمية. كلّ طبق يُسحب من النار مباشرةً ليصل إليك، كما يجب أن يصل الطعام الحقيقي دائماً.",
     "feat1": "مكوّنات طازجة",
     "feat2": "يُحضَّر عند الطلب",
     "feat3": "بُذل فيه حب",
@@ -1792,164 +1745,165 @@ var T = {
     "ogTitle": "The Creamy Garden — فودتراك",
     "ogLocale": "ar_SA",
     "menuOrderCta": "اطلب عبر واتساب",
+    "menuDisclaimer": "الصور للتوضيح فقط.",
     "cookieTxt": "لا يستخدم هذا الموقع ملفات تعريف الارتباط للتتبع. روابط WhatsApp وInstagram وWaze تخضع لسياسات الخصوصية الخاصة بها.",
     "cookieOkBtn": "حسنًا ✓",
     "footerName": "فودتراك الحديقة الكريمية",
     "footerTagline": "مُحضَّر بـ 🌿 و❤️",
     "footerRights": "جميع الحقوق محفوظة © 2026",
-    "menu": [
-      {
-        "icon": "🥔",
-        "title": "الأطباق الرئيسية",
-        "items": [
-          {
-            "type": "item",
-            "text": "بطاطا مدخّنة كريمية — 35₪"
-          },
-          {
-            "type": "item",
-            "text": "رافيولي البطاطا الحلوة — 45₪"
-          },
-          {
-            "type": "item",
-            "text": "رافيولي الجبن — 45₪"
-          },
-          {
-            "type": "item",
-            "text": "رافيولي الفطر والكمأة — 45₪"
-          },
-          {
-            "type": "item",
-            "text": "فيتوتشيني — 45₪"
-          }
-        ]
-      },
-      {
-        "icon": "🍕",
-        "title": "بيتزا نابولية",
-        "items": [
-          {
-            "type": "pizza",
-            "text": "مارغريتا — 45₪"
-          },
-          {
-            "type": "pizza",
-            "text": "بوراتا — 65₪"
-          },
-          {
-            "type": "pizza",
-            "text": "كريمة الفطر — 55₪"
-          }
-        ]
-      },
-      {
-        "icon": "🥗",
-        "title": "سلطات مخصصة",
-        "items": [
-          {
-            "type": "label",
-            "text": "اختر مكوّناتك — 35₪"
-          },
-          {
-            "type": "tags",
-            "tags": [
-              "خيار",
-              "طماطم",
-              "فلفل حلو",
-              "خس",
-              "ذرة",
-              "فطر",
-              "زيتون أخضر",
-              "زيتون أسود"
-            ]
-          }
-        ]
-      },
-      {
-        "icon": "🫙",
-        "title": "الصلصات والإضافات",
-        "items": [
-          {
-            "type": "label",
-            "text": "الصلصات"
-          },
-          {
-            "type": "tags",
-            "tags": [
-              "كريمة الفطر",
-              "كريمة البيستو"
-            ]
-          },
-          {
-            "type": "label",
-            "text": "إضافات — 5₪ للجميع | جبن بلغاري — 10₪ (بريميوم)"
-          },
-          {
-            "type": "tags",
-            "tags": [
-              "بيستو",
-              "ذرة",
-              "فطر وبصل",
-              "حار",
-              "جبن أصفر",
-              "جبن بلغاري",
-              "زيتون أخضر",
-              "زيتون أسود",
-              "بصل أخضر",
-              "كريمة"
-            ]
-          }
-        ]
-      },
-      {
-        "icon": "🥤",
-        "title": "المشروبات",
-        "items": [
-          {
-            "type": "tags",
-            "tags": [
-              "تروبيكال — 3₪",
-              "ماء — 8₪",
-              "مشروب غازي — 10₪",
-              "سحلب ساخن — 15₪"
-            ]
-          }
-        ]
-      },
-      {
-        "icon": "🍩",
-        "title": "الحلويات",
-        "items": [
-          {
-            "type": "item",
-            "text": "تشوروس"
-          }
-        ]
-      }
-    ]
+    "menu": {
+      "sections": [
+        { "id":"potato", "icon":"🥔", "title":"ميستر بطاطا",
+          "items":[{ "name":"بطاطا مدخّنة كريمية", "desc":"مخبوزة بالفرن، مدخّنة وناعمة — مع إضافة من اختيارك", "price":"35₪" }] },
+        { "id":"pasta", "icon":"🍝", "title":"باستا يدوية الصنع",
+          "items":[
+            { "name":"فيتوتشيني", "price":"45₪" },
+            { "name":"رافيولي بطاطا حلوة", "price":"45₪" },
+            { "name":"رافيولي جبن", "price":"45₪" },
+            { "name":"رافيولي فطر الكمأة", "price":"45₪" }
+          ] },
+        { "id":"pizza", "icon":"🍕", "title":"بيتزا التابون",
+          "items":[
+            { "name":"مرغريتا كلاسيكية", "price":"45₪" },
+            { "name":"كريمة فطر", "price":"55₪" },
+            { "name":"بوراتا، بلسمي وجرجير", "price":"65₪" }
+          ] },
+        { "id":"toppings", "icon":"🫙", "title":"الإضافات",
+          "priceNote":"إضافة واحدة أو كلها بنفس السعر", "sectionPrice":"5₪",
+          "tags":["قشطة","ذرة","زيتون أسود","بيستو","فطر طازج","زيتون أخضر","بصل أخضر","حار","جبن أصفر","الجبن البلغاري +10₪"] },
+        { "id":"salad", "icon":"🥗", "title":"سلطة بتشكيلة شخصية",
+          "tags":["خيار","طماطم","ذرة","فلفل","خس","فطر","زيتون أخضر","زيتون أسود","جبن بلغاري (+10₪)"] },
+        { "id":"desserts", "icon":"🍩", "title":"شيء حلو",
+          "items":[
+            { "name":"تشوروس إسباني", "soon":true },
+            { "name":"سحلب ساخن", "price":"15₪" }
+          ] },
+        { "id":"drinks", "icon":"🥤", "title":"المشروبات",
+          "items":[
+            { "name":"ماء", "price":"8₪" },
+            { "name":"مشروب غازي", "price":"10₪" },
+            { "name":"عصير تروبيكانا", "price":"3₪" }
+          ] }
+      ]
+    }
   }
 };
 
 function buildMenu(lang) {
-  var data = T[lang];
-  var html = "";
-  for (var i = 0; i < data.menu.length; i++) {
-    var card = data.menu[i];
-    var titleId = "menu-card-title-" + i;
-    var body = "";
-    for (var j = 0; j < card.items.length; j++) {
-      var it = card.items[j];
-      if (it.type === "item")  body += '<div class="menu-item"><span class="menu-dot"></span><span>' + it.text + '</span></div>';
-      if (it.type === "pizza") body += '<div class="menu-item"><span class="menu-dot"></span><span>' + it.text + '</span></div>';
-      if (it.type === "label") body += '<div class="menu-heading">' + it.text + '</div>';
-      if (it.type === "tags") {
-        for (var k = 0; k < it.tags.length; k++) {
-          body += '<div class="menu-item"><span class="menu-dot"></span><span>' + it.tags[k] + '</span></div>';
-        }
+  var m = T[lang].menu;
+  var html = '<div class="ms-menu">';
+
+  var sectionImages = {
+    potato:   "assets/gallery/creamedPotato.png",
+    pasta:    "assets/gallery/Fettuccine.png",
+    pizza:    "assets/gallery/BurrataNapolitanPizza.png",
+    salad:    "assets/gallery/customSalad.png",
+    desserts: "assets/gallery/churrosDesert.png",
+    drinks:   "assets/gallery/drinks.png"
+  };
+  var imageAlts = {
+    en: { potato:"Creamy baked potato", pasta:"Fresh fettuccine pasta", pizza:"Burrata Neapolitan pizza", salad:"Custom salad bowl", desserts:"Churros served as a sweet dessert", drinks:"Selection of drinks" },
+    he: { potato:"תפוח אדמה מוקרם", pasta:"פטוצ'יני טרי", pizza:"פיצה נפוליטנית עם בוראטה", salad:"סלט בהרכבה אישית", desserts:"צ'ורוס מוגש כקינוח מתוק", drinks:"מבחר שתיות" },
+    ru: { potato:"Сливочный картофель", pasta:"Свежая фетучини", pizza:"Неаполитанская пицца с бурратой", salad:"Индивидуальный салат", desserts:"Чуррос как сладкий десерт", drinks:"Выбор напитков" },
+    ar: { potato:"بطاطا كريمية", pasta:"فيتوتشيني طازجة", pizza:"بيتزا نابوليتانية مع بوراتا", salad:"سلطة بتشكيلة شخصية", desserts:"تشوروس كحلوى", drinks:"تشكيلة المشروبات" }
+  };
+  var altSet = imageAlts[lang] || imageAlts.en;
+  var soonText = { en:"Soon", he:"בקרוב", ru:"Скоро", ar:"قريبا" }[lang] || "Soon";
+
+  for (var si = 0; si < m.sections.length; si++) {
+    var sec = m.sections[si];
+    var num = (si + 1 < 10 ? "0" : "") + (si + 1);
+
+    if (si > 0) html += '<div class="ms-ornament" aria-hidden="true">✦ ✦ ✦</div>';
+
+    html += '<section class="ms-section" aria-labelledby="ms-sec-' + sec.id + '">';
+
+    // Section head
+    html += '<div class="ms-section-head">'
+      + '<span class="ms-num">' + num + '</span>'
+      + '<h3 class="ms-title" id="ms-sec-' + sec.id + '">' + sec.title + '</h3>'
+      + '<hr class="ms-rule">'
+      + '</div>';
+
+    // Photo banner (potato, pasta, pizza, salad)
+    if (sectionImages[sec.id]) {
+      var photoStyle = sec.id === "salad" ? ' style="height:160px"' : '';
+      html += '<div class="ms-photo"' + photoStyle + '>'
+        + '<img src="' + sectionImages[sec.id] + '" alt="' + (altSet[sec.id] || sec.title) + '" loading="lazy" width="720" height="405">'
+        + '</div>';
+    }
+
+    // Price note — toppings renders as a price row; everything else as a callout box
+    if (sec.priceNote) {
+      if (sec.id === "toppings") {
+        var toppingPrice = sec.sectionPrice || "5₪";
+        html += '<ul class="ms-item-list" style="margin-bottom:12px">'
+          + '<li class="ms-item-row">'
+          + '<span class="ms-item-name">' + sec.priceNote + '</span>'
+          + '<span class="ms-item-price">' + toppingPrice + '</span>'
+          + '</li></ul>';
+      } else {
+        html += '<p class="ms-note">' + sec.priceNote + '</p>';
       }
     }
-    html += '<article class="menu-card" aria-labelledby="' + titleId + '"><div class="card-header"><h3 id="' + titleId + '"><span aria-hidden="true">' + card.icon + '</span> ' + card.title + '</h3></div><div class="card-body">' + body + '</div></article>';
+
+    // Item list (all sections except drinks)
+    if (sec.items && sec.items.length && sec.id !== "drinks") {
+      html += '<ul class="ms-item-list">';
+      for (var ii = 0; ii < sec.items.length; ii++) {
+        var item = sec.items[ii];
+        var badge = item.soon ? '<span class="ms-badge">' + soonText + '</span>' : '';
+        var price = item.price ? item.price : (item.soon ? '—' : '');
+        html += '<li class="ms-item-row">'
+          + '<span class="ms-item-name">' + item.name + badge + '</span>'
+          + (item.desc ? '<span class="ms-item-desc">' + item.desc + '</span>' : '')
+          + (price ? '<span class="ms-item-price">' + price + '</span>' : '')
+          + '</li>';
+      }
+      // Synthetic price row for salad (no items array, handled below; this covers edge cases)
+      html += '</ul>';
+    }
+
+    // Salad: add a price row before the tags
+    if (sec.id === "salad") {
+      var saladPrice = sec.sectionPrice || "35₪";
+      html += '<ul class="ms-item-list" style="margin-bottom:16px">'
+        + '<li class="ms-item-row">'
+        + '<span class="ms-item-name">' + sec.title + '</span>'
+        + '<span class="ms-item-price">' + saladPrice + '</span>'
+        + '</li></ul>';
+    }
+
+    // Tags (toppings, salad)
+    if (sec.tags && sec.tags.length) {
+      html += '<div class="ms-tags">';
+      for (var ti = 0; ti < sec.tags.length; ti++) {
+        var tag = sec.tags[ti];
+        var isPremium = tag.indexOf('+') !== -1;
+        html += '<span class="ms-tag' + (isPremium ? ' ms-tag-premium' : '') + '">' + tag + '</span>';
+      }
+      html += '</div>';
+    }
+
+    // Drinks: pill row
+    if (sec.id === "drinks" && sec.items) {
+      html += '<div class="ck-drinks-row">';
+      for (var di = 0; di < sec.items.length; di++) {
+        var drink = sec.items[di];
+        html += '<div class="ck-drink-pill">'
+          + '<span class="ck-drink-name">' + drink.name + '</span>'
+          + (drink.price ? '<span class="ck-drink-price">' + drink.price + '</span>' : '')
+          + '</div>';
+      }
+      html += '</div>';
+    }
+
+    html += '</section>';
   }
+
+  var disclaimer = T[lang].menuDisclaimer || "Images are for illustration purposes only.";
+  html += '<p class="ms-disclaimer" id="menuDisclaimer">' + disclaimer + '</p>';
+  html += '</div>'; // .ms-menu
   return html;
 }
 
@@ -2079,10 +2033,10 @@ function applyLang(lang) {
 
   labelNewTab(".hero-cta", "heroCta");
   labelNewTab(".menu-order-btn", "menuOrderCta");
-  labelNewTab(".btn-wa", "btnWa");
-  labelNewTab(".btn-ig", "btnIg");
-  labelNewTab(".btn-waze", "btnWaze");
-  labelNewTab(".btn-gmap", "btnGmap");
+  labelNewTab(".ca-wa", "btnWa");
+  labelNewTab(".ca-secondary[href*='instagram']", "btnIg");
+  labelNewTab(".ca-secondary[href*='waze']", "btnWaze");
+  labelNewTab(".ca-secondary[href*='maps']", "btnGmap");
 }
 
 function toggleDropdown(e) {
@@ -2200,7 +2154,7 @@ function switchLang(lang, btn) {
   });
 
   // Staggered group reveals
-  ['.menu-grid','.contact-grid','.feature-row','.gallery-mosaic'].forEach(function(sel){
+  ['.ms-menu','.contact-actions','.feature-row','.gallery-mosaic'].forEach(function(sel){
     var parent = document.querySelector(sel);
     if(!parent) return;
     Array.from(parent.children).forEach(function(child, i){
