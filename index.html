@@ -668,108 +668,137 @@
   /* ── RESTAURANT MENU ─────────────────────────────────────── */
   :root { --tan:#D4A574; --tan-dark:#B8845A; }
 
-  .ck-menu {
-    max-width:680px; margin:0 auto;
-    background:var(--cream);
-    border:1.5px solid var(--gold-warm);
-    border-radius:3px;
-    padding:52px 60px;
-    box-shadow:0 6px 40px rgba(0,0,0,0.09), inset 0 0 0 7px rgba(200,164,74,0.08);
+  /* Menu wrapper */
+  .ms-menu { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+  /* Section */
+  .ms-section { margin-bottom: 6px; }
+  .ms-section:last-of-type { margin-bottom: 0; }
+
+  /* Section head: number + italic title + fading rule */
+  .ms-section-head {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 13px;
+  }
+  .ms-num {
+    font-family: "Raleway", sans-serif; font-size: 0.65rem; font-weight: 700;
+    color: var(--gold-warm); letter-spacing: 3px; opacity: 0.75;
+    flex-shrink: 0; padding-top: 4px;
+  }
+  .ms-title {
+    font-family: "Playfair Display", serif; font-size: 1.5rem;
+    font-weight: 700; font-style: italic; color: var(--green);
+    line-height: 1.1; letter-spacing: -0.01em;
+  }
+  .ms-rule {
+    flex: 1; height: 1px; border: none;
+    background: linear-gradient(to left, var(--gold-pale), transparent);
+    margin-bottom: 3px;
+  }
+  [dir="rtl"] .ms-rule { background: linear-gradient(to right, var(--gold-pale), transparent); }
+
+  /* Full-width photo banner */
+  .ms-photo {
+    width: 100%; height: 210px; border-radius: 4px; overflow: hidden;
+    margin-bottom: 13px; position: relative;
+    box-shadow: 0 4px 24px var(--shadow-md);
+  }
+  .ms-photo img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 7s ease;
+  }
+  .ms-photo:hover img { transform: scale(1.04); }
+  .ms-photo::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to bottom, transparent 45%, rgba(18,42,22,0.35) 100%);
   }
 
-  .ck-section { margin-bottom:32px; }
-  .ck-section:last-child { margin-bottom:0; }
-
-  .ck-section-head {
-    display:flex; align-items:center; gap:9px;
-    margin-bottom:7px;
+  /* Item rows */
+  .ms-item-list { list-style: none; }
+  .ms-item-row {
+    display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto;
+    column-gap: 20px; padding: 8px 0;
+    border-bottom: 1px solid rgba(200,164,74,0.14); align-items: baseline;
   }
-  .ck-section-icon { font-size:1rem; line-height:1; }
-  .ck-section-title {
-    font-family:"Raleway",sans-serif;
-    font-size:0.65rem; font-weight:800;
-    letter-spacing:2.8px; text-transform:uppercase;
-    color:var(--green); flex:1;
+  .ms-item-row:last-child { border-bottom: none; }
+  .ms-item-name {
+    font-family: "Playfair Display", serif; font-size: 1.02rem; font-weight: 600;
+    color: var(--green); line-height: 1.3; grid-column: 1; grid-row: 1;
   }
-  .ck-section-price {
-    font-family:"Playfair Display",serif;
-    font-size:1.05rem; font-weight:700;
-    color:var(--gold-warm);
+  .ms-item-desc {
+    font-size: 0.8rem; color: var(--brown-lt); font-style: italic;
+    margin-top: 3px; line-height: 1.5; grid-column: 1; grid-row: 2;
   }
-
-  .ck-rule {
-    height:1px; margin-bottom:16px;
-    background:linear-gradient(to right, var(--gold-warm), transparent 80%);
+  .ms-item-price {
+    font-family: "Raleway", sans-serif; font-size: 0.92rem; font-weight: 700;
+    color: var(--gold); grid-column: 2; grid-row: 1 / 3;
+    align-self: center; white-space: nowrap;
   }
-  [dir="rtl"] .ck-rule {
-    background:linear-gradient(to left, var(--gold-warm), transparent 80%);
-  }
-
-  .ck-price-note {
-    font-size:0.77rem; color:var(--brown);
-    margin:-6px 0 14px; font-style:italic; line-height:1.5;
+  .ms-badge {
+    display: inline-block; font-family: "Raleway", sans-serif;
+    font-size: 0.56rem; font-weight: 700; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--gold-warm);
+    border: 1px solid var(--gold-warm); border-radius: 2px;
+    padding: 1px 6px; margin-inline-start: 8px; vertical-align: middle; opacity: 0.85;
   }
 
-  .ck-item-row {
-    display:flex; align-items:baseline; gap:8px;
-    padding:9px 0;
-    border-bottom:1px solid rgba(200,164,74,0.18);
+  /* Price note callout */
+  .ms-note {
+    font-size: 0.78rem; color: var(--brown); font-style: italic;
+    margin-bottom: 16px; padding: 10px 14px;
+    background: rgba(200,164,74,0.09);
+    border-inline-start: 2px solid var(--gold-warm);
+    border-radius: 0 3px 3px 0; line-height: 1.6;
   }
-  .ck-item-row:last-child { border-bottom:none; }
-
-  .ck-item-left { min-width:0; }
-  .ck-item-name {
-    font-family:"Playfair Display",serif;
-    font-size:1.0rem; font-weight:400;
-    color:var(--green);
-    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
-  }
-  .ck-item-desc {
-    font-size:0.76rem; color:var(--brown);
-    margin-top:2px; font-style:italic; line-height:1.4;
+  [dir="rtl"] .ms-note {
+    border-inline-start: none; border-inline-end: 2px solid var(--gold-warm);
+    border-radius: 3px 0 0 3px;
   }
 
-  .ck-item-leader {
-    flex:1; min-width:16px;
-    border-bottom:1.5px dotted rgba(180,140,90,0.35);
-    margin-bottom:4px;
+  /* Tags */
+  .ms-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ms-tag {
+    font-size: 0.75rem; font-weight: 500; color: var(--green);
+    background: var(--white); border: 1px solid rgba(200,164,74,0.22);
+    border-radius: 40px; padding: 5px 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .ms-tag:hover { border-color: rgba(200,164,74,0.45); box-shadow: 0 2px 8px var(--shadow); }
+  .ms-tag-premium { color: var(--gold); border-color: rgba(200,164,74,0.42); font-weight: 600; }
+
+  /* Ornament divider */
+  .ms-ornament {
+    display: flex; align-items: center; gap: 18px;
+    margin: 4px 0; color: var(--gold-warm);
+    font-size: 0.4rem; letter-spacing: 6px; opacity: 0.55; line-height: 1;
+  }
+  .ms-ornament::before, .ms-ornament::after {
+    content: ""; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,164,74,0.35), transparent);
   }
 
-  .ck-item-price {
-    font-family:"Raleway",sans-serif;
-    font-size:0.9rem; font-weight:700;
-    color:var(--gold-warm); white-space:nowrap;
+  /* Drink pills */
+  .ck-drinks-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .ck-drink-pill {
+    display: inline-flex; align-items: center; gap: 18px; padding: 9px 20px;
+    background: var(--white); border: 1px solid rgba(200,164,74,0.22);
+    border-radius: 40px; box-shadow: 0 2px 8px var(--shadow);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .ck-drink-pill:hover { border-color: rgba(200,164,74,0.45); box-shadow: 0 4px 14px var(--shadow-md); }
+  .ck-drink-name { font-family: "Playfair Display", serif; font-size: 0.88rem; color: var(--green); }
+  .ck-drink-price { font-size: 0.82rem; font-weight: 700; color: var(--gold); }
+
+  /* Disclaimer */
+  .ms-disclaimer {
+    margin-top: 28px; padding-top: 16px;
+    border-top: 1px solid rgba(200,164,74,0.2);
+    font-size: 0.72rem; color: rgba(90,70,40,0.82);
+    font-style: italic; text-align: center; letter-spacing: 0.2px;
   }
 
-  .ck-soon-badge {
-    font-family:"Raleway",sans-serif;
-    font-size:0.57rem; font-weight:700;
-    letter-spacing:1.4px; text-transform:uppercase;
-    color:var(--tan-dark); border:1px solid var(--tan-dark);
-    border-radius:20px; padding:2px 7px;
-    opacity:0.85; vertical-align:middle;
-  }
-
-  .ck-tags {
-    display:flex; flex-wrap:wrap; gap:7px; padding-top:4px;
-  }
-  .ck-tag {
-    background:var(--green); color:var(--cream);
-    border-radius:20px; padding:6px 13px;
-    font-family:"Raleway",sans-serif;
-    font-size:0.8rem; font-weight:600;
-  }
-  .ck-tag-salad {
-    background:var(--tan); color:var(--green);
-  }
-
-  .ck-divider {
-    height:1px; background:rgba(200,164,74,0.22); margin:24px 0;
-  }
-
-  @media(max-width:640px) {
-    .ck-menu { padding:30px 22px; }
-    .ck-section-title { letter-spacing:1.8px; }
+  @media (max-width: 640px) {
+    .ms-photo { height: 170px; }
+    .ms-title { font-size: 1.3rem; }
   }
 
   /* ── ACTION BUTTONS (legacy — kept for focus ring only) ─────── */
@@ -948,13 +977,14 @@
   .menu-order-btn:focus-visible,
   .action-btn:focus-visible,
   .contact-action:focus-visible,
+  .cookie-ok:focus-visible,
   footer a:focus-visible {
     outline: 3px solid var(--gold-lt);
     outline-offset: 3px;
   }
 
-  /* Fix low-contrast nav links */
-  .nav-links a { color: rgba(243,237,216,0.88); }
+  /* Fix low-contrast nav links — full opacity gives ~12:1 on dark green nav bg */
+  .nav-links a { color: var(--cream); }
 
   /* ── HIGH-CONTRAST MODE ─────────────────────────────────────── */
   body.hc-mode {
@@ -1108,130 +1138,14 @@
     background: linear-gradient(170deg, var(--parchment) 0%, var(--cream) 60%, var(--off-white) 100%);
   }
   #menu .container { position: relative; z-index: 1; }
+  #menu .container > article { position: relative; z-index: 1; }
   #menu .section-title,
   #menu .section-subtitle,
-  #menu .menu-order-row { position: relative; z-index: 1; }
+  #menu .menu-order-row,
+  #menu-content { position: relative; z-index: 1; }
 
-  /* ── FLOATING INGREDIENTS CANVAS ────────────────────────────── */
-  .menu-bg-canvas {
-    position: absolute; inset: 0;
-    pointer-events: none; z-index: 0; overflow: hidden;
-  }
-  .ing {
-    position: absolute; bottom: -80px;
-    opacity: 0; will-change: transform, opacity; display: block;
-    animation: ing-rise var(--dur,24s) var(--delay,0s) linear infinite;
-  }
-  @keyframes ing-rise {
-    0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
-    6%   { opacity: var(--op,0.32); }
-    92%  { opacity: var(--op,0.32); }
-    100% { transform: translateY(calc(-108vh)) translateX(var(--dx,20px)) rotate(var(--spin,200deg)); opacity: 0; }
-  }
-  @media (prefers-reduced-motion: reduce) { .menu-bg-canvas { display: none; } }
 
-  /* ── MENU — OPEN PHOTO-RICH DESIGN ──────────────────────────── */
 
-  /* Reset old parchment box → open canvas */
-  .ck-menu {
-    max-width: 720px;
-    padding: 0 0 4px;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    position: relative; z-index: 1;
-  }
-
-  /* Section spacing & elegant heading */
-  .ck-section { padding: 32px 0; margin-bottom: 0; }
-  .ck-section:last-child { padding-bottom: 0; }
-  .ck-section-title {
-    font-family: "Playfair Display", serif;
-    font-size: 1.25rem; font-weight: 700; font-style: italic;
-    letter-spacing: -0.01em; text-transform: none; color: var(--green); flex: 1;
-  }
-  .ck-section-icon { font-size: 1.2rem; line-height: 1; }
-  .ck-rule {
-    height: 1.5px; margin-bottom: 18px;
-    background: linear-gradient(to right, var(--gold-warm), transparent 75%);
-  }
-  [dir="rtl"] .ck-rule { background: linear-gradient(to left, var(--gold-warm), transparent 75%); }
-
-  /* ── Uniform photo card grid (all sections with images) ─── */
-  .ck-card-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    align-items: stretch;
-  }
-  .ck-card-grid--1 { grid-template-columns: 1fr; max-width: 380px; }
-  .ck-photo-card {
-    border-radius: 10px; overflow: hidden; background: var(--white);
-    box-shadow: 0 3px 14px rgba(26,61,32,0.09), 0 0 0 1px rgba(200,164,74,0.10);
-    transition: transform 0.28s ease, box-shadow 0.28s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  .ck-photo-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 28px rgba(26,61,32,0.15), 0 0 0 1px rgba(200,164,74,0.18);
-  }
-  /* Uniform image — same 4:3 ratio on every card */
-  .ck-photo-card-img {
-    width: 100%; aspect-ratio: 4 / 3; overflow: hidden;
-  }
-  .ck-photo-card-img img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    transition: transform 7s ease;
-  }
-  .ck-photo-card:hover .ck-photo-card-img img { transform: scale(1.06); }
-  .ck-photo-card-body {
-    padding: 12px 14px 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    flex: 1;
-  }
-  .ck-photo-card-name {
-    font-family: "Playfair Display", serif;
-    font-size: 0.95rem; font-weight: 600; color: var(--green); line-height: 1.35;
-  }
-  .ck-photo-card-desc { font-size: 0.74rem; color: var(--brown); margin-top: 4px; font-style: italic; line-height: 1.45; }
-  .ck-photo-card-price {
-    font-family: "Raleway", sans-serif; font-weight: 700; font-size: 1rem;
-    color: var(--gold); margin-top: auto; padding-top: 8px;
-  }
-
-  /* ── Drink pills ─── */
-  .ck-drinks-row { display: flex; flex-wrap: wrap; gap: 10px; }
-  .ck-drink-pill { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; background: var(--white); border: 1px solid rgba(200,164,74,0.22); border-radius: 40px; box-shadow: 0 2px 8px rgba(26,61,32,0.05); transition: box-shadow 0.2s, border-color 0.2s; }
-  .ck-drink-pill:hover { border-color: rgba(200,164,74,0.45); box-shadow: 0 4px 14px rgba(26,61,32,0.08); }
-  .ck-drink-name { font-family: "Playfair Display", serif; font-size: 0.88rem; color: var(--green); }
-  .ck-drink-price { font-size: 0.82rem; font-weight: 700; color: var(--gold); }
-
-  /* ── List-item rows ─── */
-  .ck-item-row { transition: background 0.2s ease, padding-inline-start 0.22s ease; border-radius: 3px; margin: 0 -4px; padding-inline: 4px; }
-  .ck-item-row:hover { background: rgba(200,164,74,0.08); padding-inline-start: 10px; }
-
-  /* ── Illustration disclaimer ─── */
-  .ck-disclaimer {
-    margin-top: 28px; padding-top: 16px;
-    border-top: 1px solid rgba(200,164,74,0.2);
-    font-size: 0.72rem; color: rgba(90,70,40,0.82);
-    font-style: italic; text-align: center; letter-spacing: 0.2px;
-  }
-
-  /* ── Menu responsive ─── */
-  @media (max-width: 600px) {
-    .ck-card-grid { grid-template-columns: 1fr 1fr; }
-    .ck-card-grid--1 { grid-template-columns: 1fr; max-width: 100%; }
-  }
-  @media (max-width: 380px) {
-    .ck-card-grid { grid-template-columns: 1fr; }
-  }
 
 </style>
 </head>
@@ -1264,7 +1178,7 @@
 <!-- ── COOKIE BANNER ── -->
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="הודעת פרטיות">
   <span id="cookieTxt">אתר זה אינו משתמש בעוגיות מעקב. קישורי WhatsApp, Instagram ו-Waze כפופים למדיניות הפרטיות שלהם.</span>
-  <button class="cookie-ok" onclick="dismissCookie()" id="cookieOkBtn">הבנתי ✓</button>
+  <button class="cookie-ok" onclick="dismissCookie()" id="cookieOkBtn" aria-label="הבנתי, סגור הודעת עוגיות">הבנתי ✓</button>
 </div>
 
 <header role="banner">
@@ -1347,8 +1261,8 @@
 </section>
 
 <section id="menu">
-  <!-- Floating ingredients — decorative background animation -->
-  <div class="menu-bg-canvas" aria-hidden="true">
+  <!-- Removed: floating ingredient SVGs replaced by pizza float below -->
+  <div class="menu-bg-canvas" style="display:none" aria-hidden="true">
     <div class="ing" style="left:7%;width:44px;height:44px;--dur:24s;--delay:-9s;--op:0.38;--dx:45px;--spin:200deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><circle cx="22" cy="26" r="11" fill="none" stroke="rgba(200,18,26,0.3)" stroke-width="1"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M16 9 C13 6 14 3 17 5" stroke="#2d6a4f" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M28 9 C31 6 30 3 27 5" stroke="#2d6a4f" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
     <div class="ing" style="left:17%;width:34px;height:52px;--dur:20s;--delay:-14s;--op:0.35;--dx:-30px;--spin:240deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 16 C12 17 7 20 6 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C12 25 8 28 7 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
     <div class="ing" style="left:26%;width:26px;height:38px;--dur:27s;--delay:-3s;--op:0.32;--dx:25px;--spin:310deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><ellipse cx="9" cy="14" rx="3.5" ry="5" fill="rgba(255,255,255,0.1)" transform="rotate(-15 9 14)"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/><circle cx="12" cy="22" r="1.5" fill="rgba(255,220,150,0.5)"/></svg></div>
@@ -1363,7 +1277,21 @@
     <div class="ing" style="left:56%;width:26px;height:36px;--dur:28s;--delay:-4s;--op:0.32;--dx:22px;--spin:175deg"><svg viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 38 C6 38 2 30 2 23 C2 12 7 5 14 5 C21 5 26 12 26 23 C26 30 22 38 14 38Z" fill="#f5f0e8" stroke="#d4c5a9" stroke-width="1"/><path d="M14 8 L14 36" stroke="#d4c5a9" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/><rect x="11" y="2" width="6" height="6" rx="2" fill="#b8845a"/></svg></div>
     <div class="ing" style="left:32%;width:36px;height:36px;--dur:18s;--delay:-13s;--op:0.38;--dx:-62px;--spin:390deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
     <div class="ing" style="left:75%;width:38px;height:58px;--dur:29s;--delay:-8s;--op:0.30;--dx:32px;--spin:215deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C20 25 24 28 25 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 16 C12 17 7 20 6 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/><path d="M16 24 C12 25 8 28 7 32" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
+
+    <!-- Mid-section scattered ingredients (bottom: 25%–75% of the section) -->
+    <div class="ing ing-mid" style="left:9%;bottom:28%;width:32px;height:32px;--dur:16s;--delay:-6s;--op:0.28;--dx:38px;--spin:190deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing ing-mid" style="left:22%;bottom:52%;width:28px;height:44px;--dur:14s;--delay:-10s;--op:0.26;--dx:-22px;--spin:260deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/></svg></div>
+    <div class="ing ing-mid" style="left:38%;bottom:35%;width:40px;height:30px;--dur:17s;--delay:-4s;--op:0.30;--dx:44px;--spin:145deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 13 16 18 Q23 23 30 18 Q37 13 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/><circle cx="23" cy="18" r="5" fill="#C8A44A" opacity="0.18"/></svg></div>
+    <div class="ing ing-mid" style="left:54%;bottom:62%;width:22px;height:34px;--dur:13s;--delay:-7s;--op:0.25;--dx:-30px;--spin:300deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><ellipse cx="9" cy="14" rx="3.5" ry="5" fill="rgba(255,255,255,0.1)" transform="rotate(-15 9 14)"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/></svg></div>
+    <div class="ing ing-mid" style="left:68%;bottom:42%;width:36px;height:36px;--dur:15s;--delay:-11s;--op:0.29;--dx:26px;--spin:220deg"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="26" r="16" fill="#e63946"/><ellipse cx="16" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(-15 16 22)"/><ellipse cx="22" cy="20" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)"/><ellipse cx="28" cy="22" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.22)" transform="rotate(15 28 22)"/><path d="M19 8 C19 8 18 4 22 4 C26 4 25 8 25 8" stroke="#2d6a4f" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="12" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <div class="ing ing-mid" style="left:83%;bottom:56%;width:30px;height:46px;--dur:18s;--delay:-3s;--op:0.27;--dx:-36px;--spin:280deg"><svg viewBox="0 0 32 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6 C22 10 30 18 28 32 C26 42 16 48 16 48 C16 48 6 42 4 32 C2 18 10 10 16 6Z" fill="#2d6a4f"/><line x1="16" y1="8" x2="16" y2="46" stroke="#1b4332" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 16 C20 17 25 20 26 24" stroke="#1b4332" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/></svg></div>
+    <div class="ing ing-mid" style="left:46%;bottom:75%;width:38px;height:28px;--dur:12s;--delay:-9s;--op:0.24;--dx:50px;--spin:165deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 23 16 18 Q23 13 30 18 Q37 23 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.3"/><circle cx="23" cy="18" r="5.5" fill="#C8A44A" opacity="0.15"/></svg></div>
+    <div class="ing ing-mid" style="left:15%;bottom:70%;width:24px;height:32px;--dur:11s;--delay:-5s;--op:0.26;--dx:-40px;--spin:335deg"><svg viewBox="0 0 28 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 38 C6 38 2 30 2 23 C2 12 7 5 14 5 C21 5 26 12 26 23 C26 30 22 38 14 38Z" fill="#f5f0e8" stroke="#d4c5a9" stroke-width="1"/><path d="M14 8 L14 36" stroke="#d4c5a9" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/><rect x="11" y="2" width="6" height="6" rx="2" fill="#b8845a"/></svg></div>
+    <div class="ing ing-mid" style="left:91%;bottom:33%;width:28px;height:44px;--dur:19s;--delay:-14s;--op:0.28;--dx:18px;--spin:200deg"><svg viewBox="0 0 44 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 28 C5 14 10 6 22 6 C34 6 39 14 39 28Z" fill="#9c6b3c"/><circle cx="15" cy="17" r="2" fill="rgba(255,240,220,0.3)"/><rect x="16" y="28" width="12" height="16" rx="5" fill="#c8956c"/><ellipse cx="22" cy="29" rx="9" ry="2.5" fill="#8a5a2c" opacity="0.6"/></svg></div>
+    <div class="ing ing-mid" style="left:30%;bottom:83%;width:20px;height:30px;--dur:10s;--delay:-2s;--op:0.22;--dx:28px;--spin:250deg"><svg viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="20" rx="10" ry="15" fill="#1b4332"/><circle cx="12" cy="22" r="3.5" fill="#2d6a4f" opacity="0.6"/></svg></div>
+    <div class="ing ing-mid" style="left:63%;bottom:78%;width:34px;height:26px;--dur:13s;--delay:-8s;--op:0.25;--dx:-44px;--spin:175deg"><svg viewBox="0 0 46 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="40" height="30" rx="7" fill="#F5E6C8" stroke="#C8A44A" stroke-width="1.5"/><path d="M3 18 Q9 13 16 18 Q23 23 30 18 Q37 13 43 18" stroke="#C8A44A" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/></svg></div>
   </div>
+
   <div class="container">
     <article aria-labelledby="menuTitle">
     <h2 class="section-title" id="menuTitle"><span class="divider" aria-hidden="true"></span></h2>
@@ -1535,9 +1463,9 @@ var T = {
             { "name":"Burrata, Balsamic & Arugula", "price":"65₪" }
           ] },
         { "id":"toppings", "icon":"🫙", "title":"Toppings",
-          "priceNote":"5₪ flat — 1 topping or all of them · Bulgarian Cheese 10₪ (premium)",
-          "tags":["Cream","Corn","Black Olives","Pesto","Fresh Mushrooms","Green Olives","Green Onions","Spicy","Yellow Cheese"] },
-        { "id":"salad", "icon":"🥗", "title":"Custom Salad", "sectionPrice":"35₪",
+          "priceNote":"1 topping or all of them, same price", "sectionPrice":"5₪",
+          "tags":["Cream","Corn","Black Olives","Pesto","Fresh Mushrooms","Green Olives","Green Onions","Spicy","Yellow Cheese","Bulgarian Cheese +10₪"] },
+        { "id":"salad", "icon":"🥗", "title":"Custom Salad",
           "tags":["Cucumber","Tomato","Corn","Bell Pepper","Lettuce","Mushrooms","Green Olives","Black Olives","Bulgarian Cheese (+10₪)"] },
         { "id":"desserts", "icon":"🍩", "title":"Sweet Treats",
           "items":[
@@ -1637,9 +1565,9 @@ var T = {
             { "name":"בוראטה, בלסמי ורוקט", "price":"65₪" }
           ] },
         { "id":"toppings", "icon":"🫙", "title":"תוספות",
-          "priceNote":"5₪ — תוספת אחת או כולן, אותו מחיר · גבינה בולגרית 10₪ (פרימיום)",
-          "tags":["שמנת","תירס","זיתים שחורים","פסטו","פטריות טריות","זיתים ירוקים","בצל ירוק","חריף","גבינה צהובה"] },
-        { "id":"salad", "icon":"🥗", "title":"סלט בהרכבה אישית", "sectionPrice":"35₪",
+          "priceNote":"תוספת אחת או כולן, אותו מחיר", "sectionPrice":"5₪",
+          "tags":["שמנת","תירס","זיתים שחורים","פסטו","פטריות טריות","זיתים ירוקים","בצל ירוק","חריף","גבינה צהובה","גבינה בולגרית +10₪"] },
+        { "id":"salad", "icon":"🥗", "title":"סלט בהרכבה אישית",
           "tags":["מלפפון","עגבניה","תירס","גמבה","חסה","פטריות","זיתים ירוקים","זיתים שחורים","בולגרית (+10₪)"] },
         { "id":"desserts", "icon":"🍩", "title":"משהו מתוק לקינוח",
           "items":[
@@ -1739,9 +1667,9 @@ var T = {
             { "name":"Буррата, бальзамик и рукола", "price":"65₪" }
           ] },
         { "id":"toppings", "icon":"🫙", "title":"Добавки",
-          "priceNote":"5₪ — одна или все добавки, цена одинакова · Болгарский сыр 10₪ (премиум)",
-          "tags":["Сливки","Кукуруза","Чёрные оливки","Песто","Свежие грибы","Зелёные оливки","Зелёный лук","Острое","Жёлтый сыр"] },
-        { "id":"salad", "icon":"🥗", "title":"Индивидуальный салат", "sectionPrice":"35₪",
+          "priceNote":"одна или все добавки, цена одинакова", "sectionPrice":"5₪",
+          "tags":["Сливки","Кукуруза","Чёрные оливки","Песто","Свежие грибы","Зелёные оливки","Зелёный лук","Острое","Жёлтый сыр","Болгарский сыр +10₪"] },
+        { "id":"salad", "icon":"🥗", "title":"Индивидуальный салат",
           "tags":["Огурец","Помидор","Кукуруза","Болгарский перец","Латук","Грибы","Зелёные оливки","Чёрные оливки","Болгарский сыр (+10₪)"] },
         { "id":"desserts", "icon":"🍩", "title":"Что-нибудь сладкое",
           "items":[
@@ -1841,9 +1769,9 @@ var T = {
             { "name":"بوراتا، بلسمي وجرجير", "price":"65₪" }
           ] },
         { "id":"toppings", "icon":"🫙", "title":"الإضافات",
-          "priceNote":"5₪ — إضافة واحدة أو كلها بنفس السعر · الجبن البلغاري 10₪ (بريميوم)",
-          "tags":["قشطة","ذرة","زيتون أسود","بيستو","فطر طازج","زيتون أخضر","بصل أخضر","حار","جبن أصفر"] },
-        { "id":"salad", "icon":"🥗", "title":"سلطة بتشكيلة شخصية", "sectionPrice":"35₪",
+          "priceNote":"إضافة واحدة أو كلها بنفس السعر", "sectionPrice":"5₪",
+          "tags":["قشطة","ذرة","زيتون أسود","بيستو","فطر طازج","زيتون أخضر","بصل أخضر","حار","جبن أصفر","الجبن البلغاري +10₪"] },
+        { "id":"salad", "icon":"🥗", "title":"سلطة بتشكيلة شخصية",
           "tags":["خيار","طماطم","ذرة","فلفل","خس","فطر","زيتون أخضر","زيتون أسود","جبن بلغاري (+10₪)"] },
         { "id":"desserts", "icon":"🍩", "title":"شيء حلو",
           "items":[
@@ -1863,225 +1791,102 @@ var T = {
 
 function buildMenu(lang) {
   var m = T[lang].menu;
-  var html = '<div class="ck-menu">';
+  var html = '<div class="ms-menu">';
 
-  // Per-item image map keyed by section id + item index
-  var pizzaImages = [
-    "assets/gallery/margaritaPizza.png",
-    "assets/gallery/creamedMashroomPizza.png",
-    "assets/gallery/BurrataNapolitanPizza.png"
-  ];
-  var pastaImages = [
-    "assets/gallery/Fettuccine.png",
-    "assets/gallery/sweetPotatoRavioli.png",
-    "assets/gallery/cheeseRavioli.png",
-    "assets/gallery/truffleMushroomRavioli.png"
-  ];
-  var saladImage = "assets/gallery/customSalad.png";
-  var drinksImage = "assets/gallery/drinks.png";
-  var dessertImages = [
-    "assets/gallery/churrosDesert.png",
-    "assets/gallery/hotSahlab.png"
-  ];
-  var potatoImage = "assets/gallery/creamedPotato.png";
-
-  var soonBadgeTextByLang = { en: "Soon", he: "בקרוב", ru: "Скоро", ar: "قريبا" };
-  var soonBadgeText = soonBadgeTextByLang[lang] || "Soon";
-  var imageAltByLang = {
-    en: {
-      potato: "Creamy baked potato topped with sweet corn, chives and melted cheese",
-      pasta: [
-        "Fresh fettuccine pasta served with creamy sauce",
-        "Sweet potato ravioli served hot and plated",
-        "Cheese ravioli filled with creamy cheese",
-        "Truffle mushroom ravioli with rich earthy flavor"
-      ],
-      salad: "Custom salad with fresh vegetables arranged in a serving bowl",
-      desserts: [
-        "Churros served as a sweet dessert",
-        "Hot sahlab topped and served warm"
-      ],
-      drinks: "Cold and hot drinks served from The Creamy Garden menu",
-      pizza: [
-        "Margherita pizza with tomato sauce, mozzarella and fresh basil",
-        "Creamy mushroom pizza with rich white sauce and mushrooms",
-        "Burrata Neapolitan pizza topped with arugula and balsamic"
-      ]
-    },
-    he: {
-      potato: "תפוח אדמה מוקרם אפוי עם תירס, בצל ירוק וגבינה נמסה",
-      pasta: [
-        "פטוצ'יני טרי עם רוטב קרמי עשיר",
-        "רביולי בטטה חם ומוגש בצלחת",
-        "רביולי גבינה במילוי גבינה קרמי",
-        "רביולי פטריות כמהין בטעם עמוק ועשיר"
-      ],
-      salad: "סלט בהרכבה אישית עם ירקות טריים בקערת הגשה",
-      desserts: [
-        "צ'ורוס מוגש כקינוח מתוק",
-        "סחלב חם מוגש בכוס"
-      ],
-      drinks: "משקאות קרים וחמים מתפריט הגן המוקרם",
-      pizza: [
-        "פיצת מרגריטה עם רוטב עגבניות, מוצרלה ובזיליקום טרי",
-        "פיצה עם שמנת פטריות ומרקם עשיר",
-        "פיצה נפוליטנית עם בוראטה, רוקט ובלסמי"
-      ]
-    },
-    ru: {
-      potato: "Запеченный сливочный картофель с кукурузой, зеленым луком и сыром",
-      pasta: [
-        "Свежая фетучини с нежным сливочным соусом",
-        "Равиоли с бататом, подаются горячими",
-        "Равиоли с сырной начинкой",
-        "Равиоли с грибами и трюфелем с насыщенным вкусом"
-      ],
-      salad: "Индивидуальный салат из свежих овощей в сервировочной миске",
-      desserts: [
-        "Чуррос, подаются как сладкий десерт",
-        "Горячий сахлаб, подается теплым"
-      ],
-      drinks: "Холодные и горячие напитки из меню Creamy Garden",
-      pizza: [
-        "Пицца Маргарита с томатным соусом, моцареллой и свежим базиликом",
-        "Пицца с грибами в сливочном соусе",
-        "Неаполитанская пицца с бурратой, рукколой и бальзамиком"
-      ]
-    },
-    ar: {
-      potato: "بطاطا مخبوزة كريمية مع الذرة والبصل الأخضر والجبن الذائب",
-      pasta: [
-        "فيتوتشيني طازجة مع صلصة كريمية غنية",
-        "رافيولي البطاطا الحلوة يقدم ساخنا",
-        "رافيولي الجبن بحشوة كريمية",
-        "رافيولي الفطر والكمأة بنكهة عميقة وغنية"
-      ],
-      salad: "سلطة بتشكيلة شخصية مع خضار طازجة في طبق تقديم",
-      desserts: [
-        "تشوروس يقدم كحلوى",
-        "سحلب ساخن يقدم دافئا"
-      ],
-      drinks: "مشروبات باردة وساخنة من قائمة الحديقة الكريمية",
-      pizza: [
-        "بيتزا مارغريتا مع صلصة الطماطم والموزاريلا والريحان الطازج",
-        "بيتزا الفطر الكريمية بصلصة بيضاء غنية",
-        "بيتزا نابوليتانية مع بوراتا وجرجير وخل بلسمي"
-      ]
-    }
+  var sectionImages = {
+    potato:   "assets/gallery/creamedPotato.png",
+    pasta:    "assets/gallery/Fettuccine.png",
+    pizza:    "assets/gallery/BurrataNapolitanPizza.png",
+    salad:    "assets/gallery/customSalad.png",
+    desserts: "assets/gallery/churrosDesert.png",
+    drinks:   "assets/gallery/drinks.png"
   };
-  var altSet = imageAltByLang[lang] || imageAltByLang.en;
+  var imageAlts = {
+    en: { potato:"Creamy baked potato", pasta:"Fresh fettuccine pasta", pizza:"Burrata Neapolitan pizza", salad:"Custom salad bowl", desserts:"Churros served as a sweet dessert", drinks:"Selection of drinks" },
+    he: { potato:"תפוח אדמה מוקרם", pasta:"פטוצ'יני טרי", pizza:"פיצה נפוליטנית עם בוראטה", salad:"סלט בהרכבה אישית", desserts:"צ'ורוס מוגש כקינוח מתוק", drinks:"מבחר שתיות" },
+    ru: { potato:"Сливочный картофель", pasta:"Свежая фетучини", pizza:"Неаполитанская пицца с бурратой", salad:"Индивидуальный салат", desserts:"Чуррос как сладкий десерт", drinks:"Выбор напитков" },
+    ar: { potato:"بطاطا كريمية", pasta:"فيتوتشيني طازجة", pizza:"بيتزا نابوليتانية مع بوراتا", salad:"سلطة بتشكيلة شخصية", desserts:"تشوروس كحلوى", drinks:"تشكيلة المشروبات" }
+  };
+  var altSet = imageAlts[lang] || imageAlts.en;
+  var soonText = { en:"Soon", he:"בקרוב", ru:"Скоро", ar:"قريبا" }[lang] || "Soon";
 
   for (var si = 0; si < m.sections.length; si++) {
     var sec = m.sections[si];
-    if (si > 0) html += '<div class="ck-divider"></div>';
+    var num = (si + 1 < 10 ? "0" : "") + (si + 1);
 
-    html += '<div class="ck-section">';
+    if (si > 0) html += '<div class="ms-ornament" aria-hidden="true">✦ ✦ ✦</div>';
 
-    // Section header
-    html += '<div class="ck-section-head">'
-      + '<span class="ck-section-icon" aria-hidden="true">' + sec.icon + '</span>'
-      + '<span class="ck-section-title">' + sec.title + '</span>';
-    if (sec.sectionPrice) {
-      html += '<span class="ck-section-price">' + sec.sectionPrice + '</span>';
+    html += '<section class="ms-section" aria-labelledby="ms-sec-' + sec.id + '">';
+
+    // Section head
+    html += '<div class="ms-section-head">'
+      + '<span class="ms-num">' + num + '</span>'
+      + '<h3 class="ms-title" id="ms-sec-' + sec.id + '">' + sec.title + '</h3>'
+      + '<hr class="ms-rule">'
+      + '</div>';
+
+    // Photo banner (potato, pasta, pizza, salad)
+    if (sectionImages[sec.id]) {
+      var photoStyle = sec.id === "salad" ? ' style="height:160px"' : '';
+      html += '<div class="ms-photo"' + photoStyle + '>'
+        + '<img src="' + sectionImages[sec.id] + '" alt="' + (altSet[sec.id] || sec.title) + '" loading="lazy" width="720" height="405">'
+        + '</div>';
     }
-    html += '</div>';
-    html += '<div class="ck-rule"></div>';
 
+    // Price note — toppings renders as a price row; everything else as a callout box
     if (sec.priceNote) {
-      html += '<p class="ck-price-note">' + sec.priceNote + '</p>';
+      if (sec.id === "toppings") {
+        var toppingPrice = sec.sectionPrice || "5₪";
+        html += '<ul class="ms-item-list" style="margin-bottom:12px">'
+          + '<li class="ms-item-row">'
+          + '<span class="ms-item-name">' + sec.priceNote + '</span>'
+          + '<span class="ms-item-price">' + toppingPrice + '</span>'
+          + '</li></ul>';
+      } else {
+        html += '<p class="ms-note">' + sec.priceNote + '</p>';
+      }
     }
 
-    if (sec.id === "potato" && sec.items) {
-      // Single full-width photo card for Mr. Potato
-      html += '<div class="ck-card-grid ck-card-grid--1">';
-      var potatoItem = sec.items[0];
-      html += '<article class="ck-photo-card">'
-        + '<div class="ck-photo-card-img"><img src="' + potatoImage + '" alt="' + (altSet.potato || potatoItem.name) + '" loading="lazy" width="720" height="540"></div>'
-        + '<div class="ck-photo-card-body">'
-        + '<div class="ck-photo-card-name">' + potatoItem.name + '</div>'
-        + (potatoItem.desc ? '<div class="ck-photo-card-desc">' + potatoItem.desc + '</div>' : '')
-        + (potatoItem.price ? '<div class="ck-photo-card-price">' + potatoItem.price + '</div>' : '')
-        + '</div>'
-        + '</article>';
-      html += '</div>';
-    } else if (sec.id === "pasta" && sec.items) {
-      // Pasta card grid with per-item images
-      html += '<div class="ck-card-grid">';
-      for (var pa = 0; pa < sec.items.length; pa++) {
-        var pasta = sec.items[pa];
-        var pastaImg = pastaImages[pa] || "assets/gallery/hero-wide.webp";
-        var pastaAlt = (altSet.pasta && altSet.pasta[pa]) ? altSet.pasta[pa] : pasta.name;
-        html += '<article class="ck-photo-card">'
-          + '<div class="ck-photo-card-img"><img src="' + pastaImg + '" alt="' + pastaAlt + '" loading="lazy" width="360" height="270"></div>'
-          + '<div class="ck-photo-card-body">'
-          + '<div class="ck-photo-card-name">' + pasta.name + '</div>'
-          + (pasta.desc ? '<div class="ck-photo-card-desc">' + pasta.desc + '</div>' : '')
-          + (pasta.price ? '<div class="ck-photo-card-price">' + pasta.price + '</div>' : '')
-          + '</div>'
-          + '</article>';
+    // Item list (all sections except drinks)
+    if (sec.items && sec.items.length && sec.id !== "drinks") {
+      html += '<ul class="ms-item-list">';
+      for (var ii = 0; ii < sec.items.length; ii++) {
+        var item = sec.items[ii];
+        var badge = item.soon ? '<span class="ms-badge">' + soonText + '</span>' : '';
+        var price = item.price ? item.price : (item.soon ? '—' : '');
+        html += '<li class="ms-item-row">'
+          + '<span class="ms-item-name">' + item.name + badge + '</span>'
+          + (item.desc ? '<span class="ms-item-desc">' + item.desc + '</span>' : '')
+          + (price ? '<span class="ms-item-price">' + price + '</span>' : '')
+          + '</li>';
+      }
+      // Synthetic price row for salad (no items array, handled below; this covers edge cases)
+      html += '</ul>';
+    }
+
+    // Salad: add a price row before the tags
+    if (sec.id === "salad") {
+      var saladPrice = sec.sectionPrice || "35₪";
+      html += '<ul class="ms-item-list" style="margin-bottom:16px">'
+        + '<li class="ms-item-row">'
+        + '<span class="ms-item-name">' + sec.title + '</span>'
+        + '<span class="ms-item-price">' + saladPrice + '</span>'
+        + '</li></ul>';
+    }
+
+    // Tags (toppings, salad)
+    if (sec.tags && sec.tags.length) {
+      html += '<div class="ms-tags">';
+      for (var ti = 0; ti < sec.tags.length; ti++) {
+        var tag = sec.tags[ti];
+        var isPremium = tag.indexOf('+') !== -1;
+        html += '<span class="ms-tag' + (isPremium ? ' ms-tag-premium' : '') + '">' + tag + '</span>';
       }
       html += '</div>';
-    } else if (sec.id === "pizza" && sec.items) {
-      // 3-column photo card grid, one image per pizza
-      html += '<div class="ck-card-grid">';
-      for (var pi = 0; pi < sec.items.length; pi++) {
-        var pizza = sec.items[pi];
-        var pizzaImg = pizzaImages[pi] || "assets/gallery/hero-wide.webp";
-        var pizzaAlt = (altSet.pizza && altSet.pizza[pi]) ? altSet.pizza[pi] : pizza.name;
-        html += '<article class="ck-photo-card">'
-          + '<div class="ck-photo-card-img"><img src="' + pizzaImg + '" alt="' + pizzaAlt + '" loading="lazy" width="360" height="270"></div>'
-          + '<div class="ck-photo-card-body">'
-          + '<div class="ck-photo-card-name">' + pizza.name + '</div>'
-          + (pizza.desc ? '<div class="ck-photo-card-desc">' + pizza.desc + '</div>' : '')
-          + (pizza.price ? '<div class="ck-photo-card-price">' + pizza.price + '</div>' : '')
-          + '</div>'
-          + '</article>';
-      }
-      html += '</div>';
-    } else if (sec.id === "salad") {
-      // Single salad photo card
-      html += '<div class="ck-card-grid ck-card-grid--1">';
-      html += '<article class="ck-photo-card">'
-        + '<div class="ck-photo-card-img"><img src="' + saladImage + '" alt="' + (altSet.salad || sec.title) + '" loading="lazy" width="720" height="540"></div>'
-        + '<div class="ck-photo-card-body">'
-        + '<div class="ck-photo-card-name">' + sec.title + '</div>'
-        + (sec.sectionPrice ? '<div class="ck-photo-card-price">' + sec.sectionPrice + '</div>' : '')
-        + '</div>'
-        + '</article>';
-      html += '</div>';
-      if (sec.tags) {
-        var saladTagCls = "ck-tag ck-tag-salad";
-        html += '<div class="ck-tags">';
-        for (var st = 0; st < sec.tags.length; st++) {
-          html += '<span class="' + saladTagCls + '">' + sec.tags[st] + '</span>';
-        }
-        html += '</div>';
-      }
-    } else if (sec.id === "desserts" && sec.items) {
-      // Dessert card grid (uses available images; falls back gracefully)
-      html += '<div class="ck-card-grid">';
-      for (var de = 0; de < sec.items.length; de++) {
-        var dessert = sec.items[de];
-        var dessertImg = dessertImages[de];
-        var dessertAlt = (altSet.desserts && altSet.desserts[de]) ? altSet.desserts[de] : dessert.name;
-        html += '<article class="ck-photo-card">'
-          + '<div class="ck-photo-card-img"><img src="' + (dessertImg || "assets/gallery/hero-wide.webp") + '" alt="' + dessertAlt + '" loading="lazy" width="360" height="270"></div>'
-          + '<div class="ck-photo-card-body">'
-          + '<div class="ck-photo-card-name">' + dessert.name + (dessert.soon ? '<span class="ck-soon-badge">' + soonBadgeText + '</span>' : '') + '</div>'
-          + (dessert.price ? '<div class="ck-photo-card-price">' + dessert.price + '</div>' : '')
-          + '</div>'
-          + '</article>';
-      }
-      html += '</div>';
-    } else if (sec.id === "drinks" && sec.items) {
-      html += '<div class="ck-card-grid ck-card-grid--1">';
-      html += '<article class="ck-photo-card">'
-        + '<div class="ck-photo-card-img"><img src="' + drinksImage + '" alt="' + (altSet.drinks || sec.title) + '" loading="lazy" width="720" height="540"></div>'
-        + '<div class="ck-photo-card-body">'
-        + '<div class="ck-photo-card-name">' + sec.title + '</div>'
-        + '</div>'
-        + '</article>';
-      html += '</div>';
+    }
+
+    // Drinks: pill row
+    if (sec.id === "drinks" && sec.items) {
       html += '<div class="ck-drinks-row">';
       for (var di = 0; di < sec.items.length; di++) {
         var drink = sec.items[di];
@@ -2091,46 +1896,14 @@ function buildMenu(lang) {
           + '</div>';
       }
       html += '</div>';
-    } else {
-      // Text-only sections: item rows
-      if (sec.items) {
-        for (var ii = 0; ii < sec.items.length; ii++) {
-          var item = sec.items[ii];
-          var badge = item.soon ? '<span class="ck-soon-badge">' + soonBadgeText + '</span>' : '';
-          html += '<div class="ck-item-row">'
-            + '<div class="ck-item-left">'
-            + '<div class="ck-item-name">' + item.name + badge + '</div>';
-          if (item.desc) {
-            html += '<div class="ck-item-desc">' + item.desc + '</div>';
-          }
-          html += '</div>';
-          if (item.price) {
-            html += '<div class="ck-item-leader" aria-hidden="true"></div>'
-              + '<div class="ck-item-price">' + item.price + '</div>';
-          }
-          html += '</div>';
-        }
-      }
-
-      // Tag clouds (toppings / salad)
-      if (sec.tags) {
-        var tagCls = sec.id === "salad" ? "ck-tag ck-tag-salad" : "ck-tag";
-        html += '<div class="ck-tags">';
-        for (var ti = 0; ti < sec.tags.length; ti++) {
-          html += '<span class="' + tagCls + '">' + sec.tags[ti] + '</span>';
-        }
-        html += '</div>';
-      }
     }
 
-    html += '</div>'; // .ck-section
+    html += '</section>';
   }
 
-  // Illustration disclaimer
   var disclaimer = T[lang].menuDisclaimer || "Images are for illustration purposes only.";
-  html += '<p class="ck-disclaimer" id="menuDisclaimer">' + disclaimer + '</p>';
-
-  html += '</div>'; // .ck-menu
+  html += '<p class="ms-disclaimer" id="menuDisclaimer">' + disclaimer + '</p>';
+  html += '</div>'; // .ms-menu
   return html;
 }
 
@@ -2381,7 +2154,7 @@ function switchLang(lang, btn) {
   });
 
   // Staggered group reveals
-  ['.ck-menu','.contact-actions','.feature-row','.gallery-mosaic'].forEach(function(sel){
+  ['.ms-menu','.contact-actions','.feature-row','.gallery-mosaic'].forEach(function(sel){
     var parent = document.querySelector(sel);
     if(!parent) return;
     Array.from(parent.children).forEach(function(child, i){
