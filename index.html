@@ -765,6 +765,63 @@
   }
   .ms-tag:hover { border-color: rgba(200,164,74,0.45); box-shadow: 0 2px 8px var(--shadow); }
   .ms-tag-premium { color: var(--gold); border-color: rgba(200,164,74,0.42); font-weight: 600; }
+  .ms-topping-trigger {
+    appearance: none;
+    font-family: inherit;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s var(--ease), background 0.2s;
+  }
+  .ms-topping-trigger:hover {
+    border-color: rgba(200,164,74,0.55);
+    box-shadow: 0 6px 18px var(--shadow);
+    transform: translateY(-1px);
+  }
+  .ms-topping-trigger:active { transform: translateY(1px) scale(0.98); }
+  .ms-topping-trigger.is-popping { animation: toppingTagPop 0.4s var(--ease); }
+
+  .topping-confetti-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10002;
+  }
+  .topping-confetti {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--size, 28px);
+    height: var(--size, 28px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: calc(var(--size, 28px) / -2);
+    margin-top: calc(var(--size, 28px) / -2);
+    font-size: calc(var(--size, 28px) * 0.72);
+    line-height: 1;
+    opacity: 0;
+    filter: drop-shadow(0 6px 10px rgba(18,42,22,0.22));
+    will-change: transform, opacity;
+    animation: toppingConfettiFlight var(--dur, 1400ms) cubic-bezier(0.16,0.84,0.24,1) forwards;
+  }
+
+  @keyframes toppingTagPop {
+    0% { transform: scale(1); }
+    35% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
+  @keyframes toppingConfettiFlight {
+    0% {
+      opacity: 0;
+      transform: translate3d(0,0,0) scale(0.68) rotate(0deg);
+    }
+    12% { opacity: 1; }
+    100% {
+      opacity: 0;
+      transform: translate3d(var(--dx, 0px), var(--dy, -180px), 0) scale(1.06) rotate(var(--rot, 180deg));
+    }
+  }
 
   /* Ornament divider */
   .ms-ornament {
@@ -1881,7 +1938,11 @@ function buildMenu(lang) {
       for (var ti = 0; ti < sec.tags.length; ti++) {
         var tag = sec.tags[ti];
         var isPremium = tag.indexOf('+') !== -1;
-        html += '<span class="ms-tag' + (isPremium ? ' ms-tag-premium' : '') + '">' + tag + '</span>';
+        if (sec.id === "toppings" || sec.id === "salad") {
+          html += '<button type="button" class="ms-tag ms-topping-trigger' + (isPremium ? ' ms-tag-premium' : '') + '" data-topping-index="' + ti + '" aria-label="' + sec.title + ': ' + tag + '">' + tag + '</button>';
+        } else {
+          html += '<span class="ms-tag' + (isPremium ? ' ms-tag-premium' : '') + '">' + tag + '</span>';
+        }
       }
       html += '</div>';
     }
@@ -1915,6 +1976,98 @@ function announceA11y(msg) {
   setTimeout(function () {
     lr.textContent = msg;
   }, 40);
+}
+
+var TOPPING_CONFETTI_PRESETS = [
+  ["🤍", "🥛", "✨"],
+  ["🌽", "🌽", "✨"],
+  ["🫒", "🫒", "✨"],
+  ["🍃", "🍃", "✨"],
+  ["🍄", "🍄", "✨"],
+  ["🫒", "🫒", "✨"],
+  ["🧅", "🧅", "✨"],
+  ["🌶️", "🌶️", "✨"],
+  ["🧀", "🧀", "✨"],
+  ["🧀", "⭐", "✨"],
+  ["🥒", "🥒", "✨"],
+  ["🍅", "🍅", "✨"],
+  ["🌽", "🌽", "✨"],
+  ["🫑", "🫑", "✨"],
+  ["🥬", "🥬", "✨"],
+  ["🍄", "🍄", "✨"],
+  ["🫒", "🫒", "✨"],
+  ["🫒", "🫒", "✨"],
+  ["🧀", "🧀", "✨"]
+];
+
+function ensureToppingConfettiLayer() {
+  var layer = document.getElementById("toppingConfettiLayer");
+  if (layer) return layer;
+  layer = document.createElement("div");
+  layer.id = "toppingConfettiLayer";
+  layer.className = "topping-confetti-layer";
+  layer.setAttribute("aria-hidden", "true");
+  document.body.appendChild(layer);
+  return layer;
+}
+
+function launchToppingConfetti(trigger, index) {
+  if (!trigger) return;
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var layer = ensureToppingConfettiLayer();
+  var rect = trigger.getBoundingClientRect();
+  var originX = rect.left + (rect.width / 2);
+  var originY = rect.top + (rect.height / 2);
+  var tokens = TOPPING_CONFETTI_PRESETS[index] || ["✨", "⭐", "✨"];
+  var count = reduceMotion ? 8 : 18;
+
+  trigger.classList.remove("is-popping");
+  void trigger.offsetWidth;
+  trigger.classList.add("is-popping");
+
+  for (var i = 0; i < count; i++) {
+    var piece = document.createElement("span");
+    var angle = (-115 + Math.random() * 230) * (Math.PI / 180);
+    var distance = 120 + Math.random() * (reduceMotion ? 90 : 220);
+    var driftX = Math.cos(angle) * distance;
+    var driftY = Math.sin(angle) * distance - 100 - Math.random() * 130;
+    var size = 22 + Math.random() * 16;
+    var duration = (reduceMotion ? 700 : 1150) + Math.random() * 500;
+
+    piece.className = "topping-confetti";
+    piece.textContent = tokens[i % tokens.length];
+    piece.style.left = originX + "px";
+    piece.style.top = originY + "px";
+    piece.style.setProperty("--dx", driftX.toFixed(1) + "px");
+    piece.style.setProperty("--dy", driftY.toFixed(1) + "px");
+    piece.style.setProperty("--rot", ((Math.random() * 720) - 360).toFixed(0) + "deg");
+    piece.style.setProperty("--size", size.toFixed(0) + "px");
+    piece.style.setProperty("--dur", duration.toFixed(0) + "ms");
+    layer.appendChild(piece);
+
+    piece.addEventListener("animationend", function () {
+      this.remove();
+    });
+  }
+
+  window.setTimeout(function () {
+    trigger.classList.remove("is-popping");
+  }, 420);
+}
+
+function bindToppingConfetti() {
+  document.querySelectorAll(".ms-topping-trigger").forEach(function (button) {
+    if (button.dataset.confettiBound === "true") return;
+    button.dataset.confettiBound = "true";
+    button.addEventListener("click", function () {
+      var index = Number(button.getAttribute("data-topping-index")) || 0;
+      var section = button.closest(".ms-section");
+      var sectionId = section ? section.getAttribute("aria-labelledby") : "";
+      if (sectionId === "ms-sec-salad") index = index + 10;
+      launchToppingConfetti(button, index);
+    });
+  });
 }
 
 function applyLang(lang) {
@@ -2031,6 +2184,7 @@ function applyLang(lang) {
   if (heroLogo && data.navLogo) heroLogo.alt = data.navLogo;
 
   document.getElementById("menu-content").innerHTML = buildMenu(lang);
+  bindToppingConfetti();
 
   labelNewTab(".hero-cta", "heroCta");
   labelNewTab(".menu-order-btn", "menuOrderCta");
